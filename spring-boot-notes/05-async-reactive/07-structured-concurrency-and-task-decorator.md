@@ -56,9 +56,6 @@ flowchart TD
     Req --> Decorator
     Decorator -->|컨텍스트 주입 후 Fork| F1 & F2
     F2 -->|에러 발생| Cancel
-
-    style F2 fill:#fff1f0,stroke:#f5222d
-    style Cancel fill:#fffbe6,stroke:#faad14
 ```
 
 ## 4. 이 노트에 나온 용어

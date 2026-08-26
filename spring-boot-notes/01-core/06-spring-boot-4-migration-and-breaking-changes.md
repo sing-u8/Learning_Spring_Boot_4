@@ -59,10 +59,6 @@ flowchart TD
 
     Legacy -->|Step 1: 점진 마이그레이션| Classic
     Classic -->|Step 2: 레거시 제거 및 표준화| Native4
-
-    style Legacy fill:#fff1f0,stroke:#f5222d
-    style Bridge fill:#fffbe6,stroke:#faad14
-    style Native4 fill:#f6ffed,stroke:#52c41a
 ```
 
 ## 4. 이 노트에 나온 용어

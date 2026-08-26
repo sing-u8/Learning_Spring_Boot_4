@@ -54,7 +54,6 @@ flowchart TD
     end
 
     Unit -.-> Flow
-    style Unit fill:#f6ffed,stroke:#52c41a
 ```
 
 ## 4. 이 노트에 나온 용어

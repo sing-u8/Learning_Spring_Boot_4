@@ -54,9 +54,6 @@ flowchart TD
     end
 
     Client ===|실제 HTTP Request / Response| Tomcat
-
-    style Client fill:#e6f7ff,stroke:#1890ff
-    style FullServer fill:#f6ffed,stroke:#52c41a
 ```
 
 ## 4. 이 노트에 나온 용어

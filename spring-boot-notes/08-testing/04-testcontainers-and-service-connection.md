@@ -57,9 +57,6 @@ flowchart TD
 
     Conn ===|동적 URL / 포트 자동 주입| PgContainer
     Ryuk -.->|수명주기 감시 및 폐기| PgContainer
-
-    style Conn fill:#e6f7ff,stroke:#1890ff
-    style PgContainer fill:#f6ffed,stroke:#52c41a
 ```
 
 ## 4. 이 노트에 나온 용어

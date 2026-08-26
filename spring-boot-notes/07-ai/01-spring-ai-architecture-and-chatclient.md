@@ -84,9 +84,6 @@ flowchart TD
     end
 
     Model --> M1 & M2 & M3 & M4
-
-    style Client fill:#e6f7ff,stroke:#1890ff
-    style Model fill:#f6ffed,stroke:#52c41a
 ```
 
 ## 4. 이 노트에 나온 용어
