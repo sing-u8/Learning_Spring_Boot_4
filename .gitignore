@@ -1,0 +1,85 @@
+# ==========================================
+# Large PDF & E-Book Files
+# ==========================================
+*.pdf
+*.epub
+*.mobi
+*.azw3
+
+# ==========================================
+# Operating System Files
+# ==========================================
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Linux
+*~
+.directory
+
+# ==========================================
+# IDE & Editor Files
+# ==========================================
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Obsidian Cache & Workspace State
+.obsidian/workspace*
+.obsidian/cache/
+
+# General Editors & Swp
+*.swp
+*.swo
+*.bak
+*~
+
+# ==========================================
+# Logs & Temporary Files
+# ==========================================
+*.log
+logs/
+tmp/
+temp/
+scratch/
+*.tmp
+
+# ==========================================
+# Environment & Secrets
+# ==========================================
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.p12
+*.jks
+
+# ==========================================
+# Java / Build Artifacts (Future Projects)
+# ==========================================
+target/
+build/
+.gradle/
+bin/
+node_modules/
+dist/
