@@ -1,0 +1,16 @@
+{
+  "description": "deep-tutor concept-note completion gate",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.agents/skills/deep-tutor/scripts/check-note-hook.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
