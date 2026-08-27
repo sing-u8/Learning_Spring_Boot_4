@@ -3,103 +3,38 @@
 > **교재**: *Learning Spring Boot 4: Simplify the development of production-grade applications using Java and Spring (4th Edition)*  
 > **저자**: Wanderson Xesquevixos, Ranga Rao Karanam, Magnus Larsson, Greg L. Turnquist  
 > **기술 스택**: Spring Boot 4.1.x, Java 25, Spring AI 1.x, Testcontainers 2.x, JUnit 6, OpenTelemetry, OCI Buildpacks  
-> **총 개념 노트**: **8개 카테고리 / 51개 개념 노트 (전수 100% 검증 완료)**
+
+이 저장소는 교재 원문 분석부터 핵심 개념 구조화까지 학습 과정 전반을 담고 있는 Obsidian 기반의 Deep-Tutor Vault입니다. 
+저장소는 목적에 따라 크게 두 개의 메인 디렉토리로 나뉘어 구성되어 있습니다.
 
 ---
 
-## 📚 카테고리별 개념 맵 및 구성
+## 📂 저장소 구조 안내
 
-```
-spring-boot-notes/
-├── 01-core/ (6개 노트)
-│   └── 스프링 부트 아키텍처, IoC/DI, 자동 구성, 스타터, 외부화 설정, BeanRegistrar, 마이그레이션
-├── 02-web/ (6개 노트)
-│   └── Spring MVC, Thymeleaf, Jackson 3, 네이티브 API 버저닝, @HttpExchange, React 통합
-├── 03-data/ (5개 노트)
-│   └── Spring Data JPA, Hibernate 7 SQM, 파생 쿼리/페이징, Query By Example, R2DBC
-├── 04-security/ (6개 노트)
-│   └── SecurityFilterChain, UserDetailsService, 메서드 보안, CSRF, OAuth 2.1 / OIDC, SSL Bundles
-├── 05-async-reactive/ (8개 노트)
-│   └── 가상 스레드, Reactive Streams, WebFlux SSE, HATEOAS, Kafka EDA, DLT/멱등성, 구조화된 동시성, Thymeleaf DataDriver
-├── 06-ops-native/ (8개 노트)
-│   └── Uber JAR/Buildpacks, Docker Compose, GraalVM Native Image, Java 25 AOT Cache, 관측성 3대 기둥, Loki, Prometheus, Tempo
-├── 07-ai/ (8개 노트)
-│   └── Spring AI, ChatClient, 프롬프트 템플릿, Tool Calling, RAG/VectorStore, MCP, 가드레일, 대화 메모리, LLM 평가
-├── 08-testing/ (6개 노트)
-│   └── JUnit 6 도메인 단위 테스트, @WebMvcTest & @MockitoBean, @DataJpaTest, Testcontainers 2.x & @ServiceConnection, Spring Security Test, RestTestClient
-└── _global/
-    └── 설정(config.md), 세션 로그, 교차 연결 맵
-```
+### 1. [spring-boot-4-pdf-notes](spring-boot-4-pdf-notes/README.md) (PDF 기반 1차 요약 노트)
+교재 원본 PDF(총 538쪽)를 읽으며, Part 1~7 및 Chapter 1~15의 목차 흐름을 그대로 따라가며 정리한 1차 학습 노트입니다. 
+
+- **특징**: 기존 정리본을 재사용하지 않고 책의 텍스트와 예제를 바탕으로 내용을 충실히 재구성했습니다.
+- **다이어그램**: 학습에 필수적인 표와 아키텍처 흐름도는 주로 Mermaid를 사용해 그렸으며, 복잡한 UI 화면 등 픽셀 정보가 필수적인 경우에만 PDF 이미지를 추출하여 배치했습니다.
+- **목적**: 개념을 스스로 인출하기 전, 책의 전체 내용을 빠짐없이 파악하고 뼈대를 세우는 '원론적'인 역할을 합니다.
+
+### 2. [spring-boot-4-complete-notes](spring-boot-4-complete-notes/README.md) (완전 학습 & Deep-Tutor 노트)
+1차 노트와 원문을 바탕으로 개념을 촘촘하게 재구성하고 구조화한 개인 완전 학습용(Deep-Tutor) 노트입니다. 
+
+- **규모**: 주제 단위로 세분화된 총 89개의 개념 노트, 15개의 Chapter별 개념 지도(`_map.md`), Chapter별 용어집(`_glossary.md`)으로 구성됩니다.
+- **특징**: 책의 단순 번역이나 복사-붙여넣기가 아니라 이해한 내용을 바탕으로 재구성한 설명들로 채워져 있습니다. 
+- **활용(Deep-Tutor)**: 
+  - 각 노트는 구분자 아래에 `내 설명 시도` 영역이 있어 스스로 설명(Feynman 기법)해보는 인출 연습이 가능하도록 설계되었습니다.
+  - 설명이 막히거나 개념 간 연결이 끊긴 부분은 `_global/gaps.md`에 기록하여 추후 약점을 보완합니다.
 
 ---
 
-## 🎯 전체 51개 개념 노트 색인
+## 🛠️ 학습 및 활용 가이드
 
-### [01-core](spring-boot-notes/01-core/_map.md) (6)
-1. `01-spring-boot-architecture-and-context.md` — 스프링 부트 아키텍처와 IoC 컨테이너
-2. `02-autoconfiguration-and-conditionals.md` — 모듈형 자동 구성과 @Conditional 조건부 등록
-3. `03-starters-and-dependency-management.md` — 스타터 POM과 전이 의존성 관리
-4. `04-configuration-properties-and-profiles.md` — ConfigurationProperties 타입 안전 바인딩과 프로파일
-5. `05-bean-registration-and-null-safety.md` — BeanRegistrar 함수형 등록과 JSpecify Null-Safety
-6. `06-spring-boot-4-migration-and-breaking-changes.md` — Spring Boot 4 마이그레이션과 파괴적 변경사항
+본 저장소는 마크다운 기반의 노트 앱(예: Obsidian) 환경에 최적화되어 있습니다.
 
-### [02-web](spring-boot-notes/02-web/_map.md) (6)
-1. `01-spring-mvc-architecture-and-controllers.md` — Spring MVC 요청-응답 생명주기와 웹 컨트롤러
-2. `02-server-side-templates-thymeleaf.md` — 서버 사이드 템플릿 엔진 Thymeleaf와 폼 데이터 바인딩
-3. `03-json-rest-api-jackson3.md` — Jackson 3 기반 RESTful JSON API 설계와 엔드포인트
-4. `04-native-api-versioning.md` — Spring Boot 4 네이티브 API 버저닝 (URI, 헤더, 쿼리 파라미터)
-5. `05-declarative-http-interfaces.md` — 선언적 HTTP 서비스 인터페이스 (@HttpExchange 프록시 클라이언트)
-6. `06-frontend-integration-react.md` — React 프론트엔드 연동과 프로덕션 단일 JAR 패키징 파이프라인
+1. **내용 파악**: 처음 접하는 개념은 `spring-boot-4-pdf-notes` 폴더의 노트들을 순서대로 읽으며 책의 전반적인 의도와 흐름을 파악합니다.
+2. **구조적 인출 및 설명**: 어느 정도 내용이 숙지되면 `spring-boot-4-complete-notes` 폴더로 넘어갑니다. 각 장의 `_map.md`를 통해 큰 그림을 파악하고, 각 주제 노트를 열어 '내 설명 시도' 부분에 스스로 자신의 언어로 학습한 내용을 설명해 봅니다.
+3. **약점 추적 및 보완**: 설명이 막히는 부분은 즉각적으로 `gaps.md`에 메모해 두고, 집중 반복 학습을 진행합니다.
 
-### [03-data](spring-boot-notes/03-data/_map.md) (5)
-1. `01-spring-data-jpa-repositories.md` — Spring Data JPA 리포지토리 추상화와 도메인 계층 분리
-2. `02-hibernate-7-and-persistence-module.md` — Hibernate 7 SQM 엔진과 Spring Boot Persistence 모듈
-3. `03-derived-queries-and-pagination.md` — 파생 쿼리 메서드와 Pageable/Slice 페이징 최적화
-4. `04-query-by-example-and-custom-jpa.md` — Query By Example 동적 검색과 커스텀 JPA 리포지토리 구현
-5. `05-r2dbc-reactive-data-access.md` — R2DBC 비동기 논블로킹 데이터 액세스와 반응형 리포지토리
-
-### [04-security](spring-boot-notes/04-security/_map.md) (6)
-1. `01-spring-security-architecture-filterchain.md` — Spring Security 7 아키텍처와 SecurityFilterChain 파이프라인
-2. `02-authentication-user-details-service.md` — 사용자 인증과 UserDetailsService 및 PasswordEncoder 해싱
-3. `03-authorization-and-method-security.md` — URL 인가 규칙과 @PreAuthorize 메서드 수준 보안 (SpEL)
-4. `04-csrf-protection-and-session.md` — CSRF 공격 방어 메커니즘과 세션 고정 보호 정책
-5. `05-oauth2-oidc-social-login.md` — OAuth 2.1 & OpenID Connect 기반 소셜 로그인 및 토큰 인증
-6. `06-ssl-bundles-and-data-protection.md` — SSL Bundles 중앙화 인증서 관리와 전송 계층 보안 (TLS/HTTPS)
-
-### [05-async-reactive](spring-boot-notes/05-async-reactive/_map.md) (8)
-1. `01-virtual-threads-loom-concurrency.md` — Java 25 가상 스레드 (Project Loom)와 Spring Boot 동시성 모델
-2. `02-reactive-streams-reactor-core.md` — Reactive Streams 표준 명세와 Project Reactor (Mono & Flux) 핵심
-3. `03-spring-webflux-controllers-streaming.md` — Spring WebFlux 컨트롤러와 Server-Sent Events (SSE) 실시간 스트리밍
-4. `04-reactive-hypermedia-hateoas.md` — Spring HATEOAS 기반 반응형 하이퍼미디어 API 구축
-5. `05-event-driven-architecture-kafka-basics.md` — 이벤트 기반 아키텍처(EDA)와 Apache Kafka 기초
-6. `06-kafka-reliability-retries-dlq-idempotency.md` — Kafka 신뢰성 패턴: 논블로킹 재시도, DLT 격리, 멱등성 소비자
-7. `07-structured-concurrency-and-task-decorator.md` — 구조화된 동시성(StructuredTaskScope)과 TaskDecorator 컨텍스트 전파
-8. `08-reactive-thymeleaf-and-r2dbc-template.md` — Thymeleaf 리액티브 데이터 드라이버와 R2DBC 템플릿
-
-### [06-ops-native](spring-boot-notes/06-ops-native/_map.md) (8)
-1. `01-uber-jar-and-buildpacks-container.md` — 실행 가능한 Uber JAR 구조와 Cloud Native Buildpacks OCI 이미지
-2. `02-docker-compose-production-scaling.md` — Docker Compose 멀티 인스턴스 스케일링과 공유 데이터베이스 구성
-3. `03-graalvm-native-image-and-runtime-hints.md` — GraalVM 네이티브 이미지 AOT 컴파일과 RuntimeHints 등록
-4. `04-java25-aot-cache-and-runtime-comparison.md` — Java 25 AOT Cache 트레이닝 실행과 런타임 기술별 성능 비교
-5. `05-observability-three-pillars-architecture.md` — 옵저버빌리티 3대 기둥과 OpenTelemetry 표준 아키텍처
-6. `06-structured-logging-loki-grafana.md` — Logback 구조화된 JSON 로깅과 Grafana Loki 수집 파이프라인
-7. `07-metrics-micrometer-prometheus.md` — Micrometer 벤더 중립 메트릭 수집과 Prometheus / Grafana 연동
-8. `08-distributed-tracing-tempo-correlation.md` — OpenTelemetry 기반 Grafana Tempo 분산 추적과 3대 신호 교차 상관분석
-
-### [07-ai](spring-boot-notes/07-ai/_map.md) (8)
-1. `01-spring-ai-architecture-and-chatclient.md` — Spring AI 아키텍처와 ChatClient Fluent API 빌더
-2. `02-prompt-engineering-and-templates.md` — 프롬프트 템플릿 엔지니어링과 BeanOutputConverter 구조화 DTO 매핑
-3. `03-tool-calling-and-function-callbacks.md` — @Tool 기반 Tool Calling과 자바 메서드 자율 실행 에이전트 루프
-4. `04-rag-architecture-and-vector-stores.md` — RAG (검색 증강 생성) 아키텍처와 PGVector 기반 의미론적 검색 파이프라인
-5. `05-model-context-protocol-mcp.md` — Model Context Protocol (MCP) 표준 아키텍처와 엔터프라이즈 도구 연동
-6. `06-ai-security-and-responsible-guardrails.md` — AI 보안: 프롬프트 인젝션 방어, PII 마스킹 및 다층 가드레일 체인
-7. `07-conversation-memory-chat-memory.md` — 대화 메모리(ChatMemory)와 MessageChatMemoryAdvisor 세션 상태 관리
-8. `08-llm-evaluation-and-cost-optimization.md` — LLM 응답 품질 평가(LLM-as-a-Judge)와 프롬프트 캐싱 비용 최적화
-
-### [08-testing](spring-boot-notes/08-testing/_map.md) (6)
-1. `01-junit6-and-domain-unit-testing.md` — JUnit 6와 도메인 객체 순수 단위 테스트
-2. `02-web-mvc-test-mockmvc-mockito-bean.md` — @WebMvcTest와 MockMvc 및 @MockitoBean 웹 슬라이스 테스트
-3. `03-data-jpa-test-and-embedded-db.md` — @DataJpaTest와 인메모리 데이터베이스 슬라이스 테스트
-4. `04-testcontainers-and-service-connection.md` — Testcontainers 2.x와 @ServiceConnection 통합 테스트
-5. `05-spring-security-test-and-mock-user.md` — Spring Security Test와 @WithMockUser 보안 정책 검증
-6. `06-rest-test-client-and-integration.md` — RestTestClient와 @SpringBootTest 풀스택 통합 테스트
+> 💡 **참고**: 학습 노트 작성 중에 생성되었던 임시 원본 텍스트나 변환용 Python 스크립트 등은 모두 `_archive/` 디렉토리에 백업되어 있습니다. 이 폴더는 Git 추적에서 제외(`.gitignore`)되어 저장소 이력을 깨끗하게 유지합니다.
