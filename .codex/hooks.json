@@ -1,5 +1,5 @@
 {
-  "description": "deep-tutor concept-note completion gate",
+  "description": "deep-tutor completion gate for nested Part/Chapter concept notes",
   "hooks": {
     "PostToolUse": [
       {
@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.agents/skills/deep-tutor/scripts/check-note-hook.sh"
+            "command": "bash \"/Users/singyupark/Documents/StudyWithClaude/JAVA_SPRING_BOOT4-1/.claude/hooks/deep-tutor-note-gate.sh\""
           }
         ]
       }
