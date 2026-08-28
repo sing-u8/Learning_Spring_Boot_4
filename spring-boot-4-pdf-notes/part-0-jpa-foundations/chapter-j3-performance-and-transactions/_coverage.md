@@ -15,6 +15,7 @@
 | Spring Framework Reference — Declarative Transaction Management | Context7 `/websites/spring_io_spring-framework_reference` | 전파 속성, **자기 호출이 가로채이지 않는다는 명시** |
 | Spring Framework Reference — Understanding AOP Proxies | Context7 같음 | 자기 호출 해법 세 가지와 권장 순위 |
 | Spring Boot Reference — SQL Databases | Context7 `/spring-projects/spring-boot/v4.1.0` | OSIV 기본값이 켜짐이라는 근거 |
+| Hibernate ORM User Guide — JDBC · Database Access | Context7 `/hibernate/hibernate-orm` | **RESOURCE_LOCAL 은 트랜잭션이 끝나면 커넥션을 반환한다** — "OSIV 가 커넥션을 요청 끝까지 붙잡는다"는 통설의 반증 |
 
 ## 2. 대조 읽기용 참고서
 
