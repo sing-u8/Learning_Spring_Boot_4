@@ -36,6 +36,7 @@ mode: batch
 - Chapter 12: 책 pp. 317–343 / PDF pp. 342–368
 - 책 쪽과 PDF 쪽의 offset: `+25`
 - Chapter 16은 출판사 혜택 안내이므로 학습 본문 범위에서 제외한다.
+- `part-0-jpa-foundations/`는 PDF 쪽 범위가 없다. 1차 소스가 책이 아니라 공식 문서이기 때문이며, 출처는 각 노트의 `source:`와 챕터 `_coverage.md`에 적혀 있다.
 
 ## 진행 위치
 
@@ -62,6 +63,20 @@ mode: batch
 | 13 | **완료** | concept notes 15, map 1, glossary 1, coverage 1, 책 이미지 6 | — |
 | 14 | **완료** | concept notes 19, map 1, glossary 1, coverage 1, 책 이미지 0 | — |
 | 15 | **완료** | concept note 1(챕터 단위 통합), map 1, glossary 1, coverage 1, 책 이미지 0 | — |
+
+### 보조 소스 트랙 — part-0-jpa-foundations
+
+책 트랙과 별개로 진행된 트랙이다. *Learning Spring Boot 4* Ch. 3이 다루지 않는 JPA 내부 층을 **PDF가 아니라 Spring Data JPA·Hibernate ORM 공식 문서**에서 복원한다. 대조 읽기용 참고서는 김영한 『자바 ORM 표준 JPA 프로그래밍』이다.
+
+| Chapter | 상태 | 현재 산출물 | 1차 소스 |
+|---|---|---|---|
+| j1 · 영속성 컨텍스트 | **완료** | concept notes 4, map 1, glossary 1, coverage 1 | Hibernate ORM User Guide (Persistence Context · Flushing · Caching), Spring Data JPA Reference |
+| j2 · 연관관계와 프록시 | **완료** | concept notes 5, map 1, glossary 1, coverage 1 | Hibernate ORM User Guide (Domain Associations), Introduction (Proxies · Cascading · @Any) |
+| j3 · 성능과 트랜잭션 | **완료** | concept notes 5, map 1, glossary 1, coverage 1 | Hibernate ORM (Fetching · HQL From · Locking), Spring Framework/Boot Reference |
+
+- `_coverage.md`는 원문 행 대조가 아니라 **주제 → 출처 매핑**이다. 원문이 여러 문서에 흩어져 있어 행 단위 대조가 성립하지 않는다.
+- 책 트랙과 이 트랙 사이에는 위키 링크를 만들지 않았다. 연결은 각 `_map.md`의 「다음으로 이어지는 곳」 표에 적혀 있다.
+- 이 트랙을 포함하면 저장소의 concept note는 **163 + 14 = 177개**다.
 
 ## 품질 상태의 의미
 

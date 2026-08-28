@@ -21,6 +21,19 @@
 | 15 | 469–492 | 494–517 | 1 |
 | **합계** |  |  | **163** |
 
+## 보조 소스 트랙 — part-0-jpa-foundations
+
+1차 소스가 PDF가 아니라 공식 문서이므로 책 쪽·PDF 쪽이 없다.
+
+| Chapter | 1차 소스 | 대조 읽기 | 주제 파일 수 |
+|---|---|---|---:|
+| j1 · 영속성 컨텍스트 | Hibernate ORM User Guide · Spring Data JPA Reference | 김영한 3장 | 4 |
+| j2 · 연관관계와 프록시 | Hibernate ORM User Guide · Introduction | 김영한 5·6·7·8장 | 5 |
+| j3 · 성능과 트랜잭션 | Hibernate ORM · Spring Framework/Boot Reference | 김영한 12·13·15·16장 | 5 |
+| **소계** |  |  | **14** |
+
+책 트랙 163개와 합해 저장소 전체 concept note는 **177개**다.
+
 ## 원문 처리 원칙
 
 1. Chapter별 PDF 범위를 `pdftotext -layout`으로 새 임시 경로에 추출한다.

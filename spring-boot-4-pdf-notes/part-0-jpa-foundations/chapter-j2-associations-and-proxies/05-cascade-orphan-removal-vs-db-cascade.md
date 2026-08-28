@@ -118,7 +118,7 @@ int purgeHidden();
 | 전형적 코드 | `em.remove(material)` | `material.getLinks().remove(link)` |
 | 의미 | "부모가 사라지면 자식도 의미 없다" | "부모에 속하지 않는 자식은 존재할 수 없다" |
 
-`orphanRemoval = true`를 켜면 `REMOVE` 전이도 함께 적용된다. 반대는 성립하지 않는다 — `REMOVE`만 켜고 컬렉션에서 자식을 빼면, 그 자식은 외래 키가 `null`로 갱신되려다 `NOT NULL` 제약에 걸린다.
+`orphanRemoval = true`를 켜면 `REMOVE` 전이도 함께 적용된다. 반대는 성립하지 않는다 — `REMOVE`만 켜고 컬렉션에서 자식을 빼면 **아무 일도 일어나지 않는다.** 이 컬렉션은 `mappedBy`가 붙은 반대편이라 외래 키 판정에서 제외되기 때문이다([[01-association-owner-and-mappedby]] 2.1). 행은 DB에 그대로 남는다. 단방향 `@OneToMany` + `@JoinColumn`이라면 이야기가 다르다 — 그때는 컬렉션이 주인이라 외래 키가 `null`로 갱신되려다 `NOT NULL` 제약에 걸린다.
 
 CosmoRoute에서 실제로 자주 일어나는 일은 **후자**다. 운영자가 원료의 성분 목록에서 하나를 잘못 넣었다고 판단해 뺀다. 원료는 그대로 있고 연결만 사라져야 한다.
 

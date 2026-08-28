@@ -197,8 +197,9 @@ flowchart TD
   UPDATE material SET name='B', published_at=... WHERE id=?
 
   → DB 왕복 1회. 최종 상태만 나간다.
-    "지연(behind)"은 늦게 쓴다는 뜻이 아니라
-    쓰기를 읽기 뒤로(behind) 미뤄 둔다는 뜻이다 — write-behind 라는 이름의 유래.
+    "write-behind" 는 캐시 용어다. 변경을 메모리에 먼저 반영하고
+    DB 반영이 그 뒤에서(behind) 따라온다는 뜻이며,
+    쓰기를 곧바로 DB 로 흘려보내는 write-through 의 반대다.
 ```
 
 ## 4. 이 노트에 나온 용어

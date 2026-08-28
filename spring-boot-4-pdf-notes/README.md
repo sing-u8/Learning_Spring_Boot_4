@@ -47,7 +47,7 @@ flowchart LR
 
 ## 책 전체 구조
 
-> 아래 주제 수는 현재 파일 수다. **Chapter 1–15 전부가 상세 재작성 완료**이며 합계 163개다.
+> 아래 주제 수는 현재 파일 수다. **Chapter 1–15 전부가 상세 재작성 완료**이며 합계 163개다. 여기에 보조 트랙 `part-0-jpa-foundations`의 14개를 더하면 저장소 전체는 **177개**다.
 
 | Part | Chapter map | 책 쪽 | PDF 쪽 | 주제 수 |
 |---|---|---:|---:|---:|
@@ -66,6 +66,18 @@ flowchart LR
 | 5 | [[part-5-observing-spring-boot-4-applications/chapter-13-observing-spring-boot-4-applications/_map|13. Observability · 상세 재작성 완료]] | 347–397 | 372–422 | 15 |
 | 6 | [[part-6-building-intelligent-applications-with-spring-ai/chapter-14-building-intelligent-applications-with-spring-ai/_map|14. Spring AI · 상세 재작성 완료]] | 401–465 | 426–490 | 19 |
 | 7 | [[part-7-whats-new-in-spring-boot-4/chapter-15-whats-new-in-spring-boot-4/_map|15. What's New in Spring Boot 4 · 상세 재작성 완료]] | 469–492 | 494–517 | 1 |
+
+### 보조 트랙 — part-0-jpa-foundations
+
+책 Ch. 3은 Spring Data JPA를 26쪽으로 다루고 커스텀 파인더에서 끝난다. 영속성 컨텍스트, 연관관계 매핑, 프록시와 지연 로딩, N+1, `@Transactional` 전파, 락, OSIV는 이 책에 없다. 그 층을 **PDF가 아니라 Spring Data JPA·Hibernate ORM 공식 문서**에서 복원한 트랙이다.
+
+| Chapter map | 1차 소스 | 주제 수 |
+|---|---|---:|
+| [[part-0-jpa-foundations/chapter-j1-persistence-context/_map\|j1. 영속성 컨텍스트]] | Hibernate ORM User Guide · Spring Data JPA Reference | 4 |
+| [[part-0-jpa-foundations/chapter-j2-associations-and-proxies/_map\|j2. 연관관계와 프록시]] | Hibernate ORM User Guide · Introduction | 5 |
+| [[part-0-jpa-foundations/chapter-j3-performance-and-transactions/_map\|j3. 성능과 트랜잭션]] | Hibernate ORM · Spring Framework/Boot Reference | 5 |
+
+`_coverage.md`는 책 쪽 대조표가 아니라 **주제 → 출처 매핑**이다. 대조 읽기용 참고서로 김영한 『자바 ORM 표준 JPA 프로그래밍』의 대응 장을 각 노트에 표기했다.
 
 ## 전역 문서
 
