@@ -130,7 +130,7 @@ template은 완전하고 세밀한 제어를 준다. 그런데 대부분의 코�
 ### 두 가지 설계와 그 결과
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph LCD["최소공통분모 방식 (JDBC 식)"]
         API["공통 인터페이스 하나"]
@@ -235,6 +235,8 @@ repository 층에 한정된 이야기다. template을 쓴 코드, 저장소 고�
 6. 접근 방법 사다리 네 칸을 "무엇으로 쿼리를 표현하는가" 기준으로 나열할 수 있는가?
 7. 아래 칸으로 내려가는 것이 왜 실패가 아닌가?
 8. "저장소를 바꿔도 코드가 그대로"라는 말의 실제 적용 범위는 어디까지인가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_01a-using-spring-data-to-easily-manage-data]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

@@ -109,7 +109,7 @@ Java 25는 Java 24가 도입한 AOT Cache 지원을 이어받아, 캐시 생성�
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph COLD["표준 JVM — 매 실행마다 처음부터"]
         C1["클래스 로드"] --> C2["tiered compilation 시작<br/>인터프리터 실행"]
@@ -180,6 +180,9 @@ flowchart TB
 - AOT Cache가 "중간 지대"라 불리는 이유를 JIT와 peak 처리량으로 설명해 보라.
 - 이 장에서 "AOT"라는 말이 쓰인 세 가지 뜻을 각각 구분해 보라.
 - AOT Cache 도입 리스크가 네이티브 전환보다 낮은 이유는?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_07-using-java-25-aot-cache]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

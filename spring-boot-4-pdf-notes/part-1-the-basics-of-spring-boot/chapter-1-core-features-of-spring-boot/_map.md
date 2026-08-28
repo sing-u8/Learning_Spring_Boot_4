@@ -5,7 +5,7 @@
 ## 읽는 순서
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     T["00 환경과 장의 출발점"] --> A["01 Context · DI · 자동 구성"]
     A --> S["02 Starter"]
@@ -32,7 +32,7 @@ flowchart LR
 이 축의 질문은 “Spring Boot의 각 기능은 어느 시점에 무엇을 바꾸는가?”다. starter와 BOM을 런타임 기능으로, configuration property를 빌드 의존성으로 혼동하지 않게 해 준다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph BUILD["빌드 시점"]
         S["Starter<br/>필요한 의존성 묶음"]

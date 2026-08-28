@@ -90,7 +90,7 @@ Mono<Employee> add(@RequestBody Mono<Employee> newEmployee) {
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph IMP["명령형 — @RequestBody Employee"]
         I1["요청 본문이 다 올 때까지 기다린다"] --> I2["파싱된 객체를 받는다"] --> I3["스레드는 그동안 묶여 있었다"]
@@ -150,6 +150,9 @@ flowchart TB
 - `map`과 `flatMap` 중 무엇을 쓸지 정하는 한 문장짜리 기준은?
 - 함수형 라우팅을 고르는 정당한 이유와 정당하지 않은 이유를 각각 하나씩 들어 보라.
 - `map` 안의 `DATABASE.put`이 언제 실행되는가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_04-consuming-data-with-reactive-post]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

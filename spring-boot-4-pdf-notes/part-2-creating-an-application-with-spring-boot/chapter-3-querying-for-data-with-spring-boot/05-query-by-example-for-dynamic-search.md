@@ -239,7 +239,7 @@ QBE는 이 문제를 **`null` 필드를 조건 목록에서 아예 제외**하�
 ### 프로브가 조건이 되는 경로
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     F["폼 입력 value=spring"] --> D["UniversalSearch DTO"]
     D --> S["VideoService.search()"]
@@ -354,6 +354,8 @@ flowchart TD
 6. `withIgnoreCase()`가 인덱스에 미치는 영향은?
 7. SQL에서 `where name = null`이 0건을 돌려주는 이유를 삼치 논리로 설명할 수 있는가?
 8. QBE가 표현할 수 **없는** 조건 종류를 두 개 들 수 있는가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_05-query-by-example-for-dynamic-search]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

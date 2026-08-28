@@ -184,7 +184,7 @@ public class CuratedCatalogService {
 ### 호출 경로에 따라 프록시를 거치는지가 갈린다
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant C as Controller
     participant P as 프록시
@@ -284,6 +284,9 @@ Spring의 기본은 프록시다. AspectJ 로드타임 위빙을 쓰면 바이�
 7. `REQUIRES_NEW`를 반복문에서 쓸 때 커넥션 관점의 위험은 무엇인가?
 8. 참여하는 트랜잭션에서 `readOnly = true`가 무시되면 앞 챕터의 무엇과 이어지는가?
 9. `private` 메서드에 `@Transactional`을 붙이면 왜 효과가 없는가?
+
+
+> 아홉 문항을 스스로 답한 **뒤에** [[_03-transactional-propagation-and-proxy-limits]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

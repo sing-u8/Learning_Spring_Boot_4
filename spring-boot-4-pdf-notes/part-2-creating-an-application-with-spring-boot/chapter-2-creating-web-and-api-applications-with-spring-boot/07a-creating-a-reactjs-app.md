@@ -316,7 +316,7 @@ public String react() {
 ### 상태가 화면을 끌고 가는 루프
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant B as 브라우저
     participant S as Spring Boot
@@ -448,6 +448,8 @@ sequenceDiagram
 8. `react.mustache`가 `index.mustache`와 근본적으로 다른 점은 무엇인가?
 9. 책이 "shadow DOM"이라 부른 것의 정확한 이름은 무엇이고, 진짜 Shadow DOM은 무엇을 위한 것인가?
 10. 이 절의 진짜 목표가 React 학습이 아니라면 무엇인가?
+
+> 열 문항을 스스로 답한 **뒤에** [[_07a-creating-a-reactjs-app]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

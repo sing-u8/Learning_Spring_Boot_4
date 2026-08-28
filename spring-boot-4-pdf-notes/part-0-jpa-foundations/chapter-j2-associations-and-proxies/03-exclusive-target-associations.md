@@ -227,7 +227,7 @@ String displayName() {
 ### 결정 흐름
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["대상 타입이 둘 이상이고<br/>상속 관계가 아니다"] --> B{"물리 외래 키를<br/>포기할 수 있는가?"}
     B -- "포기 가능" --> C["@Any + 판별 컬럼<br/>자바는 깔끔 · 제약은 없음"]
@@ -290,6 +290,9 @@ flowchart TD
 6. A의 대가를 정적 팩터리가 어떻게 갚는가?
 7. 읽는 쪽 분기를 엔티티 안에 가두지 않으면 무엇이 문제가 되는가?
 8. `@Any`와 상속 다형성에서 판별자가 저장되는 위치는 각각 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_03-exclusive-target-associations]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

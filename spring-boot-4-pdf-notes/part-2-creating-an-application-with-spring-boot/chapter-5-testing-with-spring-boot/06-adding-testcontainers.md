@@ -185,7 +185,7 @@ status: prepared
 ### 손으로 하던 일이 사라지는 지점
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     subgraph MANUAL["수동 로컬 DB"]
         M1["사람이 DB를 띄운다"] --> M2["테스트 실행"]
@@ -294,6 +294,9 @@ flowchart TD
 6. `<type>pom</type>`과 `<scope>import</scope>`가 각각 무엇을 뜻하는가?
 7. `<dependencyManagement>`에 BOM을 넣었는데도 `<dependencies>`에 선언이 필요한 이유는?
 8. Testcontainers 2.x에서 좌표가 바뀐 사실이 이 절의 코드에 어떻게 드러나는가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_06-adding-testcontainers]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

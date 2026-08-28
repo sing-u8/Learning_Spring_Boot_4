@@ -12,7 +12,7 @@
 다섯 노트를 "값이 코드로부터 얼마나 멀어졌는가"로 줄 세우면 장 전체가 한 방향임이 보인다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     C["소스 코드에 하드코딩<br/>Chapter 4까지"] --> P["01 · 프로퍼티 파일<br/>같은 JAR 안"]
     P --> F["02 · 프로파일 파일<br/>여전히 JAR 안이지만 상황별"]
@@ -38,7 +38,7 @@ flowchart LR
 이 장의 다섯 절은 사실 **두 개의 독립된 질문**을 다룬다. 섞어 읽으면 헷갈리고, 나눠 읽으면 단순해진다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Q1["질문 A — 어떻게 적나?"] --> A1["01 · 자바 타입으로 선언"]
     Q1 --> A2["03 · .properties vs YAML"]

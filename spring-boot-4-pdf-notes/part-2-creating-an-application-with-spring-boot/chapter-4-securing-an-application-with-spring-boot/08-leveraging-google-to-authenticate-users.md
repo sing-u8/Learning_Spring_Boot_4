@@ -51,7 +51,7 @@ status: prepared
 **[[신원-제공자]]**(= 사용자 계정과 인증을 대신 책임지는 외부 서비스)에 위임하면 구조가 이렇게 바뀐다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     subgraph 직접운영["직접 운영 — 지금까지"]
         D1["회원 가입 · 비밀번호 저장"]
@@ -124,7 +124,7 @@ OAuth와 OIDC를 지원하는 곳은 많다 — Google, GitHub, Microsoft, 그�
 | **Google** | **Google** | **Google** | **이 노트 이후** |
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Q{"사용자 관리를 누가 하나?"}
     Q -- 우리 --> A["UserDetailsService + DB<br/>비밀번호 해싱 · 재설정 · 2FA 전부 우리 몫"]
@@ -175,6 +175,8 @@ flowchart TD
 5. 외부 제공자를 써도 여전히 우리가 해야 하는 보안 작업은 무엇인가?
 6. 책이 여러 제공자 중 Google을 고른 예제상의 이유는?
 7. 여권 심사대 비유가 깨지는 지점은 어디인가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_08-leveraging-google-to-authenticate-users]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

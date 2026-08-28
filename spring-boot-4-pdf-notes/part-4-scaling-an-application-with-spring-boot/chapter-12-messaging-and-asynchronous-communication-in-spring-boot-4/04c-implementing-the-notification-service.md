@@ -142,7 +142,7 @@ Sending notification to: wanderson.xesquevixos@example.com
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant U as curl
     participant C as EmployeeController
@@ -207,6 +207,9 @@ sequenceDiagram
 - `auto-offset-reset: earliest`가 적용되는 조건은 정확히 무엇인가?
 - `trusted.packages: "*"`가 왜 취약점 경로인가?
 - `partitions assigned: [employee-events-0]` 로그가 확인해 주는 것은?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_04c-implementing-the-notification-service]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

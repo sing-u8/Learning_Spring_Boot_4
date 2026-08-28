@@ -2,8 +2,8 @@
 category: chapter-11-virtual-threads-in-java-and-spring-boot
 concept: understanding-virtual-threads
 title: "블로킹처럼 쓰고 논블로킹처럼 확장하기 — 가상 스레드"
-source: "Learning Spring Boot 4, Ch. 11, 책 pp. 296-297 / PDF pp. 321-322"
-terms: [동시성, 플랫폼-스레드, 가상-스레드, Project-Loom, JEP, 캐리어-스레드, 마운트, 스레드-풀, 명령형-블로킹-스타일, 리액티브-모델, 배압, I/O-바운드, 블로킹-호출]
+source: "Learning Spring Boot 4, Ch. 11, 책 pp. 296-297 / PDF pp. 321-322 / 핀닝 서술은 책 밖 보강 — Oracle Java 25 Core Libraries · Virtual Threads (https://docs.oracle.com/en/java/javase/25/core/virtual-threads.html), JEP 491"
+terms: [동시성, 플랫폼-스레드, 가상-스레드, Project-Loom, JEP, 캐리어-스레드, 마운트, 스레드-풀, 명령형-블로킹-스타일, 리액티브-모델, 배압, I/O-바운드, 블로킹-호출, 핀닝]
 related: [02-using-virtual-threads-in-a-spring-boot-application, 04-using-virtual-threads-with-restclient, 06-error-handling-in-concurrent-tasks]
 status: prepared
 ---
@@ -89,7 +89,7 @@ List<Employee> list() {
 작동 방식이 세 단계다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["가상 스레드가 캐리어 위에서 실행 중"] --> B["블로킹 연산 도달<br/>DB 응답 · 네트워크 대기"]
     B --> C["JVM이 가상 스레드를 중단하고<br/>캐리어에서 내린다 (unmount)"]
@@ -140,7 +140,7 @@ CPU 바운드 작업에도 이점이 없다. 계산이 시간을 쓰는 동안�
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Q{"무엇이 문제인가?"}
     Q -- "스레드가 비싸다" --> V["가상 스레드<br/>코드는 그대로"]
@@ -189,11 +189,21 @@ flowchart TD
 
 **"스레드 풀을 크게 만들면 같은 효과다"** — 플랫폼 스레드는 메모리와 문맥 교환 비용이 있어 무한정 늘릴 수 없다.
 
+**"`synchronized`를 쓰면 핀닝된다"** — **JDK 23까지의 이야기다.** JDK 24의 JEP 491이 해소했고, 이 책이 쓰는 Java 25에서는 해당하지 않는다. 지금 핀닝을 일으키는 것은 네이티브 메서드와 외부 함수다(§6).
+
 ## 6. 언제 안 쓰나 / 경계
 
 - **CPU 바운드 작업.** 이득이 없다.
 - **배압이 필요한 스트리밍.** 리액티브의 영역이다.
-- **`synchronized` 블록 안의 블로킹.** 가상 스레드가 캐리어에 고정(pinning)될 수 있어 이점이 사라진다. 책은 다루지 않지만 실무에서 자주 만나는 함정이다.
+- **네이티브 메서드·외부 함수 호출 중의 블로킹.** 이때 가상 스레드는 캐리어에 **[[핀닝]]**(= 가상 스레드가 캐리어에서 내려오지 못하고 붙들리는 상태)되어 언마운트되지 못하고, 그 구간 동안 이점이 사라진다. Java 25 공식 문서의 규정이 이것이다 — *"가상 스레드는 캐리어에 핀닝돼 있을 때 블로킹 연산 중에 언마운트될 수 없다. 가상 스레드는 **`native` 메서드나 외부 함수(foreign function)를 실행할 때** 핀닝된다."* 문서는 이어서 *"핀닝이 애플리케이션을 틀리게 만들지는 않지만 확장성을 저해할 수 있다"*고 덧붙인다. JNI나 Foreign Function & Memory API를 쓰는 라이브러리가 해당한다.
+
+> **`synchronized`에 관한 낡은 조언 주의 — 이 노트의 이전 판이 틀렸던 곳이다.**
+>
+> JDK 21에서 가상 스레드가 정식화됐을 때는 **`synchronized` 블록·메서드 안에서 블로킹하면 캐리어에 핀닝**됐고, 그래서 "`synchronized` 대신 `ReentrantLock`을 쓰라"는 권고가 널리 퍼졌다. **JDK 24의 JEP 491(Synchronize Virtual Threads without Pinning)이 이것을 해소했다.**
+>
+> **이 책은 Java 25를 쓴다.** 그래서 그 권고는 이 책의 환경에서 이미 낡았다 — Java 25 문서의 핀닝 서술에 `synchronized`는 **아예 등장하지 않고**, 네이티브 메서드와 외부 함수만 남아 있다.
+>
+> 면접에서 이 주제가 나오면 **"JDK 21에서는 그랬고 JDK 24에서 고쳐졌다"**가 완전한 답이다. 한쪽만 말하면 옛 지식이거나 맥락 없는 지식이 된다. 실행 중인 JVM 버전을 확인하는 것이 먼저다.
 - **비유의 한계.** 가상 스레드는 "식당에서 주문을 받아 두고 다른 테이블을 보러 가는 종업원"에 비유된다. 요리가 나올 때까지 서 있지 않는다. 다만 이 비유는 **손님 쪽에서는 아무것도 달라지지 않는다**는 점을 흐린다. 실제로는 가상 스레드 코드 자체가 "서서 기다리는" 형태로 쓰여 있고, 자리를 뜨는 주체는 코드가 아니라 **JVM**이다. 종업원이 스스로 판단하는 게 아니라 지배인이 종업원을 다른 테이블로 옮겨 붙이는 쪽에 가깝다.
 
 ## 7. 연결
@@ -211,6 +221,9 @@ flowchart TD
 5. 가상 스레드가 리액티브를 대체하지 **못하는** 두 영역은?
 6. CPU 바운드 작업에 이득이 없는 이유는?
 7. 종업원 비유가 깨지는 지점은 어디인가?
+
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_01-understanding-virtual-threads]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

@@ -178,7 +178,7 @@ curl -s "http://localhost:8080/api/ai/chat?message=What+about+digital+products&c
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     REQ["요청 2턴<br/>message=디지털 상품은요?<br/>conversationId=session-abc"] --> CH
 
@@ -248,6 +248,9 @@ flowchart TB
 - advisor·`MessageWindowChatMemory`·repository 세 층으로 나눈 설계가 production 전환에서 어떤 이득을 주는가?
 - `conversationId`를 기본값 그대로 두고 서비스하면 정확히 무슨 일이 생기는가?
 - 대화가 30턴 이어지면 매 요청의 비용은 어떻게 변하고, 그 완화책은?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_05d-conversation-memory-with-chat-memory-advisor]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

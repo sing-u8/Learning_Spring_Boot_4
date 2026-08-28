@@ -168,7 +168,7 @@ Tip의 마지막 문장이 실무적으로 중요하다. "쿼리가 이상하다
 ### 어디서 자르는가
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph BAD["제한하지 않을 때"]
         D1["표 10만 행"] --> Q1["조건 매칭 8만 행"]
@@ -276,6 +276,8 @@ flowchart LR
 6. 메서드 이름 하나가 SQL이 되기까지 번역이 몇 번 일어나는가? 각 단계에서 이름이 어떻게 달라지는가?
 7. 파생 finder에서 **동적인 것 셋**과 **정적인 것 셋**을 나눌 수 있는가?
 8. 그 비대칭이 왜 조합 폭발로 이어지는가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_04b-limiting-query-results]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

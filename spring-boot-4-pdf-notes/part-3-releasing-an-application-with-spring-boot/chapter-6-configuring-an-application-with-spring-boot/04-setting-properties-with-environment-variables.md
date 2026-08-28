@@ -82,7 +82,7 @@ The following 1 profile is active: "alternate"
 그래서 **양쪽을 잇는 규칙**을 두었다. 그것이 **[[완화된-바인딩]]**(= 표기가 달라도 같은 설정 키로 묶어 주는 규칙)이다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["spring.profiles.active<br/>프로퍼티 파일"] --> K["같은 키"]
     B["SPRING_PROFILES_ACTIVE<br/>환경 변수"] --> K
@@ -121,7 +121,7 @@ $ SPRING_PROFILES_ACTIVE=test,alternate ./mvnw spring-boot:run
 규칙은 단순하다. **왼쪽에서 오른쪽으로 적용된다.**
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     B["application.properties<br/>alice · bob · admin"] --> T["application-test.properties<br/>test1 · test2 · test3"]
     T --> A["application-alternate.yaml<br/>yaml1 · yaml2 · yaml3"]
@@ -138,7 +138,7 @@ flowchart LR
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     N["운영에서 값 하나를 바꿔야 한다"] --> X["JAR 풀어서 편집<br/>불변성·서명·기록이 전부 깨진다"]
     N --> O["환경 변수로 덮어쓰기<br/>아티팩트는 그대로"]
@@ -198,6 +198,9 @@ flowchart TD
 5. `test,alternate`를 켰을 때 사용자가 6명이 아니라 3명인 이유는?
 6. 환경 변수보다 우선순위가 높은 것을 세 가지 이상 말할 수 있는가?
 7. 배송 지시 스티커 비유가 깨지는 지점은 어디인가?
+
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_04-setting-properties-with-environment-variables]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

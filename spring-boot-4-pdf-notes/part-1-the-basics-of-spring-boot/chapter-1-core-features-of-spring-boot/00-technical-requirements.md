@@ -125,7 +125,7 @@ https://github.com/PacktPublishing/Learning-Spring-Boot-4
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["책의 기준<br/>Boot 4.0 · Framework 7.0"] --> B["JDK 25 설치<br/>Temurin 예시"]
     B --> C["터미널 버전 확인"]
@@ -191,6 +191,9 @@ flowchart LR
 4. IDE와 빌드 도구는 각각 무엇을 책임지며, 어떤 설정을 공유 저장소에 남겨야 하는가?
 5. 책의 GitHub 완성 코드를 그대로 복사하지 않고도 적극 활용하려면 어떤 순서로 대조해야 하는가?
 
+
+> 다섯 문항을 스스로 답한 **뒤에** [[_00-technical-requirements]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
+
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 
 ## 내 설명 시도
@@ -200,4 +203,3 @@ flowchart LR
 
 
 ## 리뷰 이력
-

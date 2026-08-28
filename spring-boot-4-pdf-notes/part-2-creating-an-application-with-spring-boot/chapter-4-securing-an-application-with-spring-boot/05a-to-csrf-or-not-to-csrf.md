@@ -171,7 +171,7 @@ SecurityFilterChain configureSecurity(HttpSecurity http)
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant A as alice의 브라우저
     participant E as 공격자 페이지
@@ -237,6 +237,8 @@ sequenceDiagram
 5. 이 절의 제목이 "결정"인 이유는 무엇인가? 무엇을 경로별로 할 수 없어서인가?
 6. 무상태 REST API에서 CSRF 방어가 불필요한 이유를 공격의 전제로 설명할 수 있는가?
 7. 번호표 비유가 깨지는 지점은 어디인가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_05a-to-csrf-or-not-to-csrf]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

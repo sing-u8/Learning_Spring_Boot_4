@@ -214,7 +214,7 @@ void findByNameOrDescriptionShouldFindTwo() {
 ### 세 단계의 "진짜에 가까움"
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     M["목 리포지토리<br/>SQL 없음"] --> H["HSQLDB<br/>진짜 SQL · 다른 엔진"]
     H --> P["PostgreSQL 컨테이너<br/>운영과 같은 엔진"]
@@ -313,6 +313,9 @@ flowchart LR
 6. `"SpRinG bOOt 4"`라는 입력이 우연이 아닌 이유는?
 7. `id`와 결과 순서를 단언하지 않는 이유가 같은 원칙에서 나온다고 말할 수 있는가?
 8. 필드 주입이 테스트 클래스에서만 괜찮은 근거는 무엇인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_05-testing-repositories-with-embedded-databases]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

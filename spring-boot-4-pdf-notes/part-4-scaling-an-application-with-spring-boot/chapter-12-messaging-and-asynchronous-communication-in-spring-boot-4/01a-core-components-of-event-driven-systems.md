@@ -91,7 +91,7 @@ producer와 consumer가 독립적으로 동작하므로 **각 서비스가 자�
 Figure 12.3(책 p.321)의 재현이다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     P1["Producer"] -->|"Publishes Event"| B[("Broker<br/>수신 · 저장 · 전달")]
     P2["Producer"] -->|"Publishes Event"| B
@@ -146,6 +146,9 @@ flowchart LR
 - "실패가 격리된다"와 "실패 진단이 어렵다"가 왜 동시에 참인가?
 - 이벤트 주도가 팀에 추가로 요구하는 네 가지 관심사를 들어 보라.
 - 이 아키텍처에서 관측이 선택이 아닌 이유는?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_01a-core-components-of-event-driven-systems]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

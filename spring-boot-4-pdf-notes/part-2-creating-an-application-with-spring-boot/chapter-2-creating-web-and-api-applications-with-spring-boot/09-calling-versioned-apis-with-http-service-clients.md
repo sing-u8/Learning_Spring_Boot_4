@@ -226,7 +226,7 @@ curl 'http://localhost:8080/api/videos/client-test' -H 'API-Version: 2'
 ### 인터페이스 하나가 동작하는 객체가 되기까지
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     I["VideoClient 인터페이스<br/>@HttpExchange + @GetExchange(version)"] --> IM["@ImportHttpServices(VideoClient.class)"]
     IM --> PX["런타임 프록시 생성<br/>→ 빈으로 등록"]
@@ -328,6 +328,8 @@ flowchart TD
 6. "선언적이고 타입 안전하다"의 범위는 어디까지인가? 무엇은 보장되지 않는가?
 7. 경로 기반 전략만 다른 취급을 받는 이유는?
 8. `ApiClientController`에서 `version`이 두 층에 걸쳐 나타나는 흐름을 설명할 수 있는가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_09-calling-versioned-apis-with-http-service-clients]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

@@ -256,7 +256,7 @@ void findByNameOrDescription() {
 ### 두 개의 생명주기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["테스트 클래스 시작"] --> B["@Container static → 컨테이너 기동"]
     B --> C["@ServiceConnection → DataSource 자동 연결"]
@@ -358,6 +358,9 @@ flowchart TD
 6. Figure 5.6의 401ms / 35ms / 24ms가 무엇을 말해 주는가?
 7. 같은 `findAll()` 테스트가 앞 절과 이 절에서 다른 평가를 받는 이유는?
 8. Testcontainers가 인메모리 대체물보다 확장성이 큰 이유는 무엇인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_07-testing-repositories-with-testcontainers]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

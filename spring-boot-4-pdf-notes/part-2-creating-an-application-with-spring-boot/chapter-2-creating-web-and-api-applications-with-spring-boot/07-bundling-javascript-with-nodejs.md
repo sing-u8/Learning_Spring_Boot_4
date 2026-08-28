@@ -174,7 +174,7 @@ Parcel이 `index.js`에서 시작해 `import` 그래프를 따라간 결과물�
 ### 세 execution이 만드는 파이프라인
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["generate-resources 단계 시작"] --> E1["execution 1<br/>install-node-and-npm"]
     E1 --> N["node/ 에 node · npm · npx"]
@@ -276,6 +276,8 @@ Parcel은 합치기(bundling)와 변환(transform)을 둘 다 한다. JSX를 일
 6. execution 세 개의 실행 순서를 무엇이 보장하는가?
 7. `npm`과 `npx`의 역할 차이를 Maven 개념에 대응시켜 설명할 수 있는가?
 8. 번들이 안 만들어졌을 때 어느 execution부터 의심해야 하는가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_07-bundling-javascript-with-nodejs]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

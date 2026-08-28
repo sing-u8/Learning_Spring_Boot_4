@@ -108,7 +108,7 @@ employee_created_count_total{exported_job="employee-service", instance="otel-col
 평균은 이 둘의 나눗셈이다. 그런데 왜 그냥 `sum / count`가 아니라 **[[rate]]**(= 시계열의 초당 증가율을 계산하는 함수)를 씌울까.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["sum / count<br/>= 프로세스 시작 이후 전체 평균"] --> A1["어제의 느린 요청이<br/>오늘의 평균에 계속 섞인다"]
     B["rate(sum[1m]) / rate(count[1m])<br/>= 지난 1분 동안의 평균"] --> B1["지금 상태를 반영한다"]
@@ -148,7 +148,7 @@ Grafana에서 `grafana-dashboard-metrics.json`을 Import하면 이 화면이 나
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["Micrometer<br/>employee.created.count<br/>.tag(role, ENGINEER)"] --> B["OTLP"]
     B --> C["Collector<br/>+ service.name"]
@@ -214,6 +214,9 @@ flowchart LR
 6. `Notification Outcomes`의 네 항목이 코드의 무엇과 대응하는가?
 7. 실패율 0%와 failed 8이 동시에 참일 수 있는 이유는?
 8. 여권 표기 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_04c-verifying-metrics-in-prometheus-and-grafana]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

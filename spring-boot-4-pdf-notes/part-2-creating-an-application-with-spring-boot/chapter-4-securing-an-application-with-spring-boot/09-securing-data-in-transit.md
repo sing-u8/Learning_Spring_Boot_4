@@ -147,7 +147,7 @@ NET::ERR_CERT_AUTHORITY_INVALID
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant B as 브라우저
     participant S as 서버 (8443)
@@ -220,6 +220,8 @@ sequenceDiagram
 6. 이 경고를 습관적으로 무시하는 것이 왜 위험한가?
 7. 키스토어를 저장소에 커밋하면 무엇이 새는가?
 8. 여권 비유가 깨지는 지점은 어디인가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_09-securing-data-in-transit]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

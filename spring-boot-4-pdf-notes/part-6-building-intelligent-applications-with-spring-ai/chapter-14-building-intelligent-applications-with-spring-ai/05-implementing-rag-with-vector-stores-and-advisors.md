@@ -86,7 +86,7 @@ Figure 14.3이 강조하는 것은 RAG가 **서로 다른 시점의 두 흐름**
 Figure 14.3(책 p.432)의 재현이다. 위가 offline 색인, 아래가 online 질의다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph IDX["① 색인 — offline · 시작 시 또는 문서 변경 시 1회"]
         D["원본 문서<br/>product-faq.txt"] --> CH["청킹<br/>TokenTextSplitter"]
@@ -149,6 +149,9 @@ flowchart TB
 - 색인이 offline이고 질의가 online인 분리가 없다면 무엇이 느려지는가?
 - "이 제품 지금 재고 있나요?"를 RAG로 답하게 만들면 어떤 사고가 생길 수 있는가?
 - RAG를 붙였는데도 환각이 나오는 경우, 먼저 의심할 곳은 어디인가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_05-implementing-rag-with-vector-stores-and-advisors]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

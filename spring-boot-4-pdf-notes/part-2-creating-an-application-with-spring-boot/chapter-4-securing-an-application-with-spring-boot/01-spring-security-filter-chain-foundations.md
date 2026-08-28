@@ -111,7 +111,7 @@ Spring Security가 한 일은 새로운 개념을 만든 게 아니라 **이미 
 책의 Figure 4.1은 이 흐름을 8단계로 나눈다. 개념 관계도이므로 원본 이미지 대신 다시 그렸다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant C as 클라이언트
     participant T as 임베디드 Tomcat
@@ -157,7 +157,7 @@ Spring Security가 classpath에 있고 내가 아무 설정도 하지 않으면,
 두 실패의 갈림길만 따로 보면 이렇다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     R[요청 도착] --> A{"신원을 확인할 수 있나?"}
     A -- 아니오 --> A1["401 / 로그인 화면<br/>= 당신이 누구인지 모른다"]
@@ -220,6 +220,8 @@ flowchart TD
 5. `SecurityFilterChain` 빈을 정의했더니 로그인 화면이 사라졌다. 왜인가?
 6. 검색대 비유가 깨지는 지점은 어디인가?
 7. 필터만으로는 표현할 수 없는 규칙의 예를 하나 들 수 있는가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_01-spring-security-filter-chain-foundations]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

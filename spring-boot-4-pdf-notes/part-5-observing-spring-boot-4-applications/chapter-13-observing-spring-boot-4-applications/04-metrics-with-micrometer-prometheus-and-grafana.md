@@ -59,7 +59,7 @@ Returning created employee 3
 ### 2.1 일곱 정거장 — 로그와 거의 같다
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["1. 애플리케이션<br/>요청 처리 · 비즈니스 로직 · 외부 연동"] --> B["2. Micrometer<br/>계측 · 관측 생성 · 메트릭 수집"]
     B --> C["3. OpenTelemetry Metrics<br/>데이터 모델과 의미 규약으로 표준화"]
@@ -126,7 +126,7 @@ Loki가 로그를 저장하는데 메트릭도 거기 넣으면 안 될까. 안 
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph 공통["신호가 바뀌어도 같은 뼈대"]
         O["OpenTelemetry"] --> P["OTLP"] --> C["Collector"]
@@ -193,6 +193,9 @@ flowchart LR
 5. 메트릭을 Loki에 넣으면 안 되는 이유를 저장 구조로 설명할 수 있는가?
 6. 5초 주기 전송이 놓칠 수 있는 것은?
 7. 일지와 계기판 비유가 깨지는 지점은 어디인가?
+
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_04-metrics-with-micrometer-prometheus-and-grafana]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

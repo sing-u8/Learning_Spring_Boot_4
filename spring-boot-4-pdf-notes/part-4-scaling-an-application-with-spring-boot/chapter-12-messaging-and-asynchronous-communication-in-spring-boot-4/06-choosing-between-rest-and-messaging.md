@@ -87,7 +87,7 @@ REST는 **request-response**다. 클라이언트가 요청을 보내고 **즉각
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     Q{"이 연산이 다음으로 넘어가기 전에<br/>완료돼야 하는가?"}
 
@@ -152,6 +152,9 @@ flowchart TB
 - REST가 가진 세 가지 장점을 말하고, 메시징이 그것을 어떻게 내주는지 설명해 보라.
 - 이 장의 애플리케이션에서 REST 구간과 메시징 구간을 각각 짚어 보라.
 - 알림·감사·통계 세 서비스가 직원 생성에 반응해야 한다면 어느 쪽을 고르고 왜인가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_06-choosing-between-rest-and-messaging]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

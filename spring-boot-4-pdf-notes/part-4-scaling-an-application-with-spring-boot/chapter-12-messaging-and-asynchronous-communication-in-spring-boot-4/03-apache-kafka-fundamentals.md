@@ -81,17 +81,29 @@ Kafka는 메시지를 **[[Commit-log]]**(= 불변·순차 로그)로 저장하�
 
 producer가 topic에 메시지를 보내면 Kafka가 **어느 partition에 저장할지 결정**한다.
 
-| 조건 | 배정 |
-|---|---|
-| **[[메시지-키]]**(= partition 배정을 결정하는 값)가 있다 | **같은 키는 항상 같은 partition으로** 간다. 그 키 안의 **순서가 보존**된다 |
-| 키가 없다 | round-robin으로 partition에 분산 |
-| 커스텀 전략 | 필요하면 구현할 수 있다 |
+| 조건 | 책의 서술 | 실제(현재 Kafka) |
+|---|---|---|
+| **[[메시지-키]]**(= partition 배정을 결정하는 값)가 있다 | 같은 키는 항상 같은 partition으로 가고 순서가 보존된다 | `murmur2(key) % 파티션수`. **파티션 수가 그대로인 동안만** 같은 곳으로 간다 |
+| 키가 없다 | **round-robin으로 분산** | **sticky partitioning** — 배치가 찰 때까지 한 partition에 몰아 보내고 그다음 바꾼다 |
+| 커스텀 전략 | 구현 가능 | 같음(`partitioner.class`) |
 
-이 메커니즘이 **부하 분산과 순서 보장을 동시에** 달성한다.
+이 메커니즘이 **부하 분산과 순서 보장을 동시에** 달성한다. 다만 위 표의 오른쪽 열 두 가지는 책과 다르므로 따로 짚는다.
+
+> **원문의 낡은 서술 — 키가 없을 때.** 책은 *"If no key is provided, Kafka distributes messages across partitions using a **round-robin**"*(p. 323)이라고 적는다. **레코드마다 돌아가며 배정하는 round-robin은 Kafka 2.4 이전 동작이다.** KIP-480이 **sticky partitioner**를 도입해, 키가 없으면 **배치가 찰 때까지 한 partition에 계속 보내고** 그다음에 다른 partition으로 옮긴다. KIP-794(Kafka 3.3)에서 이 로직이 클라이언트 내장 파티셔너로 정리됐고, 현재 소스의 담당 클래스 이름이 그대로 `BuiltInPartitioner`다.
+>
+> **왜 바꿨나.** 레코드마다 partition을 바꾸면 배치가 잘게 쪼개져 요청 수가 늘고 지연이 커진다. 한 partition에 몰아 배치를 채우는 편이 처리량에 유리하고, **여러 배치에 걸쳐 보면 결국 고르게 분산**된다.
+>
+> **결론은 크게 안 바뀐다**(키 없는 메시지는 어차피 순서 보장이 없다). 다만 "round-robin"이라고 알고 있으면 **한 partition에만 몰리는 것처럼 보이는 짧은 구간**을 버그로 오해하게 된다.
+
+> **"항상"이 과장인 지점 — 키가 있을 때.** 키 기반 배정은 `Utils.toPositive(Utils.murmur2(serializedKey)) % numPartitions`이고, `numPartitions`는 **호출 시점의 파티션 수**다. 그래서 **파티션을 늘리면 같은 키가 다른 partition으로 간다.** Kafka 문서도 토픽 수정 항목에서 같은 경고를 한다 — 파티션 수를 늘리면 기존 데이터는 그대로 있지만 **같은 키의 새 메시지가 다른 곳에 떨어져 순서 보장이 깨진다.**
+>
+> 실무적 의미가 크다. **"키를 넣었으니 순서는 안전하다"가 아니라 "파티션 수를 안 바꾸는 동안 안전하다"**이다. 처리량이 모자라 파티션을 늘리는 것은 흔한 운영 조치인데, 그 순간 조용히 순서가 깨진다. 그래서 순서가 중요한 토픽은 **파티션 수를 처음부터 넉넉히 잡고 이후 바꾸지 않는 것**이 정석이다.
 
 여기가 이 절에서 가장 실무적인 지점이다. **"직원 한 명에 대한 이벤트들의 순서"**가 중요하다면 `employeeId`를 키로 쓴다. 그러면 그 직원의 모든 이벤트가 같은 partition으로 가서 순서가 지켜진다. [[04b-implementing-the-employee-service]]가 `saved.getId().toString()`을 키로 넘기는 이유가 이것이다.
 
 반대로 **전체 순서**는 partition이 여럿이면 보장되지 않는다. Kafka에서 순서는 **partition 단위**이지 topic 단위가 아니다.
+
+정리하면 키 기반 순서 보장에는 조건이 둘이다 — **같은 키일 것**, 그리고 **그동안 파티션 수가 바뀌지 않을 것**. 두 번째를 빠뜨린 설명이 흔하다.
 
 ### 2.7 종합
 
@@ -115,7 +127,7 @@ Kafka는 이벤트 주도 시스템의 **중추**다. producer가 topic에 이�
 Figure 12.4(책 p.325)의 재현이다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     PA["Producer A"] -.-> P0
     PA -.-> P1
@@ -191,6 +203,9 @@ flowchart LR
 - Kafka가 큐가 아니라 로그라는 사실이 실무에서 무엇을 가능하게 하는가?
 - 전체 순서를 보장하려면 무엇을 포기해야 하는가?
 - 특정 직원의 이벤트 순서를 지키려면 무엇을 키로 써야 하는가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_03-apache-kafka-fundamentals]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

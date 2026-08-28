@@ -137,7 +137,7 @@ redirect URI를 사전 등록해 두면 Google이 이 요청을 거절한다. �
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     subgraph 등록["Google Cloud에서 미리 정하는 것"]
         C["Client ID / secret<br/>이 앱이 누구인가"]
@@ -203,6 +203,8 @@ flowchart TD
 6. test mode의 기본값이 이 장의 다른 기본값들과 같은 방향인 이유는?
 7. 다른 제공자를 붙일 때도 찾아야 할 네 가지는 무엇인가?
 8. 입주 신고 비유가 깨지는 지점은 어디인가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_08a-creating-a-google-oauth-application]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

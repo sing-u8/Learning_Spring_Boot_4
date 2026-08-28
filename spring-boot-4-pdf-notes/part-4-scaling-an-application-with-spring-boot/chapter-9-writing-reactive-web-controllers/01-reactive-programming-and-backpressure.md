@@ -90,7 +90,7 @@ HTTP가 TCP 위에 서듯, RSocket은 배압이 내장된 리액티브 통신의
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph PUSH["배압 없음 — 생산자가 속도를 정한다"]
         P1["생산자"] -->|"만드는 대로 민다"| Q1["큐가 쌓인다"]
@@ -151,6 +151,9 @@ flowchart TB
 - 배압이 명세의 일부라는 사실이 컴포넌트를 이어 붙일 때 어떤 이득을 주는가?
 - 단일 스레드 JavaScript가 잘 확장된다는 관찰에서 끌어낼 수 있는 결론과 끌어낼 수 없는 결론은?
 - RSocket이 HTTP와 다른 층에서 하는 일은 무엇인가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_01-reactive-programming-and-backpressure]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

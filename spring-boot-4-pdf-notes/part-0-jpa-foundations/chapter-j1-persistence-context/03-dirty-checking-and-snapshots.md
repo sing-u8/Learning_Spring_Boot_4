@@ -146,7 +146,7 @@ CosmoRoute가 `CompanySummary`·`MaterialSummary`를 모듈의 공개 타입으�
 ### 스냅샷이 UPDATE가 되기까지
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant A as 애플리케이션
     participant PC as 영속성 컨텍스트
@@ -253,6 +253,9 @@ sequenceDiagram
 6. `@Transactional(readOnly = true)`가 더티 체킹을 끄는 메커니즘은 무엇인가?
 7. 영속 상태 엔티티에 `save()`를 부르는 코드를 지워도 되는 이유를 설명할 수 있는가?
 8. 목록 조회를 DTO로 바꾸면 영속성 컨텍스트에 무엇이 사라지는가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_03-dirty-checking-and-snapshots]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

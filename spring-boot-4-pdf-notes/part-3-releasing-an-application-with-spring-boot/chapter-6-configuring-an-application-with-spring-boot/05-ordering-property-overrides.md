@@ -93,7 +93,7 @@ DevTools가 가장 높은 것도 같은 논리다. 개발자 개인 기계의 �
 두 축이 교차한다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["1. JAR 안 · 기본<br/>가장 낮음"] --> B["2. JAR 안 · 프로파일별"]
     B --> C["3. JAR 밖 · 기본"]
@@ -155,7 +155,7 @@ flowchart TD
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     L["낮음"] --> C1["코드 기본값"]
     C1 --> C3["application.properties<br/>= 기준값"]
@@ -228,6 +228,9 @@ flowchart LR
 7. 명령줄 즉석 조정의 진짜 위험은 기술적인 것인가, 조직적인 것인가?
 8. Twelve-Factor의 세 번째 factor를 이 장의 작업들과 대응시킬 수 있는가?
 9. 겹쳐 인쇄한 문서 비유가 깨지는 지점은 어디인가?
+
+
+> 아홉 문항을 스스로 답한 **뒤에** [[_05-ordering-property-overrides]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

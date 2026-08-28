@@ -99,7 +99,7 @@ RAG와 tool calling이 **경쟁이 아니라 분업**이라는 점은 이 장에
 Figure 14.1(책 p.404)의 재현이다. 왼쪽이 우리 코드, 가운데가 Spring AI, 오른쪽이 provider다. 설정 파일이 **가운데 층으로 들어가는** 화살표가 핵심이다 — provider 선택이 코드가 아니라 설정에서 일어난다는 뜻이다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph APP["내 Spring Boot 애플리케이션"]
         CODE["ChatClient chatClient;<br/>chatClient.prompt().user(...).call().content()"]
@@ -174,6 +174,9 @@ flowchart LR
 - 컨텍스트 윈도를 두 배로 늘리면 무엇이 좋아지고 무엇이 나빠지는가? 숫자로 설명해 보라.
 - `DataSource` 교체와 model provider 교체의 비유는 어디에서 깨지는가?
 - `ChatClient`가 `ChatModel`이 아니라 `Client`라는 이름을 갖게 된 이유는?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_01-introducing-llms-and-spring-ai]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

@@ -7,7 +7,7 @@
 이 장 전체가 **한 가지 결정**에서 파생된다 — **알림 발송이 직원 생성 응답의 성공 조건인가?**
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     Q["알림 발송이 직원 생성 응답의 성공 조건인가?"]
 
@@ -47,7 +47,7 @@ flowchart TB
 ## 축 3 — 세 가지 실패에 세 가지 패턴
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph F["세 가지 실패"]
         F1["일시적 실패<br/>SMTP 순단 · 네트워크 오류"]

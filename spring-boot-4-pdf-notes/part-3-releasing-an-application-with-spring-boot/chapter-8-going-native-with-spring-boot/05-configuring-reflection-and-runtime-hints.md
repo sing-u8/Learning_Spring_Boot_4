@@ -122,7 +122,7 @@ public class VideoRuntimeHints implements RuntimeHintsRegistrar {
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     GAP["도달성 분석이 못 보는 구간<br/>커스텀 리플렉션 · 직렬화 등록 · 숨은 resource 접근"]
 
@@ -195,6 +195,9 @@ flowchart TB
 - `@RegisterReflectionForBinding`과 `RuntimeHintsRegistrar` 중 어느 것을 쓸지 정하는 기준은?
 - `INVOKE_DECLARED_CONSTRUCTORS`와 `INVOKE_PUBLIC_METHODS`가 짝으로 등장하는 이유는?
 - 힌트를 넉넉히 넣는 것이 왜 공짜가 아닌가? 어디에서 그 비용을 확인하는가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_05-configuring-reflection-and-runtime-hints]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

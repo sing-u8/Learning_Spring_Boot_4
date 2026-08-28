@@ -110,7 +110,7 @@ Chapter 3의 JPA 엔티티와 대비되는 지점이다. JPA 엔티티는 영속
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph CH3["Chapter 3 — JPA"]
         J1["interface ...Repository extends JpaRepository&lt;T, ID&gt;"]
@@ -181,6 +181,9 @@ flowchart TB
 - Chapter 9의 record로는 왜 부족한가? 무엇이 판단되지 않는가?
 - R2DBC에서 record를 엔티티로 쓸 수 있는데 JPA에서는 안 되는 이유는?
 - `id` 없는 보조 생성자가 문법 편의 이상인 이유는?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_03-creating-reactive-repositories-and-r2dbc-access]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

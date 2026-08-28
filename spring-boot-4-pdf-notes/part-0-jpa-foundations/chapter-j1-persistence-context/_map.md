@@ -40,7 +40,7 @@
 네 노트 전부가 편리한 자동화를 설명하지만, 각각 대가가 있다. 면접에서 갈리는 지점도 대개 이쪽이다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["1차 캐시<br/>동일성 보장"] --> A2["엔티티 수만큼 메모리<br/>DB 변화를 모른다"]
     B["쓰기 지연<br/>배치·순서 조정"] --> B2["대량 작업 시 큐가 커진다<br/>IDENTITY 면 무너진다"]

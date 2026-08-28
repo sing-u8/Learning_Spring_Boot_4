@@ -120,7 +120,7 @@ template.getDatabaseClient()
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     BOOT["애플리케이션 기동 완료"] --> CLR["CommandLineRunner 자동 실행"]
 
@@ -192,6 +192,9 @@ flowchart TB
 - `subscribe()`를 빼면? 인자 없이 부르면?
 - JPA에서 오는 사람이 R2DBC에서 가장 먼저 놀라는 차이는 무엇인가?
 - 이 초기화 코드를 production에 그대로 두면 안 되는 이유를 세 가지 들어 보라.
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_04-loading-data-with-r2dbcentitytemplate]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

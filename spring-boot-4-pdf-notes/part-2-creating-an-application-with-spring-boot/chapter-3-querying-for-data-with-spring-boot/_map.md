@@ -5,7 +5,7 @@
 ## 읽는 순서
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     S["01 저장소 선택"] --> M["01a Spring Data 방침"]
     M --> J["01b JPA·H2 넣기"]
@@ -41,7 +41,7 @@ flowchart LR
 이 축의 질문은 **"이 쿼리를 무엇으로 표현할 것인가, 그리고 그 선택으로 무엇을 잃는가?"**다. Chapter 3의 절반이 이 사다리를 위에서 아래로 내려가는 과정이다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["리포지토리 기본 연산<br/>findAll · findById"] -- "구체적 조건이 필요하다" --> B["파생 finder<br/>메서드 이름"]
     B -- "조건 조합이 요청마다 달라진다" --> C["Query By Example<br/>부분적으로 채운 객체"]
@@ -84,7 +84,7 @@ flowchart TD
 이 축의 질문은 **"이 클래스는 무엇을 위해 존재하고, 어느 계층에 사는가?"**다. 축이 둘이라는 점이 핵심이다 — **역할**(DTO/엔티티)과 **속박 여부**(POJO)는 서로 직교한다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     B["브라우저 · 외부 소비자"] -- "폼 · JSON" --> W["웹 계층<br/>HomeController"]
     W -- "DTO: VideoSearch · UniversalSearch" --> S["서비스 계층<br/>VideoService"]

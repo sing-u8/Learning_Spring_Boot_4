@@ -133,7 +133,7 @@ record에 대한 서술이 DTO와 엔티티에서 정확히 반대인 것도 눈
 ### 세 이름이 놓이는 자리
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     C["브라우저 · 모바일 앱 · 파트너 서버"] -- "JSON / 폼" --> W["웹 계층<br/>@Controller · @RestController"]
     W -- "DTO<br/>VideoSearch · UniversalSearch" --> S["서비스 계층<br/>VideoService"]
@@ -233,6 +233,8 @@ DTO와 엔티티는 **계층 경계**에 놓이고, POJO는 어느 계층에나 
 6. 엔티티에만 있고 DTO에는 없어야 할 필드 세 종류와 각각의 이유는?
 7. "패러다임이지 코딩 구조가 아니다"라는 말이 실무에서 뜻하는 바는?
 8. 분리하지 않아도 되는 상황의 판단 기준은 무엇인가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_02-dtos-entities-and-pojos]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

@@ -33,7 +33,7 @@ Chapter 15만 노트가 하나다. 원문이 개념 전개가 아니라 **변경
 ## 읽는 순서
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     P1[Part 1<br/>핵심 원리] --> P2[Part 2<br/>웹·데이터·보안·테스트]
     P2 --> P3[Part 3<br/>설정·배포·네이티브]

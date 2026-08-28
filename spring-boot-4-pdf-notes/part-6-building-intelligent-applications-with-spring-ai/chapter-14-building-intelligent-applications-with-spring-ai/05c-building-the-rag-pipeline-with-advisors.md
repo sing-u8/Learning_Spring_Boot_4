@@ -152,7 +152,7 @@ RAG가 없었다면 같은 질문에 **일반적인 전자상거래 정책**이 
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     autonumber
     participant C as 컨트롤러
@@ -214,6 +214,9 @@ sequenceDiagram
 - `RetrievalAugmentationAdvisor`와 `VectorStoreDocumentRetriever`를 두 층으로 나눈 설계의 이득은?
 - 색인이 실패해 벡터 스토어가 비었을 때 이 endpoint는 어떻게 동작하는가? 그게 왜 위험한가?
 - `topK(4)`를 `topK(20)`으로 바꾸면 비용·정확도·지연에 각각 무슨 일이 생기는가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_05c-building-the-rag-pipeline-with-advisors]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

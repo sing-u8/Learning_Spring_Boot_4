@@ -157,7 +157,7 @@ public UserDetails asUser() {
 ### 2.6 전체 흐름
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant I as initUsers
     participant E as BCryptPasswordEncoder
@@ -189,7 +189,7 @@ sequenceDiagram
 | 하드웨어 발전 대응 | 불가 | 불가 | **라운드를 올린다** |
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Q{"원문을 다시 알아야 하나?"}
     Q -- "예 (예: 결제 정보)" --> E["암호화<br/>키 관리가 새 문제가 된다"]
@@ -249,6 +249,8 @@ flowchart TD
 6. `withDefaultPasswordEncoder()`를 그대로 두면 정확히 무엇이 깨지는가?
 7. 같은 원문을 쓴 세 사용자의 저장값이 다른 이유는?
 8. 파쇄기 비유가 깨지는 지점은 어디인가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_09b-securing-data-at-rest]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

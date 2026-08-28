@@ -16,6 +16,16 @@
 | Spring Data JPA Reference — Persisting Entities | Context7 `/spring-projects/spring-data-jpa` | `save()` 분기, `Persistable` 패턴 |
 | `SimpleJpaRepository.save()` 소스 | Context7 `/spring-projects/spring-data-jpa` | `isNew ? persist : merge` 실제 구현 |
 
+
+> **문서 루트 (2026-08-28 추가).** 이 챕터는 이전 세션이 Context7로 조회해 작성했고, **절 단위 URL이 기록되지 않았다.** 아래는 위 표의 문서 이름에 대응하는 공식 문서의 최상위 주소다. 절 이름으로 찾아 들어가면 대조할 수 있다. 내가 직접 열어 확인한 페이지가 아니므로 **절 단위 앵커는 지어내지 않았다.**
+>
+> | 문서 | 루트 |
+> |---|---|
+> | Hibernate ORM User Guide | `https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html` |
+> | Hibernate ORM Introduction | `https://docs.jboss.org/hibernate/orm/current/introduction/html_single/Hibernate_Introduction.html` |
+> | Spring Data JPA Reference | `https://docs.spring.io/spring-data/jpa/reference/` |
+> | Hibernate ORM · Spring Data JPA 소스 | `https://github.com/hibernate/hibernate-orm` · `https://github.com/spring-projects/spring-data-jpa` |
+
 ## 2. 대조 읽기용 참고서
 
 김영한 『자바 ORM 표준 JPA 프로그래밍』. **노트를 먼저 읽고 그다음 책을 펴는 순서**를 권한다. 책을 먼저 읽으면 그 설명 구조를 그대로 따라가게 되어 인출 연습에서 회수할 것이 남지 않는다. 장 번호는 판본에 따라 다를 수 있으므로 목차로 확인한다.

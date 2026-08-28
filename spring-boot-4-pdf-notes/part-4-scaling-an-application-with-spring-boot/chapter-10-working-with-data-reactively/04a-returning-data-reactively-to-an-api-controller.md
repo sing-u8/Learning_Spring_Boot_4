@@ -115,7 +115,7 @@ Mono<Employee> add(@RequestBody Mono<Employee> newEmployee) {
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph CH9["Chapter 9 — 통조림 Map"]
         A1["DATABASE.values() — Java Iterable"]
@@ -187,6 +187,9 @@ flowchart TB
 - `map`을 썼다면 반환 타입이 무엇이 됐겠는가? 그 사실이 `flatMap`의 판단 기준을 어떻게 정하는가?
 - 들어온 `Employee`의 `id`를 버리는 것이 왜 보안 판단인가?
 - `then()` 앞에 `flatMap()`을 두라는 조언이 가리키는 문제는 무엇인가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_04a-returning-data-reactively-to-an-api-controller]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

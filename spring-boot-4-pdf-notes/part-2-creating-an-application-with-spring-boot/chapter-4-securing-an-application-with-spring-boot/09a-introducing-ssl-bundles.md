@@ -121,7 +121,7 @@ spring.kafka.ssl.bundle=mybundle
 ### 2.4 무엇이 좋아지나
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     subgraph 이전["번들 없이"]
         W1["server.ssl.key-store=...<br/>비밀번호 · 형식 · 별칭"]
@@ -156,7 +156,7 @@ flowchart TD
 | 이 장에서 | [[09-securing-data-in-transit]] | 이 노트 |
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph 번들["mybundle"]
         KS["keystore<br/>내 키 + 내 인증서<br/>= 나를 증명"]
@@ -209,6 +209,8 @@ flowchart LR
 5. 인증서 갱신 작업이 번들 도입 전후로 어떻게 달라지는가?
 6. 번들을 쓰면서 `server.ssl.ciphers`를 함께 쓰면 왜 안 되는가?
 7. 상수 정의 비유가 깨지는 지점은 어디인가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_09a-introducing-ssl-bundles]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

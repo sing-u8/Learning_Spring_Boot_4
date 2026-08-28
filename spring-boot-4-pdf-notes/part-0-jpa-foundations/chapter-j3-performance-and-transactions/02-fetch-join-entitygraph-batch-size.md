@@ -228,7 +228,7 @@ Page<MaterialSummary> findDiscoverySummaries(Pageable pageable);
 ### 무엇을 고를지
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["N+1 을 없애야 한다"] --> B{"엔티티가 정말<br/>필요한가?"}
     B -- "읽고 내보내기만 한다" --> C["DTO 직접 조회<br/>컨텍스트에 아무것도 안 담긴다"]
@@ -299,6 +299,9 @@ SQL 수준에서는 거의 같다. 다른 것은 **어디에 선언하느냐**�
 7. 배치 크기 100에 항목 500개면 쿼리가 몇 번인가?
 8. 목록과 상세에서 서로 다른 전략을 고르는 근거는 무엇인가?
 9. `distinct`가 해결하는 것과 해결하지 못하는 것은 각각 무엇인가?
+
+
+> 아홉 문항을 스스로 답한 **뒤에** [[_02-fetch-join-entitygraph-batch-size]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

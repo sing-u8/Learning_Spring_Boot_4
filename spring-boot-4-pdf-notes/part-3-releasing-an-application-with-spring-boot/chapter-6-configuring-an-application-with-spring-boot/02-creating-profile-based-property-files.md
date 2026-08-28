@@ -92,7 +92,7 @@ export SPRING_PROFILES_ACTIVE=test     # 환경 변수 (Unix)
 **프로파일 파일은 기본 파일을 대체하지 않는다.** `test` 프로파일을 켜면 `application-test.properties`가 **추가로** 읽힌다. 이 성질이 **[[가산적]]**(= 프로파일 설정이 기본 설정 위에 얹히는 성질)이다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     B["application.properties<br/>header · intro · users<br/>+ server.port=8080"] --> M["합쳐진 환경"]
     P["application-test.properties<br/>header · intro · users"] --> M
@@ -165,7 +165,7 @@ Tip의 두 번째 문단이 함정을 경고한다.
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     J["같은 JAR 하나"] --> D["프로파일 없음<br/>= 개발 설정"]
     J --> T["SPRING_PROFILES_ACTIVE=test<br/>+ application-test.properties"]
@@ -230,6 +230,9 @@ flowchart TD
 6. 개발을 기본값으로 두는 것이 안전한 이유는? 어떤 사고를 막는가?
 7. `spring.config.location`과 `additional-location`의 차이와, 후자를 권하는 이유는?
 8. 투명 필름 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_02-creating-profile-based-property-files]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

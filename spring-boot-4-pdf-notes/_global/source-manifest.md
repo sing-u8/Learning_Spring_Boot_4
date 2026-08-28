@@ -21,9 +21,11 @@
 | 15 | 469–492 | 494–517 | 1 |
 | **합계** |  |  | **163** |
 
-## 보조 소스 트랙 — part-0-jpa-foundations
+## 보조 소스 트랙 — part-0-*
 
-1차 소스가 PDF가 아니라 공식 문서이므로 책 쪽·PDF 쪽이 없다.
+1차 소스가 PDF가 아니라 공식 문서이므로 책 쪽·PDF 쪽이 없다. 출처는 각 노트의 `source:`와 챕터 `_coverage.md` §1에 있다.
+
+### part-0-jpa-foundations
 
 | Chapter | 1차 소스 | 대조 읽기 | 주제 파일 수 |
 |---|---|---|---:|
@@ -32,7 +34,36 @@
 | j3 · 성능과 트랜잭션 | Hibernate ORM · Spring Framework/Boot Reference | 김영한 12·13·15·16장 | 5 |
 | **소계** |  |  | **14** |
 
-책 트랙 163개와 합해 저장소 전체 concept note는 **177개**다.
+### part-0-web-foundations
+
+| Chapter | 1차 소스 | 대조 읽기 | 주제 파일 수 |
+|---|---|---|---:|
+| w1 · 서블릿과 컨테이너 | Spring Boot 4.0 Reference (Web/Servlet · Another Web Server) · Undertow 문서 | 책 Ch. 1 pp. 12–14 | 1 |
+| **소계** |  |  | **1** |
+
+> **2026-08-28 정정.** 이 트랙은 이 문서에 등록되지 않은 채였다. 그래서 아래 총계가 1개 적게(177) 잡혀 있었다.
+
+### part-0-spring-core-internals
+
+책이 전제하지만 다루지 않는 **프레임워크 내부 동작**을 복원한다. `BeanPostProcessor`·`HandlerAdapter`·`AutoConfiguration.imports`는 책에 한 번도 등장하지 않는다.
+
+| Chapter | 1차 소스 | 대조 읽기 | 주제 파일 수 |
+|---|---|---|---:|
+| c1 · 컨테이너 생명주기 | Framework Ref (Container Extension Points · Lifecycle Callbacks · Bean Scopes · Circular dependencies) · Boot Ref·소스 | 책 Ch. 1 pp. 6–10 | 4 |
+| c2 · AOP 프록시의 실체 | Framework Ref (Proxying Mechanisms · AOP Concepts · Autoproxying · @Bean/@Configuration) · Boot Ref (AOP) | 책에 대응 서술 없음 | 4 |
+| c3 · MVC 요청 파이프라인 | Framework Ref (DispatcherServlet · Special Bean Types · Processing · Interception · Exceptions · Method Arguments · Content Types) | 책 Ch. 2·Ch. 4 | 5 |
+| c4 · 자동 구성의 내부 | Boot Ref (Auto-configuration · Developing Auto-configuration · Troubleshoot) · Actuator API · Boot 소스 | 책 Ch. 1 pp. 6–10 | 4 |
+| **소계** |  |  | **17** |
+
+### 합계
+
+| 트랙 | 주제 파일 수 |
+|---|---:|
+| 책 트랙 (Ch. 1–15) | 163 |
+| part-0-jpa-foundations | 14 |
+| part-0-web-foundations | 1 |
+| part-0-spring-core-internals | 17 |
+| **저장소 전체** | **195** |
 
 ## 원문 처리 원칙
 

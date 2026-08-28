@@ -5,7 +5,7 @@
 ## 읽는 순서
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     I["01 Initializr"] --> C["02 MVC Controller"]
     C --> X["03 EXPLORE로 확장"]
@@ -46,7 +46,7 @@ flowchart LR
 이 축의 질문은 **"누가 이 비디오 목록을 읽는가, 그리고 그 소비자마다 무엇이 달라지는가?"**다. Chapter 2의 절반은 이 표를 채워 가는 과정이다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     VS["VideoService 빈 1개<br/>List of Video"]
     VS --> HC["HomeController<br/>@Controller"]

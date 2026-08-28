@@ -167,7 +167,7 @@ public UserDetails asUser() {
 ### 2.5 무엇이 바뀌었고 무엇이 안 바뀌었나
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     L["로그인 폼 제출<br/>username = admin"] --> S["UserDetailsService 람다"]
     S --> R["UserRepository.findByUsername"]
@@ -194,7 +194,7 @@ flowchart TD
 | 비밀번호 비교·세션 저장 | Spring Security 내부 | 그대로 |
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph 쓰기["쓰기 경로 — 관리 도구의 몫"]
         JR["JpaRepository 상속<br/>save/delete/findAll 전부"]
@@ -250,6 +250,8 @@ flowchart LR
 5. `@ElementCollection`에 `FetchType.EAGER`를 준 이유는?
 6. 없는 아이디로 로그인하면 이 코드는 어떻게 되는가? 규격대로라면 무엇을 던져야 하는가?
 7. 출입 관리/인사 시스템 비유가 깨지는 지점은 어디인가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_04-spring-data-backed-users]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

@@ -10,7 +10,7 @@
 ## 축 1 — 같은 이점이 세 자리에서 반복된다
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     C["01 · 개념<br/>블로킹하면 캐리어가 풀려난다"] --> A["02 · 들어오는 요청"]
     C --> B["03 · 배경 작업"]
@@ -47,7 +47,7 @@ flowchart LR
 ## 축 3 — 가상 스레드가 대체하는 것과 대체하지 못하는 것
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     R["리액티브가 제공하던 것"] --> R1["적은 스레드로 높은 동시성"]
     R --> R2["배압 · 흐름 제어"]

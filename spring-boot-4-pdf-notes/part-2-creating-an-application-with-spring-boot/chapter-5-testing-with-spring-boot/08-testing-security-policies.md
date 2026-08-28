@@ -276,7 +276,7 @@ void newVideoFromUserShouldWork() throws Exception {
 ### 보안 테스트는 격자를 채우는 일이다
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     P["SecurityConfig 규칙 한 줄<br/>requestMatchers(/, /search).authenticated()"] --> S{"어떤 주체로<br/>접근하는가"}
     S -- "자격 증명 없음" --> N["401 Unauthorized 기대<br/>부정 경로"]
@@ -393,6 +393,9 @@ flowchart TD
 7. `.with(csrf())`를 넣고도 401이 나야 하는 것이 왜 더 강한 테스트인가?
 8. `is3xxRedirection()`이 `isFound()`보다 나은 이유를 단언 수준으로 설명할 수 있는가?
 9. `ROLE_USER`와 `ROLE_ADMIN` 테스트가 지금은 같은데도 둘 다 필요한 이유는?
+
+
+> 아홉 문항을 스스로 답한 **뒤에** [[_08-testing-security-policies]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

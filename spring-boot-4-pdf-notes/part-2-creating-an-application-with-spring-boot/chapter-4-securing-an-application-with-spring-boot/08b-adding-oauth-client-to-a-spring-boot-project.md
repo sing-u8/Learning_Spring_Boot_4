@@ -177,7 +177,7 @@ OAuth2 클라이언트가 classpath에 오면 Spring Boot 자동 설정이 앱�
 다른 점은 **잠그는 방식**이다. 랜덤 비밀번호가 있는 `user`를 만드는 대신, 앞에서 만든 OAuth2 빈들과 `OAuth2AuthorizedClientManager`가 결합해 **Google 로그인으로 잠근다.**
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Y["application.yaml<br/>clientId · clientSecret · scope"] --> CR["ClientRegistrationRepository<br/>자동 설정"]
     G["CommonOAuth2Provider.GOOGLE<br/>엔드포인트 기본값"] --> CR
@@ -248,6 +248,8 @@ flowchart TD
 6. `OAuth2AuthorizedClient`가 토큰 하나가 아니라 묶음인 이유는?
 7. 빌더에 이어 붙인 세 provider가 각각 어느 흐름에 대응하는가?
 8. 사원증 비유가 깨지는 지점은 어디인가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_08b-adding-oauth-client-to-a-spring-boot-project]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

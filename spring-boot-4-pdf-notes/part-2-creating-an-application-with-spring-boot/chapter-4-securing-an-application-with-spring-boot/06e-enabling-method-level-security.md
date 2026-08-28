@@ -99,7 +99,7 @@ public class SecurityConfig {
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["@PreAuthorize 애노테이션 부착"] --> S{"@EnableMethodSecurity 있나?"}
     S -- 없다 --> N["프록시를 만들지 않는다<br/>애노테이션은 그냥 메타데이터<br/>= 주석과 다를 바 없다"]
@@ -158,6 +158,8 @@ flowchart TD
 5. URL 보안과 메서드 보안이 같은 추상을 공유하게 된 것이 왜 의미가 있는가?
 6. 이 스위치가 켜졌는지 코드만 보고 확인할 수 없다면 무엇으로 확인하는가?
 7. 경보기 비유가 깨지는 지점은 어디인가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_06e-enabling-method-level-security]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

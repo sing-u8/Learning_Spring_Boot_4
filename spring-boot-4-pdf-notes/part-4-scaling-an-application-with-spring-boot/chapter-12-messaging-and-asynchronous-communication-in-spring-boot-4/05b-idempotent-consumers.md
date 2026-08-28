@@ -135,7 +135,7 @@ public void handleEmployeeCreated(EmployeeCreatedEvent event) {
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     E["EmployeeCreatedEvent 도착"] --> CHK{"processedEvents 에<br/>employeeId 가 있나?"}
     CHK -->|"있다"| SKIP["Skipping duplicate event<br/>return"]
@@ -205,6 +205,9 @@ flowchart TB
 - 인메모리 Set의 세 한계 중 확장과 관련해 가장 치명적인 것은 무엇이고 왜인가?
 - inbox 패턴의 "유니크 제약"이 왜 `contains` + `add`보다 나은가?
 - 세 패턴(재시도·DLT·멱등성)이 각각 푸는 문제를 한 문장씩으로 구분해 보라.
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_05b-idempotent-consumers]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

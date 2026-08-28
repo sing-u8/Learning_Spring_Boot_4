@@ -42,6 +42,14 @@ JSON에서의 하이퍼미디어는 **같은 개념을 시각적 페이지가 �
 
 [[02-creating-a-webflux-application]]에서 "웹 스택을 섞으면 안 된다"고 한 것의 구체적 사례다. starter가 편의를 주는 대신 **웹 스택을 함께 결정한다**는 사실을 알아야 이런 함정을 피한다.
 
+**책이 HATEOAS 사례로만 말한 것에는 그보다 일반적인 규칙이 깔려 있다.** Spring Boot 공식 문서가 못박는다 — *"`spring-boot-starter-web`과 `spring-boot-starter-webflux` 모듈을 애플리케이션에 **둘 다** 추가하면 Spring Boot는 **WebFlux가 아니라 Spring MVC를 자동 구성한다.** 많은 Spring 개발자가 리액티브 `WebClient`를 쓰려고 MVC 애플리케이션에 `spring-boot-starter-webflux`를 추가하기 때문에 이렇게 정해졌다."*
+
+이 규칙이 함정의 정체다. 서블릿 스택이 클래스패스에 **들어오기만 하면 조용히 이긴다.** HATEOAS starter는 그것을 끌고 오는 여러 경로 중 하나일 뿐이며, 같은 일이 다른 starter에서도 일어난다.
+
+증상은 알아채기 쉽다 — 시작 로그에 Reactor Netty 대신 **Tomcat이 뜬다.** 그때 의존성 트리에서 `spring-boot-starter-web`이 어디서 딸려 왔는지 찾으면 된다.
+
+정말로 둘 다 필요하면 문서가 우회로도 준다 — *"`SpringApplication.setWebApplicationType(WebApplicationType.REACTIVE)`로 원하는 애플리케이션 타입을 강제할 수 있다."* 다만 이 장의 상황(HATEOAS)에서는 `spring-hateoas`를 직접 넣는 쪽이 더 깨끗하다. 서블릿 스택을 아예 안 들이는 것이 강제로 무시하는 것보다 낫기 때문이다.
+
 ```xml
 <dependency>
     <groupId>org.springframework.hateoas</groupId>
@@ -197,7 +205,7 @@ Mono<CollectionModel<EntityModel<Employee>>> employees() {
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph BUILD["링크를 만드는 법"]
         L1["methodOn(HypermediaController.class).employee(key)<br/>메서드를 더미 호출해 경로를 역산"]
@@ -275,6 +283,9 @@ flowchart TB
 - `spring-boot-starter-hateoas`를 WebFlux 앱에 넣으면 무슨 일이 생기는가?
 - `CollectionModel<EntityModel<T>>`라는 중첩이 필요한 이유는?
 - HAL 출력에 self 링크가 셋인데 어느 것이 이 문서의 self인가? 판단 근거는?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_06-building-reactive-hypermedia-apis]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

@@ -115,7 +115,7 @@ EXPLORE를 눌러 `pom.xml`을 절반쯤 내려가면 네 항목이 보인다.
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph OLD["JDBC 세계 — 블로킹"]
         O1["애플리케이션"] --> O2["JPA · jOOQ · MyBatis · QueryDSL"]
@@ -180,6 +180,9 @@ flowchart TB
 - R2DBC가 "드라이버 작성자를 편하게" 설계된 결과가 애플리케이션 개발자에게 어떻게 나타나는가?
 - H2 Console을 넣으면 안 되는 이유와, 같은 이유로 배제되는 다른 의존성의 예를 들어 보라.
 - R2DBC와 Spring Data R2DBC의 층 차이를 한 문장으로 말해 보라.
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_02-choosing-r2dbc-and-a-reactive-data-store]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

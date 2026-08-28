@@ -132,7 +132,7 @@ public void delete(Long videoId) {
 `repository.deleteById(videoId)` 한 줄이면 될 것을 왜 두 단계로 나눴을까. 여기가 이 절과 다음 절을 잇는 고리다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["deleteById(7)"] --> A1["인자가 숫자 7뿐<br/>소유자를 알 수 없다"]
     B["findById(7) → entity"] --> B1["entity.username = bob<br/>소유자를 안다"]
@@ -145,7 +145,7 @@ flowchart LR
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant B as 브라우저
     participant C as HomeController
@@ -210,6 +210,8 @@ sequenceDiagram
 5. `deleteById(id)` 대신 `findById(id)` → `delete(entity)`를 고른 진짜 이유는?
 6. 이 코드에서 `_csrf` hidden input을 빼면 어떤 응답이 오는가?
 7. POST-Redirect-GET 비유가 깨지는 지점은 어디인가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_06c-adding-a-delete-button]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

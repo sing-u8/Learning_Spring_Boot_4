@@ -80,7 +80,7 @@ CPU 42%   메모리 3.1GB   가동시간 14일   요청/초 120
 **[[시그널]]**(= 텔레메트리의 한 종류) 세 가지가 각각 다른 질문에 답한다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     O["관측 가능성"] --> L["로그<br/>무슨 일이 있었나"]
     O --> M["메트릭<br/>얼마나 자주 · 얼마나 오래"]
@@ -131,7 +131,7 @@ flowchart TD
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["메트릭<br/>p99가 3배 올랐다"] -->|어느 요청?| B["트레이스<br/>알림 처리가 78%"]
     B -->|거기서 무슨 일?| C["로그<br/>재시도 3회 후 타임아웃"]
@@ -192,6 +192,9 @@ flowchart LR
 5. 비동기 구간의 실패가 HTTP 응답 시간 메트릭에 나타나지 않는 이유는?
 6. 프로파일링이 트레이스보다 더 좁혀 주는 것은 무엇이며, 이 책이 다루지 않는 이유는?
 7. 의료 검사 비유가 깨지는 지점은 어디인가?
+
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_01-three-pillars-of-observability]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

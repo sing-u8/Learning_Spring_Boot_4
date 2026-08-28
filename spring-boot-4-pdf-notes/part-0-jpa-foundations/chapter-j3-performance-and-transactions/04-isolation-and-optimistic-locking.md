@@ -180,7 +180,7 @@ Hibernate가 이것을 `select ... for update`로 번역한다. 잠긴 행은 �
 ### 두 전략의 시간 축
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["같은 행을 동시에<br/>수정할 수 있는가?"] -- "없다" --> B["아무것도 하지 않는다"]
     A -- "있다" --> C{"충돌 시 사용자에게<br/>다시 하라고 할 수 있는가?"}
@@ -251,6 +251,9 @@ flowchart TD
 7. `PESSIMISTIC_WRITE`와 `LockModeType.WRITE`가 다른 이유는 무엇인가?
 8. CosmoRoute에서 `@Version` 도입이 세 가지 문제를 함께 푸는 이유는 무엇인가?
 9. 그런데 지금 도입하지 않는 이유는 무엇인가?
+
+
+> 아홉 문항을 스스로 답한 **뒤에** [[_04-isolation-and-optimistic-locking]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

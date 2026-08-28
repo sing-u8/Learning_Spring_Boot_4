@@ -116,7 +116,7 @@ EXPLORE를 누르면 ZIP을 내려받는 대신 **그 조합으로 생성됐을 
 ### 두 버튼의 갈림길
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     S["start.spring.io<br/>같은 설정 + 추가 모듈"] --> Q{"내 상황은?"}
     Q -- "새 프로젝트" --> G["GENERATE"]
@@ -211,6 +211,8 @@ GENERATE 버튼(Figure 2.4)과 나란히 놓고 보면 UI상 비슷한 위치에
 5. `pom.xml`에 스타터를 넣는 것과 Mustache 기능이 켜지는 것은 각각 어느 시점의 일인가?
 6. `spring init` CLI가 웹 UI보다 나은 상황을 하나 구체적으로 들 수 있는가?
 7. EXPLORE가 **보장해 주지 않는** 것은 무엇인가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_03-augmenting-an-existing-project-with-initializr]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

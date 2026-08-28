@@ -180,7 +180,7 @@ this.videos = [v1,v2,v3,A]
 ### PRG — 제출 한 번에 오가는 요청 두 개
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant U as 브라우저
     participant H as HomeController
@@ -284,6 +284,8 @@ sequenceDiagram
 6. "일관성은 있지만 thread-safe하지 않다"를 두 스레드의 실행 순서로 그려 설명할 수 있는가?
 7. `redirect:`와 `forward:`를 바꿔 쓰면 어떤 문제가 되살아나는가?
 8. 화면에 보이는 갱신된 HTML은 어느 요청의 응답인가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_04d-changing-the-data-through-html-forms]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

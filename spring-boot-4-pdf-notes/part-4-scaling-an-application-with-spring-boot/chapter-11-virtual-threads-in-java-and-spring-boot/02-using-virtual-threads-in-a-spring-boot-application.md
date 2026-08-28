@@ -212,7 +212,7 @@ c.s.ThreadLoggingFilter : Thread: VirtualThread[#66,tomcat-handler-2]/runnable@F
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     R1["요청 1"] --> V1["VirtualThread #61<br/>tomcat-handler-0"]
     R2["요청 2"] --> V2["VirtualThread #65<br/>tomcat-handler-1"]
@@ -287,6 +287,9 @@ flowchart TD
 6. 로그 한 줄에서 가상 스레드와 캐리어를 구분해 짚을 수 있는가?
 7. 세 로그 줄에서 "캐리어를 공유한다"는 사실을 어떻게 읽어 내는가?
 8. LED 교체 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_02-using-virtual-threads-in-a-spring-boot-application]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

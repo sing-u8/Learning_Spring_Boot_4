@@ -126,3 +126,28 @@
 | 3 | 책 pp. 307–308 | `NotificationService`가 `baseUrl("http://localhost:8080")`으로 **자기 자신을 호출한다.** 예제 단순화 목적은 이해되지만, 이 구조가 왜 안전한지(가상 스레드라 캐리어를 점유하지 않아 자기 호출 교착이 생기지 않는다는 점)는 언급되지 않는다. 플랫폼 스레드였다면 부하 상황에서 스레드 고갈로 교착될 수 있는 형태다 |
 | 4 | 책 pp. 309–310 | HTTP 인터페이스 프록시를 `HttpServiceProxyFactory`로 **손수 조립**한다. Spring Boot 4에는 같은 일을 선언으로 하는 `@ImportHttpServices`와 `spring.http.serviceclient.*` 프로퍼티가 있고, Chapter 2 `09-calling-versioned-apis-with-http-service-clients`가 그 방식을 다뤘는데 이 장은 그것을 언급하지 않는다 |
 | 5 | 책 p. 313 | `runAsync()`가 "JVM의 공용 스레드 풀"을 쓴다고 하고 커스텀 executor를 줄 수 있다고 덧붙이지만, **예제 코드는 executor를 주지 않는다.** 즉 이 절의 `CompletableFuture` 예제는 앞에서 켠 가상 스레드가 아니라 `ForkJoinPool.commonPool()`의 플랫폼 스레드에서 돈다. 장의 주제와 어긋나는데 그 사실이 강조되지 않는다 |
+
+## 6. 공식 문서 대조 검증 (2026-08-29)
+
+> 이 챕터의 최초 검증(§5)은 **책이 틀렸나**를 봤다. 이 절은 **노트가 책을 넘어 스스로 덧붙인 주장**을 공식 문서와 대조한 기록이다. 가상 스레드는 **JDK 릴리스마다 동작이 바뀐 영역**이라 이 대조가 특히 필요했다.
+
+| 대조한 문서 | URL |
+|---|---|
+| Oracle Java 25 Core Libraries — Virtual Threads | `https://docs.oracle.com/en/java/javase/25/core/virtual-threads.html` |
+| JEP 491 — Synchronize Virtual Threads without Pinning (JDK 24) | `https://openjdk.org/jeps/491` |
+| JEP 505 — Structured Concurrency (Fifth Preview, JDK 25) | `https://openjdk.org/jeps/505` |
+
+### 찾아 고친 것 1건 — 이 트랙에서 나온 가장 중대한 오류
+
+| # | 위치 | 처음에 쓴 것 | 실제 |
+|---|---|---|---|
+| 1 | `01` §6 | **"`synchronized` 블록 안의 블로킹 → 캐리어에 핀닝 → 이점이 사라진다. 책은 다루지 않지만 실무에서 자주 만나는 함정이다."** | **이 책이 쓰는 Java 25에서는 틀린 조언이다.** JDK 21~23에서는 맞았고 "`ReentrantLock`을 쓰라"는 권고가 거기서 나왔지만, **JDK 24의 JEP 491이 해소했다.** Java 25 공식 문서의 핀닝 서술에 `synchronized`는 **등장하지 않는다** — *"가상 스레드는 `native` 메서드나 외부 함수(foreign function)를 실행할 때 핀닝된다."* |
+
+**성격이 다른 오류다.** 지금까지 찾은 것들은 "문서 A의 서술을 B까지 확대"였는데, 이것은 **노트가 책에 없는 내용을 스스로 덧붙였고("책은 다루지 않지만"), 그 내용이 대상 자바 버전에서 이미 낡은 것**이었다. 출처 표시가 없는 보강이 가장 위험하다는 사례다.
+
+**조치.** 옛 동작·바뀐 시점·현재 핀닝 원인을 모두 남기고, 면접 답변으로는 **"JDK 21에서는 그랬고 JDK 24에서 고쳐졌다"**가 완전한 답임을 명시했다. 용어집에 `핀닝`을 등재하고 버전 경계를 함께 적었다. `01`의 frontmatter `source:`에 이 보강이 **책 밖 내용**이며 근거가 Oracle 문서·JEP임을 기재했다.
+
+### 정정 0건으로 확인한 것
+
+- `06` §2.5의 구조적 동시성 서술은 **"집필 시점에 아직 preview"**로 정확히 유보하고 JEP 505를 가리킨다. Java 25에서도 preview가 맞다.
+- `01` §5의 오해 목록(더 빠른 스레드가 아니다 / CPU 바운드에 이득 없다 / 리액티브를 완전 대체하지 않는다)은 전부 정확하다.

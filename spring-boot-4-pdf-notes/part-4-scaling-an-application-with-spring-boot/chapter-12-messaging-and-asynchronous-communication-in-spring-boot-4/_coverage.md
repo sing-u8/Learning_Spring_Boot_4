@@ -81,7 +81,7 @@
 | 335–336 | 360–361 | curl로 직원 생성 → producer 로그와 **`Sending notification to: wanderson.xesquevixos@example.com`** 콘솔 출력. 이벤트가 발행되고 비동기로 소비됐다 | [[04c-implementing-the-notification-service]] | 반영 |
 | 336 | 361 | 그런데 아직 **회복력이 없다** — 이벤트를 잃거나 처리 흐름을 끊지 않고 실패를 우아하게 다루도록 설계되지 않았다. **notification service가 일시적으로 죽으면? 잘못된 데이터나 일시적 네트워크 오류로 처리가 실패하면? 같은 메시지가 두 번 오면?** | [[05-reliability-patterns-retries-dlt-idempotency]] | 반영 |
 | 336 | 361 | 어떤 실패는 **일시적**이다 — Kafka가 몇 초 죽거나, DB 연결이 타임아웃되거나, 서드파티 API가 간헐적 오류를 낸다. 즉시 실패하는 것이 최선이 아니고 **재시도가 성공 가능성을 높인다** | [[05-reliability-patterns-retries-dlt-idempotency]] | 반영 |
-| 336–337 | 361–362 | `sendNotification`에 실패 시뮬레이션 — `Math.random() < 0.5`로 **일시적 실패**(약 50% 확률의 간헐적 오류), `email == null || isBlank()`로 **영구적 실패**(재시도해도 없는 이메일은 생기지 않는다) | [[05-reliability-patterns-retries-dlt-idempotency]] | 반영 |
+| 336–337 | 361–362 | `sendNotification`에 실패 시뮬레이션 — `Math.random() < 0.5`로 **일시적 실패**(약 50% 확률의 간헐적 오류), `email == null \|\| isBlank()`로 **영구적 실패**(재시도해도 없는 이메일은 생기지 않는다) | [[05-reliability-patterns-retries-dlt-idempotency]] | 반영 |
 | 337 | 362 | `KafkaConsumerConfig`의 `DefaultErrorHandler` bean과 `FixedBackOff(2000L, 3L)` — **2초 간격, 최대 3회 재시도.** 일시적 실패에 유용한 이유는 **이벤트를 버리지 않고 회복 기회를 주기** 때문 | [[05-reliability-patterns-retries-dlt-idempotency]] | 반영 |
 | 338 | 363 | 그런데 **모든 실패가 일시적이지 않다.** 페이로드가 잘못됐거나 필수 필드가 없으면 아무리 재시도해도 성공하지 않고 **자원만 낭비**한다. 더 나은 방법은 실패 메시지를 **dead-letter topic으로 보내는 것** | [[05-reliability-patterns-retries-dlt-idempotency]] · [[05a-dead-letter-topics]] | 반영 |
 | 338 | 363 | DLT는 처리에 실패한 메시지의 **격리 구역**이다. 메인 소비 흐름은 계속되고 문제 메시지는 나중 조사를 위해 보존된다 | [[05a-dead-letter-topics]] | 반영 |
@@ -162,3 +162,34 @@
 | 6 | p.334 consumer 설정의 **`spring.json.trusted.packages: "*"`** | 책이 "production에서는 제한하라"고 덧붙이지만 **예제 설정은 그대로 `*`**다. 이 값은 신뢰할 수 없는 메시지가 임의 클래스를 역직렬화하게 허용하는 잘 알려진 취약점 경로다 | [[04c-implementing-the-notification-service]] §5 |
 | 7 | p.341 멱등 검사가 `processedEvents`에 ID를 **`sendNotification` 성공 뒤에** 추가한다 | 의도는 맞지만, 이 Set은 책 자신이 인정하듯 **재시작에 사라지고 인스턴스 간 조율이 없으며 무한히 자란다.** 게다가 **재시도가 도는 동안에는 아직 추가되지 않아** 같은 메시지의 재시도가 멱등 검사를 통과한다 — 재시도와 멱등성이 이 구현에서 서로 맞물리지 않는다 | [[05b-idempotent-consumers]] §5 |
 | 8 | 장 제목과 목차는 **DLQ**(dead-letter queue), 본문은 **DLT**(dead-letter topic)를 쓴다 | Kafka에는 queue가 아니라 topic이 있으므로 본문 쪽이 정확하다. 제목만 일반적인 메시징 용어를 쓴다 | [[05a-dead-letter-topics]] §5 |
+
+## 6. 공식 문서 대조 검증 (2026-08-29)
+
+> 최초 검증(§5)은 **책이 틀렸나**를 봤다(8건). 이 절은 그 위층 — **노트가 책을 넘어 주장한 것**과 **책의 주장이 공식 문서와 어긋나는지** — 를 대조한 기록이다. 아래 URL은 실제로 열어 대조한 곳이다.
+
+| 대조한 문서 | URL |
+|---|---|
+| Spring for Apache Kafka — Handling Exceptions | `https://docs.spring.io/spring-kafka/reference/kafka/annotation-error-handling.html` |
+| Apache Kafka 소스 — `BuiltInPartitioner` | `https://github.com/apache/kafka/blob/trunk/clients/src/main/java/org/apache/kafka/clients/producer/internals/BuiltInPartitioner.java` |
+| Apache Kafka — Basic Operations (Modifying topics) | `https://github.com/apache/kafka/blob/trunk/docs/operations/basic-kafka-operations.md` |
+
+### 찾아 고친 것 4건
+
+| # | 위치 | 처음에 쓴 것 | 실제 | 성격 |
+|---|---|---|---|---|
+| 1 | `03` §2.6 | 책을 따라 **"키가 없으면 round-robin으로 분산"** (책 p. 323) | **레코드별 round-robin은 Kafka 2.4 이전 동작.** KIP-480이 **sticky partitioning**을 도입해 배치가 찰 때까지 한 partition에 몰아 보낸다. KIP-794(3.3)에서 클라이언트 내장 파티셔너로 정리됐고 현재 클래스명이 `BuiltInPartitioner`다 | **책의 낡은 서술** |
+| 2 | `03` §2.6 | **"같은 키는 *항상* 같은 partition으로 간다"** | 배정은 `murmur2(key) % numPartitions`이고 `numPartitions`는 **호출 시점의 파티션 수**다. **파티션을 늘리면 같은 키가 다른 partition으로 간다** — Kafka 문서도 토픽 수정 시 순서 보장이 깨진다고 경고한다. 조건이 둘이다: 같은 키 **그리고** 파티션 수 불변 | **노트의 과장** |
+| 3 | `05` §2.3 | `FixedBackOff(2000L, 3L)`를 "2초마다 3회"로만 설명 | **이 재시도는 블로킹이다.** 공식 문서 — *"기본 핸들러는 백오프 시간이 지날 때까지 스레드를 정지시킨다."* 실패 메시지 하나가 **그 파티션을 6초간 막고**, 총 백오프가 `max.poll.interval.ms`를 넘으면 **리밸런싱이 일어나 오히려 중복이 는다.** 대안(`ContainerPausingBackOffHandler`, `@RetryableTopic`)도 추가 | **노트의 불완전** |
+| 4 | `02a` §2.3 | exactly-once가 "복잡해서 덜 쓰인다"까지만 | **범위를 명시.** Kafka의 exactly-once는 **Kafka 안에서 읽고·처리하고·쓰는 경로**에 한정된다. 이메일·외부 API·비트랜잭션 저장소 같은 **부수 효과는 덮지 못한다.** §2.4의 "at-least-once + 멱등"이 답인 진짜 이유가 이것이다 | **노트의 불완전** |
+
+**1·2번이 한 표에 나란히 있었다는 점이 이 챕터의 교훈이다.** 하나는 책이 낡아서, 하나는 노트가 "항상"을 붙여서 — 원인이 다른 두 오류가 같은 표에서 나왔다.
+
+**3번이 실무 영향이 가장 크다.** 재시도 횟수·간격을 자유롭게 늘릴 수 있다고 오해하면, 늘릴수록 중복이 늘어나는 역설을 만난다.
+
+### 확인했으나 문제가 아니었던 것
+
+| 항목 | 확인 결과 |
+|---|---|
+| DLT 접미가 `-dlt`인가 `.DLT`인가 | **`-dlt`가 맞다.** 검증 중 `.DLT`로 의심했으나 Spring Kafka 공식 문서가 *"기본적으로 dead-letter 레코드는 `<originalTopic>-dlt`라는 이름의 토픽으로 전송된다"*고 명시한다. 책과 노트가 옳다 |
+| `05b` 멱등 소비자의 세 한계 | 책 자신이 인정하는 한계를 노트가 그대로 옮겼고, production 방법(§2.4)까지 이어진다. 과장 없음 |
+| `06` REST vs 메시징 판단 기준 | 트레이드오프 서술이며 검증 가능한 사실 주장이 아니다 |

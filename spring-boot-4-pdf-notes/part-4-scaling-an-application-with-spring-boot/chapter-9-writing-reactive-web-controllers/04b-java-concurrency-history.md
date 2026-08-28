@@ -67,6 +67,10 @@ Java 코어에는 **깨지기 쉬운 API가 많이 박혀 있다.** 초창기부
 
 **[[이벤트-루프]]**(= 적은 스레드가 큐의 이벤트를 처리하는 모델)의 스레드는 소수 정예다. 하나가 멈추면 그 몫이 통째로 사라진다. 200개 중 하나가 막히는 것과는 무게가 다르다.
 
+> **이 계산이 성립하는 전제.** 여기서 말하는 "Reactor 스레드 4개"는 [[04a-scaling-with-project-reactor]] §2.2에서 짚었듯 **Scheduler가 아니라 Reactor Netty 이벤트 루프 워커**다. 그 구분이 중요한 이유는 **아무도 스레드를 자동으로 바꿔 주지 않기 때문**이다 — Reactor는 기본적으로 직전 연산자가 돌던 스레드에서 계속 실행하므로, 블로킹 호출은 이벤트 루프 스레드 **위에서 그대로** 돈다. "Scheduler가 알아서 옮겨 주겠지"라고 믿으면 이 25%가 왜 날아가는지 설명할 수 없다.
+>
+> 25%라는 수치 자체는 **낙관적 하한**으로 읽어야 한다. 막힌 스레드가 처리하던 연결들이 함께 지연되고, 큐가 밀리면 손실은 산술적 비율보다 커진다.
+
 ### 2.5 그래서 JDBC·JPA·JMS·servlet이 문제다
 
 이것이 **JDBC, JPA, JMS, servlet** 같은 곳에 있는 **[[블로킹-API]]**(= 블로킹 패러다임 위에 세워진 명세)가 리액티브 프로그래밍에 심각한 문제인 이유다.
@@ -93,7 +97,7 @@ Java 코어에는 **깨지기 쉬운 API가 많이 박혀 있다.** 초창기부
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     OLD["초창기 접근: 거대 thread pool"]
     OLD --> L1["배운 것: 코어보다 스레드가 많으면<br/>context switching 이 비싸진다"]
@@ -159,6 +163,9 @@ flowchart TB
 - 옛 동시성 도구가 자주 도달한 세 결말을 말해 보라. 공통으로 요구한 것은?
 - "4코어에서 25% 손실"이라는 계산이 왜 낙관적 하한인가?
 - JDBC·JPA·JMS·servlet이 한 목록에 묶이는 공통점은?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_04b-java-concurrency-history]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

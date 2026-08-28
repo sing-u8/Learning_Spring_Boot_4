@@ -17,6 +17,18 @@
 | Spring Boot Reference — SQL Databases | Context7 `/spring-projects/spring-boot/v4.1.0` | OSIV 기본값이 켜짐이라는 근거 |
 | Hibernate ORM User Guide — JDBC · Database Access | Context7 `/hibernate/hibernate-orm` | **RESOURCE_LOCAL 은 트랜잭션이 끝나면 커넥션을 반환한다** — "OSIV 가 커넥션을 요청 끝까지 붙잡는다"는 통설의 반증 |
 
+
+> **문서 루트 (2026-08-28 추가).** 이 챕터는 이전 세션이 Context7로 조회해 작성했고, **절 단위 URL이 기록되지 않았다.** 아래는 위 표의 문서 이름에 대응하는 공식 문서의 최상위 주소다. 절 이름으로 찾아 들어가면 대조할 수 있다. 내가 직접 열어 확인한 페이지가 아니므로 **절 단위 앵커는 지어내지 않았다.**
+>
+> | 문서 | 루트 |
+> |---|---|
+> | Hibernate ORM User Guide | `https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html` |
+> | Hibernate ORM Query Language | `https://docs.jboss.org/hibernate/orm/current/querylanguage/html_single/Hibernate_Query_Language.html` |
+> | Hibernate ORM Introduction | `https://docs.jboss.org/hibernate/orm/current/introduction/html_single/Hibernate_Introduction.html` |
+> | Spring Framework Reference — Transaction Management | `https://docs.spring.io/spring-framework/reference/data-access/transaction.html` |
+> | Spring Boot Reference — SQL Databases | `https://docs.spring.io/spring-boot/reference/data/sql.html` |
+> | Hibernate ORM 소스 | `https://github.com/hibernate/hibernate-orm` |
+
 ## 2. 대조 읽기용 참고서
 
 김영한 『자바 ORM 표준 JPA 프로그래밍』. **노트를 먼저 읽고 그다음 책을 펴는 순서**를 권한다. 장 번호는 판본에 따라 다를 수 있으므로 목차로 확인한다.

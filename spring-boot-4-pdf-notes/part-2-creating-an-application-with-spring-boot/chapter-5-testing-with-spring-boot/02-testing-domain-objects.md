@@ -212,7 +212,7 @@ IntelliJ를 비롯한 최신 IDE는 **Run with Coverage**를 제공한다. 책�
 ### 안쪽에서 바깥으로 — 이 장의 순서
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     D["도메인 객체<br/>new 만으로 충분<br/>~49ms"] --> S["서비스<br/>협력자를 목으로<br/>빠름"]
     D --> W["웹 컨트롤러<br/>MVC 슬라이스<br/>sub-second"]
@@ -286,6 +286,9 @@ flowchart LR
 6. 단언을 여러 메서드로 쪼개는 기술적 근거는 무엇인가? JUnit의 어떤 동작 때문인가?
 7. 단언이 하나도 없는 테스트가 100% 커버리지를 낼 수 있는 이유를 설명할 수 있는가?
 8. 커버리지를 목표 숫자로 관리하면 어떤 유인이 생기는가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_02-testing-domain-objects]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

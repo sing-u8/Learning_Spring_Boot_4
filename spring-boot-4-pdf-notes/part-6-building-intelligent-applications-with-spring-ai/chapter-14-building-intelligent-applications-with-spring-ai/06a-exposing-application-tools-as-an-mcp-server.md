@@ -125,7 +125,7 @@ curl -N http://localhost:8080/sse
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph BOOT["애플리케이션 기동"]
         D["spring-ai-starter-mcp-server-webmvc"] --> AC["MCP 서버 자동 구성"]
@@ -180,6 +180,9 @@ flowchart TB
 - `annotation-scanner.enabled=false`로 두면 무슨 일이 생기는가?
 - 이 예제의 도구 셋이 전부 읽기 전용인 것이 왜 의도적인 설계인가?
 - 도구의 `description` 문구를 바꾸는 것이 왜 API 변경에 준하는 일인가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_06a-exposing-application-tools-as-an-mcp-server]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

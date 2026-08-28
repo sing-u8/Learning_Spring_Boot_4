@@ -190,7 +190,7 @@ List<Material> findPublishedByCompany(UUID companyId);
 ### 컬렉션에 넣었을 때 실제로 일어나는 일
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["company.getMaterials().add(m)"] --> B{"이 필드에<br/>mappedBy 가 있는가?"}
     B -- "있다 = 반대편" --> C["외래 키 판정에서 제외<br/>SQL 이 나가지 않는다"]
@@ -260,6 +260,9 @@ flowchart TD
 6. CosmoRoute가 `Company.materials`를 두지 않고 리포지토리 쿼리를 쓰는 편이 나은 이유를 세 가지로 댈 수 있는가?
 7. `mappedBy`를 지우면 왜 부팅이 실패하는가?
 8. 양방향으로 바꿔도 DDL이 바뀌지 않는 이유는 무엇인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_01-association-owner-and-mappedby]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

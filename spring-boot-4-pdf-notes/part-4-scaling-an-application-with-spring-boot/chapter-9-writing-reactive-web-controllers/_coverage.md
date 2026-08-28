@@ -186,3 +186,25 @@ Ch11 Figure 11.1과 같은 판단이다 — **스타일 없는 HTML 화면이고
 | 5 | p.263 "4코어에 Reactor 스레드 4개인데 하나가 블로킹되면 **전체 처리량의 25%**가 날아간다" | 산술적으로는 맞지만 **낙관적 하한**이다. 블로킹이 event loop을 잡으면 그 스레드에 배정된 모든 연결이 함께 멈추므로, 실제 영향은 요청 분배에 따라 25%를 크게 넘을 수 있다 | [[04b-java-concurrency-history]] §5 |
 | 6 | p.254 "Reactive Streams는 인터페이스 4개뿐인 매우 단순한 명세" | 인터페이스는 넷이 맞지만 명세의 본체는 **TCK와 규칙 문서**다. `request(n)`의 누적 의미, 취소 후 시그널 금지 같은 규칙이 구현의 실제 난이도를 만든다 | [[01b-reactive-streams-details]] §5 |
 | 7 | p.270 Note가 가상 스레드를 "다른 길"로 언급하고 끝난다 | 이 책 자신의 Chapter 11이 그 길을 다룬다. 두 선택지의 **결정 기준**은 어느 쪽에서도 정면으로 비교되지 않는다 | [[05b-crafting-a-thymeleaf-template]] §6 |
+
+## 6. 공식 문서 대조 검증 (2026-08-29)
+
+> **왜 뒤늦게 하는가.** 이 챕터의 최초 검증은 **책이 틀렸나**를 봤다(§5, 7건). 그런데 **노트가 책을 넘어 스스로 주장한 것**과 **책의 주장 자체가 공식 문서와 어긋나는 것**은 검사된 적이 없었다. 이 절이 그 층이다. 아래 URL은 **실제로 열어 대조한 페이지**다 — 내 설명을 믿지 말고 여기서 확인하면 된다.
+
+| 대조한 문서 | URL |
+|---|---|
+| Reactor Core Reference — Threading and Schedulers | `https://projectreactor.io/docs/core/release/reference/coreFeatures/schedulers.html` |
+| Spring Framework Reference — WebFlux Concurrency Model | `https://docs.spring.io/spring-framework/reference/web/webflux/new-framework.html` |
+| Spring Boot Reference — Reactive Web Applications | `https://docs.spring.io/spring-boot/reference/web/reactive.html` |
+
+### 찾아 고친 것 3건
+
+| # | 위치 | 처음에 쓴 것 | 실제 | 근거 |
+|---|---|---|---|---|
+| 1 | `04a` §2.2·2.5 · 한눈에 보기 | 책을 따라 **"Reactor는 코어당 스레드 하나를 쓰는 Scheduler를 기본으로 한다"** | **Reactor는 기본적으로 어떤 Scheduler도 쓰지 않는다.** *"Reactor는 동시성에 관해 중립적이며 동시성 모델을 강제하지 않는다. 대부분의 연산자는 직전 연산자가 돌던 스레드에서 실행된다."* Scheduler는 `publishOn`·`subscribeOn`·`runOn`으로 명시할 때만 개입한다. WebFlux 요청을 처리하는 것은 **Reactor Netty 이벤트 루프 워커**이며, 그 수가 대개 코어 수와 일치한다 | Reactor Core Ref · Spring Framework Ref |
+| 2 | `04a` §2.3 | 책의 **"work stealing"**을 그대로 용어로 채택 | work stealing은 **유휴 스레드가 *다른 스레드의* 큐에서 작업을 가져오는** 기법(`ForkJoinPool`)이다. 책이 묘사한 것은 한 스레드가 **자기** 큐에서 다음 작업을 집는 평범한 이벤트 루프 동작이다. 결론("기다림이 낭비되지 않는다")은 유지되지만 용어는 다르다 | Reactor Core Ref (Scheduler 구조) |
+| 3 | `06` §2.1 | `spring-boot-starter-hateoas`를 WebFlux에 쓰면 안 된다는 **사례만** 기술 | 그 밑의 **일반 규칙**과 우회로를 추가. *"`spring-boot-starter-web`과 `spring-boot-starter-webflux`를 둘 다 추가하면 Spring Boot는 WebFlux가 아니라 **Spring MVC를 자동 구성한다**"* — 서블릿 스택이 클래스패스에 들어오면 조용히 이긴다. 증상은 로그에 Netty 대신 Tomcat. 강제하려면 `setWebApplicationType(REACTIVE)` | Spring Boot Ref · Reactive |
+
+**1·2번은 책의 부정확을 노트가 그대로 옮긴 경우다**(§5의 "책 오류" 목록에 없던 항목). 3번은 노트의 불완전이다.
+
+**1번이 왜 중요한가.** "Scheduler가 알아서 옮겨 준다"고 믿으면 §2.4의 "블로킹 절대 금지"가 왜 그렇게 강한 제약인지 설명할 수 없다. 아무도 스레드를 바꿔 주지 않기 때문에 블로킹 호출이 **이벤트 루프 스레드 위에서 그대로** 도는 것이다.

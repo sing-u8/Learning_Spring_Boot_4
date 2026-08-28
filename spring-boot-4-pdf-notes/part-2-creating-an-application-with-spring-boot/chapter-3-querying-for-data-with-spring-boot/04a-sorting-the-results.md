@@ -132,7 +132,7 @@ Sort sort = video.by(Video::getName).ascending()
 ### 결정권이 어디에 있는가
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Q{"결과 순서를<br/>누가 정하는가"}
     Q -- "작성 시점에 이미 안다" --> A["메서드 이름에 OrderBy<br/>findByNameContainsOrderByNameAsc"]
@@ -232,6 +232,8 @@ flowchart TD
 6. `TypedSort`가 얻는 것과 치르는 대가는 각각 무엇인가?
 7. 웹 요청의 정렬 컬럼을 그대로 `Sort`에 넣으면 무엇이 위험한가?
 8. 책의 `TypedSort` 예제를 이 장의 코드에 그대로 옮기면 왜 컴파일되지 않는가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_04a-sorting-the-results]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

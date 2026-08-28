@@ -92,7 +92,7 @@ Password: *********
 이것이 **[[불변-아티팩트]]**(= 빌드 후 고치지 않는 배포물) 원칙과 미묘하게 충돌하는 지점이다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     T["태그 이름<br/>latest · 0.0.1-SNAPSHOT"] -->|"가리킨다"| D1["다이제스트 A"]
     T -.->|"나중에 옮겨질 수 있다"| D2["다이제스트 B"]
@@ -129,7 +129,7 @@ Dockerfile도, 빌드 스크립트도 없었다. [[02a-building-the-right-type-o
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     B["build-image<br/>ch7:0.0.1-SNAPSHOT"] --> L["로컬 저장소"]
     L -->|"docker tag"| N["your_id/learning-spring-boot-4th-edition-ch7:0.0.1-SNAPSHOT"]
@@ -190,6 +190,9 @@ flowchart LR
 6. 이미지 내용은 불변인데 배포가 재현되지 않을 수 있는 이유는?
 7. `Visibility: Public`이 이 장 뒷부분의 설계와 어떻게 이어지는가?
 8. 택배 송장 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_03-publishing-an-image-to-docker-hub]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

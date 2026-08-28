@@ -87,7 +87,7 @@ public record EmployeeCreatedEvent(
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph DOMAIN["도메인의 것 — 이벤트"]
         D1["직원이 생성됐다"]
@@ -150,6 +150,9 @@ flowchart TB
 - 이벤트 이름이 과거형인 것이 왜 디커플링과 관련이 있는가?
 - `EmployeeCreatedEvent`에 `employeeId`만 담으면 무엇이 무너지는가?
 - 이벤트 record에 프레임워크 애노테이션이 없는 것이 무엇을 뜻하는가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_02-events-messages-and-delivery-semantics]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

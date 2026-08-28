@@ -86,7 +86,7 @@ void delete(VideoEntity entity);
 ### 2.3 실행 순서
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant S as VideoService
     participant P as 리포지토리 프록시
@@ -125,7 +125,7 @@ HTTP ERROR 403
 | `#entity.username == authentication.name` | **대상 데이터의 소유자** | 요청자의 이름 | **메서드 보안만** |
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     D["대상 엔티티<br/>username = bob"] --> C{"=="}
     A["보안 컨텍스트<br/>authentication.name = alice"] --> C
@@ -176,6 +176,8 @@ flowchart LR
 5. 이 규칙이 URL 규칙으로 표현될 수 없는 근본 이유는?
 6. alice가 bob의 동영상을 지우려 할 때 401이 아니라 403인 이유는?
 7. 사물함 비유가 깨지는 지점은 어디인가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_06d-locking-down-access-to-the-owner]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

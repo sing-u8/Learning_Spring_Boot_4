@@ -223,7 +223,7 @@ record SearchThumbnail(String url, Integer width, Integer
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant C as HomeController
     participant P as YouTube 프록시
@@ -295,6 +295,8 @@ sequenceDiagram
 6. record 타입 이름은 자유롭고 필드 이름은 자유롭지 않은 이유는?
 7. 이 절의 코드만으로 `YouTube` 빈이 만들어지는가? 무엇이 빠져 있는가?
 8. 발송실 비유가 깨지는 지점은 어디인가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_08c-invoking-an-oauth-2-api-remotely]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

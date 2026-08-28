@@ -153,7 +153,7 @@ alice에게 "SECRETS to fix BROKEN CODE!"(bob 소유)의 삭제 버튼이 렌더
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["Authentication 주입"] --> M["model.addAttribute"]
     M --> T["index.mustache"]
@@ -214,6 +214,8 @@ flowchart TD
 5. alice에게 bob 동영상의 Delete 버튼이 보이는 것이 보안 결함인가? 왜 그렇게 판단하는가?
 6. 화면에 authority 목록을 넣지 말라는 조언의 근거는?
 7. 출입증 비유가 깨지는 지점은 어디인가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_06f-displaying-user-details-on-the-site]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

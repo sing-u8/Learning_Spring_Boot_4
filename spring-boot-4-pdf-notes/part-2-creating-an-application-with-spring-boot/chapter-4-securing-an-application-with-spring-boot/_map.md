@@ -12,7 +12,7 @@
 책은 [[03-creating-users-with-userdetailsservice]] 앞머리에서 "애플리케이션을 보안한다"는 일을 네 단계로 나눈다. 장 전체가 그 순서를 따른다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     S1["1. 사용자 출처 정의<br/>누가 존재하는가"] --> S2["2. 접근 규칙 생성<br/>각자 무엇을 할 수 있는가"]
     S2 --> S3["3. 앱의 각 부분과 규칙 연결<br/>어느 경로 · 어느 메서드에"]
@@ -37,7 +37,7 @@ flowchart TD
 이 장에서 **같은 요청이 세 번 검사된다.** 각 검사는 앞 검사가 볼 수 없는 것을 본다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     R["POST /delete/videos/7"] --> F["① 필터 체인<br/>경로 · HTTP 메서드 · 인증 여부"]
     F --> C["컨트롤러 · 서비스"]
@@ -79,7 +79,7 @@ flowchart LR
 세 관심사는 각각 **다른 질문**에 답하며, 하나가 다른 하나를 대신하지 못한다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["인증 — 누구인가"] --> A1["03 · 04 · 07 · 07a · 08 계열"]
     B["인가 — 무엇을 해도 되나"] --> B1["05 · 06 계열"]
@@ -104,7 +104,7 @@ flowchart TD
 08 계열 다섯 노트는 "개념 → 등록 → 배선 → 호출 → 렌더링" 순서로 한 줄로 이어진다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     T1["07 — OAuth는 인가 프레임워크<br/>비밀번호 대신 스코프와 토큰"] --> T2["07a — OIDC가 신원을 더한다<br/>Authorization Code + PKCE"]
     T2 --> D1["08 — 왜 위임하나 · 직접 운영이라는 대안"]

@@ -59,7 +59,7 @@ Spring Boot 4의 답은 **선언을 하나로 합치는 것**이다.
 핵심 아이디어를 한 줄로 쓰면 이렇다. **작업 단위 하나를 한 번 선언하면, 거기서 세 신호가 파생된다.**
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     W["작업 단위<br/>HTTP 요청 · DB 호출 · 메시지 처리"] --> O["Observation<br/>한 번 선언"]
     O --> M["메트릭<br/>얼마나 걸렸나 · 몇 번인가"]
@@ -119,7 +119,7 @@ Grafana가 별도로 있는 이유가 중요하다. 저장소 셋은 각자 자�
 책의 Figure 13.2를 개념 관계도로 다시 그렸다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["1. 애플리케이션<br/>HTTP · DB · 외부 API · 메시지 처리"] --> B["2. Micrometer<br/>Observation 생성"]
     B --> C["3. 프로세스 안에서 텔레메트리 생성<br/>메트릭 · 트레이스 · 로그 상관관계"]
@@ -141,7 +141,7 @@ flowchart TD
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph 앱안["애플리케이션 프로세스"]
         B["Micrometer<br/>Observation"]
@@ -217,6 +217,9 @@ flowchart LR
 5. 백엔드를 Loki에서 다른 것으로 바꿀 때 고쳐야 하는 곳은 어디인가?
 6. Grafana가 별도 컴포넌트로 있어야 하는 이유는?
 7. 통신사 비유가 깨지는 지점은 어디인가?
+
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_02-designing-an-observability-architecture]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

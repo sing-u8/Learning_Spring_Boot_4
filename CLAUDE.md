@@ -158,13 +158,14 @@ status: prepared
 - 기존 `assets/` 파일은 검증 없이 삭제·이동하지 않는다.
 - 추출 이미지는 잘림, 해상도, 대상 페이지 일치를 육안으로 확인한다.
 
-모든 Mermaid block은 다음 밝은 theme로 시작한다.
+모든 Mermaid block은 다음 dark theme로 시작한다.
 
 ```text
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 ```
 
-- 어두운 배경이나 낮은 대비를 사용하지 않는다.
+- **2026-08-28 변경.** 이전 규칙은 밝은 `theme: 'base'` + themeVariables였다. 사용자가 "밝아서 안 보인다"는 이유로 저장소 전체 279개 block을 dark로 일괄 교체했다(사용자 본인 작업). 이 규칙은 그 결정을 반영한 것이며, **밝은 theme로 되돌리지 않는다.**
+- 새로 쓰는 block도 이 한 줄로 시작한다.
 - node label에 애노테이션, 괄호, slash 등이 있으면 parser 오류가 없도록 따옴표를 사용한다.
 - 정규식으로 문법을 추정하지 말고 모든 Mermaid block을 실제 CLI renderer로 SVG 렌더링한다.
 

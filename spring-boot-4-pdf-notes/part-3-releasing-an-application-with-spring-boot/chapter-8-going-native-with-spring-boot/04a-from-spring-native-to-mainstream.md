@@ -84,7 +84,7 @@ start.spring.io에서 **GraalVM Native Support**를 고르는 것은 **외부 �
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph PAST["2019 ~ 2022 · Boot 2.x 시대"]
         SN["Spring Native — 실험 프로젝트<br/>org.springframework.experimental<br/>@NativeHint · spring-aot-maven-plugin"]
@@ -139,6 +139,9 @@ flowchart TB
 - start.spring.io의 GraalVM Native Support가 pom에 넣는 것은 무엇이고, 넣지 **않는** 것은 무엇인가?
 - "본류로 들어왔다"에도 불구하고 여전히 손이 가는 대표적 지점은?
 - Spring AOT와 Java AOT Cache의 층 차이를 한 문장으로 말해 보라.
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_04a-from-spring-native-to-mainstream]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

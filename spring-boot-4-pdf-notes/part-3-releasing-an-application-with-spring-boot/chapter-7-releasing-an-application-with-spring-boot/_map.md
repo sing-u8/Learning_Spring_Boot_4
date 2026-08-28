@@ -12,7 +12,7 @@
 장 전체를 "배포 대상에 요구하는 것이 줄어드는 과정"으로 읽으면 순서가 필연이 된다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["애플리케이션 서버 + JDK<br/>WAR / EAR"] --> B["JDK만<br/>uber JAR"]
     B --> C["컨테이너 런타임만<br/>이미지"]
@@ -33,7 +33,7 @@ flowchart LR
 장의 후반부 네 노트는 전부 이 원칙의 변주다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["같은 아티팩트 하나"] --> B["환경 변수<br/>SERVER_PORT=9000"]
     A --> C["JAR 옆 프로퍼티 파일"]

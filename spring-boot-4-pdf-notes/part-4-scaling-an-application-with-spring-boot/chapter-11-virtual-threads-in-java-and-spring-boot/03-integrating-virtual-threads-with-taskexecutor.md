@@ -38,7 +38,7 @@ status: prepared
 이 일들의 성질이 공통적이다. **중요하지만 사용자에게 즉시 응답하는 것의 일부가 아니다.**
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph 동기["전부 요청 스레드에서"]
         A["저장 20ms"] --> B["감사 로그 50ms"] --> C["알림 300ms"] --> D["응답 = 370ms"]
@@ -165,7 +165,7 @@ Audit log for employee: Gandalf | Thread: VirtualThread[#67,task-1]/runnable@For
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant B as 브라우저
     participant C as HomeController<br/>VirtualThread[tomcat-handler-N]
@@ -235,6 +235,9 @@ sequenceDiagram
 6. `TaskExecutor`와 `AsyncTaskExecutor`를 고르는 기준은?
 7. fire-and-forget이 남기는 질문은 무엇인가?
 8. 카운터와 뒷방 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_03-integrating-virtual-threads-with-taskexecutor]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

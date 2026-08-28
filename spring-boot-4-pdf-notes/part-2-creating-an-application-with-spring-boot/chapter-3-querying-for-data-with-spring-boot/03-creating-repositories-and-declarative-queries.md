@@ -159,7 +159,7 @@ public interface VideoRepository extends JpaRepository<VideoEntity, Long> {
 ### 빈 인터페이스가 동작하는 객체가 되기까지
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     I["interface VideoRepository<br/>extends JpaRepository&lt;VideoEntity, Long&gt;<br/>(몸통 비어 있음)"] --> S["컴포넌트 스캔이<br/>Repository 하위 타입을 발견"]
     S --> G["제네릭에서 읽는다<br/>T = VideoEntity · ID = Long"]
@@ -277,6 +277,8 @@ flowchart TD
 6. `ID`, `T`, `S`가 각각 무엇을 가리키는가?
 7. 시그니처가 `List`가 아니라 `Iterable`을 요구하는 의도는?
 8. `JpaRepository`가 주는 연산으로 "이름에 SPRING이 들어간 비디오"를 못 찾는 이유는?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_03-creating-repositories-and-declarative-queries]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

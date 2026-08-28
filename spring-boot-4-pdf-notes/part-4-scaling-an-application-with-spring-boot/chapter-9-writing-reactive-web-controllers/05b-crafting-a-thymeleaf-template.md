@@ -160,7 +160,7 @@ Mono<String> newEmployee(@ModelAttribute Mono<Employee> newEmployee) {
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant B as 브라우저
     participant C as HomeController
@@ -233,6 +233,9 @@ sequenceDiagram
 - `${...}`와 `*{...}`의 차이는?
 - POST-redirect-GET을 쓰지 않으면 어떤 사고가 생기는가?
 - 이 책이 WebFlux와 가상 스레드를 어떻게 자리매김하는가? 결정 기준을 스스로 세워 보라.
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_05b-crafting-a-thymeleaf-template]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

@@ -66,7 +66,7 @@ spring.datasource.url=jdbc:postgresql://postgres:5432/postgres
 **`localhost`가 `postgres`가 됐다.** 이유가 명확하다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     subgraph 이전["호스트에서 java -jar"]
         A["애플리케이션 프로세스"] -->|"localhost:5432"| B[("DB 컨테이너의 매핑된 포트")]
@@ -192,7 +192,7 @@ instance3:  "9002:8080"
 인스턴스가 하나일 때는 문제가 없었다. 이제 셋이다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     S["docker compose up -d"] --> I1["instance1 기동<br/>사전 적재 실행"]
     S --> I2["instance2 기동<br/>사전 적재 또 실행"]
@@ -237,7 +237,7 @@ flowchart TD
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     H["호스트"] -->|":9000"| C1["ch7-instance1<br/>내부 :8080"]
     H -->|":9001"| C2["ch7-instance2<br/>내부 :8080"]
@@ -305,6 +305,9 @@ flowchart LR
 7. `@Profile("setup")`이 하는 일과, 실행 시 주의 사항은?
 8. Compose로 감당이 안 되는 규모에서 필요한 것과, 그 대가는?
 9. 무대 세팅 지시서 비유가 깨지는 지점은 어디인가?
+
+
+> 아홉 문항을 스스로 답한 **뒤에** [[_04c-running-the-setup-with-docker-compose]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

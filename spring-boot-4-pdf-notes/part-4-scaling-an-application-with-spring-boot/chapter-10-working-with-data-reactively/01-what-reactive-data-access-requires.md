@@ -120,7 +120,7 @@ thread pool 프록시는 "전화기를 여러 대 두면 되지 않나"라는 �
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     WEB["Chapter 9 에서 만든 리액티브 웹 계층<br/>WebFlux · Reactor Netty · Thymeleaf · HATEOAS"]
     WEB --> DATA{"데이터를 어떻게 가져오나"}
@@ -192,6 +192,9 @@ flowchart TB
 - JDBC를 thread pool에 가두는 발상이 실패하는 과정을 다섯 단계로 말해 보라.
 - "JDBC는 드라이버가 아니라 명세다"라는 문장이 왜 해법의 방향을 바꾸는가?
 - 리액티브 전환 가능성을 판단할 때 가장 먼저 확인할 것은?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_01-what-reactive-data-access-requires]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

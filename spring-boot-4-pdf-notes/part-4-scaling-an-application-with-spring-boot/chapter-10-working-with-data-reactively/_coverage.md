@@ -111,3 +111,21 @@
 | 4 | p.282 "4코어 중 하나가 막히면 **즉시 25% 처리량 하락**" | Ch9 p.263과 같은 계산이며 같은 이유로 **낙관적 하한**이다. 이벤트 루프에 고정 배정된 연결이 함께 멈추므로 실제 영향은 더 클 수 있다 | [[01-what-reactive-data-access-requires]] §5 |
 | 5 | p.285 "R2DBC는 매우 저수준이라 직접 쓰면 번거롭다"고 하고 **툴킷을 쓰라**고 한다 | 그런데 바로 다음 절의 초기화 코드가 `template.getDatabaseClient().sql(...)`로 **결국 저수준 `DatabaseClient`를 직접 쓴다.** 스키마 정의만은 툴킷이 덮어 주지 않는 영역이라는 사실이 명시되지 않는다 | [[04-loading-data-with-r2dbcentitytemplate]] §5 |
 | 6 | p.294 "`index.html`은 앞 장에서 그대로 복사하면 된다 — 변경 없음" | 맞지만, 앞 장 템플릿의 `th:field="*{name}"`은 record 접근자에 의존한다. 위 #2의 `getName()` 오류와 합치면 **어느 쪽이 맞는지 독자가 판단해야 하는 상태**로 장이 끝난다 | [[04b-reactively-dealing-with-data-in-a-template]] §5 |
+
+## 6. 공식 문서 대조 검증 (2026-08-29)
+
+> 이 챕터의 최초 검증(§5)은 **책이 틀렸나**를 봤다. 이 절은 그 위층 — **노트가 책을 넘어 주장한 것**과 **책의 주장이 공식 문서와 어긋나는지** — 를 대조한 기록이다.
+
+| 대조한 문서 | URL |
+|---|---|
+| Reactor Core Reference — Threading and Schedulers | `https://projectreactor.io/docs/core/release/reference/coreFeatures/schedulers.html` |
+| Spring Framework Reference — WebFlux Concurrency Model | `https://docs.spring.io/spring-framework/reference/web/webflux/new-framework.html` |
+
+### 결과 — 정정 0건
+
+- `01` §2.5의 thread-pool 프록시 반박(5단계 논증)은 공식 문서의 동시성 모델 서술과 일치한다.
+- `01` §2.2의 "25%"는 **책의 계산으로 명시**돼 있고, 같은 수치를 다루는 `chapter-9`의 서술에는 낙관적 하한이라는 단서가 붙어 있다.
+- `01` §2.6의 "JDBC는 드라이버가 아니라 명세다"는 과장이 아니다 — `ResultSet.next()`의 반환 계약이 근거다.
+- **`chapter-9`에서 정정한 "Scheduler가 기본" 혼동이 이 챕터에는 없다**(전수 검색으로 확인).
+
+**0건이 "검사하지 않았다"가 아니라 "대조했고 어긋난 곳을 못 찾았다"임을 구분해 적는다.**

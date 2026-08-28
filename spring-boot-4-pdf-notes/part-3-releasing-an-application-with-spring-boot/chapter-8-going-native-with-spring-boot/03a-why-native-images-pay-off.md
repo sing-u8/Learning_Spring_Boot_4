@@ -82,7 +82,7 @@ Windows나 Mac에서 일하는데 클라우드가 Linux 기반 Docker 컨테이�
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     Q["왜 이 고생을 하나?"]
 
@@ -150,6 +150,9 @@ flowchart TB
 - 이 논증이 무력해지는 배포 환경을 두 가지 들어 보라.
 - 책의 0.1초와 실측 0.528초 중 어느 쪽으로 계산해야 하고, 결과는 어떻게 달라지는가?
 - 절감되는 비용과 새로 생기는 비용을 각각 어디에서 측정하는가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_03a-why-native-images-pay-off]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

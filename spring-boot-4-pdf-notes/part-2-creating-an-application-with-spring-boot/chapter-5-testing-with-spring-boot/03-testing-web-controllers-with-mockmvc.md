@@ -186,7 +186,7 @@ void postNewVideoShouldWork() throws Exception {
 ### 무엇을 통과하고 무엇을 통과하지 않는가
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     T["mvc.perform(get(/))"] --> F["Spring Security 필터 체인<br/>@WithMockUser 가 인증을 채운다"]
     F --> D["요청 매핑 조회"]
@@ -295,6 +295,9 @@ Boot 4에서 **`@MockBean`은 제거됐다.** 이름만 바뀐 것이 아니라 
 6. `@WithMockUser`를 빼면 무슨 일이 벌어지는가? 왜인가?
 7. POST 테스트에서 응답 단언이 아니라 `verify()`를 쓰는 것이 맞는 이유는?
 8. `.with(csrf())`가 CSRF를 끄는 것이 아니라는 말은 무슨 뜻인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_03-testing-web-controllers-with-mockmvc]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

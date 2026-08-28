@@ -96,6 +96,19 @@ server:
 
 Chapter 1은 `application.properties`를 사용한다. 형식 선택보다 더 중요한 것은 같은 키가 어떤 빈의 어떤 값을 조정하는지 이해하는 것이다.
 
+표가 보여 주는 것은 **차이**뿐이다. 질문을 뒤집어 “무엇이 같은가”를 보면 형식 선택이 왜 취향 문제에 가까운지가 드러난다. 두 형식은 다음을 **동일하게** 해결한다.
+
+| 같은 것 | 뜻하는 바 |
+|---|---|
+| 키 이름 공간 | `server.port`와 `server: port:`는 같은 키다. 형식을 바꿔도 키를 다시 짓지 않는다 |
+| 우선순위 층 | 둘 다 config data라는 **한 층**에 속한다. YAML이라서 더 세거나 약하지 않다 |
+| 도달 지점 | 둘 다 같은 Spring `Environment`로 들어가고, 소비자는 어느 형식에서 왔는지 알지 못한다 |
+| 바인딩 규칙 | 같은 느슨한 바인딩 규칙이 적용된다. 단순 프로퍼티에서 camelCase·kebab-case·밑줄 표기를 똑같이 허용한다 |
+
+실제로 갈리는 지점은 표현 문법과 **리스트 표기**다. properties는 대괄호 인덱스나 쉼표 구분을 쓰고 YAML은 YAML 리스트 문법이나 쉼표 구분을 쓴다.
+
+정말로 규칙이 다른 것은 두 파일 형식 사이가 아니라 **파일과 환경 변수 사이**다. 환경 변수는 대문자와 밑줄만 쓸 수 있어 표기 자체가 달라진다. 그 규칙은 [[03a-creating-custom-properties]]에서 다룬다.
+
 ### 2.3 컨테이너가 달라도 공통 프로퍼티를 사용한다
 
 Spring Boot는 기본 Tomcat 외에도 Jetty 계열의 내장 서버 선택을 지원한다. 서버 구현마다 원래 설정 API와 세부 옵션은 다르지만, 일반적인 HTTP 포트는 공통 `server.port`로 표현한다.
@@ -131,7 +144,7 @@ Spring Boot는 기본 Tomcat 외에도 Jetty 계열의 내장 서버 선택을 �
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["starter-webmvc"] --> B["Tomcat 자동 구성"]
     C["application.properties<br/>server.port=9000"] --> D["Spring Environment의<br/>최종 프로퍼티 값"]
@@ -141,7 +154,7 @@ flowchart LR
 ```
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     P["공통 server.port"] --> T["Tomcat 설정 어댑터"]
     P --> J["Jetty 설정 어댑터"]
@@ -199,6 +212,8 @@ Spring Boot의 8080은 사용자가 바꿀 수 없는 규칙이 아니라 설정
 4. 공통 서버 프로퍼티와 컨테이너 전용 프로퍼티는 각각 어떤 문제를 해결하는가?
 5. Spring Boot 4에서 Undertow 지원이 제거된 사실이 “구성과 플랫폼 호환성”에 관해 무엇을 보여 주는가?
 6. `application.properties`와 `application.yml`은 표현 방식 외에 어떤 점을 동일하게 해결하는가?
+
+> 여섯 문항을 스스로 답한 **뒤에** [[_03-customizing-the-setup-with-configuration-properties]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

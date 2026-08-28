@@ -3,7 +3,7 @@ category: chapter-1-core-features-of-spring-boot
 concept: custom-configuration-properties
 title: "애플리케이션 전용 Configuration Properties 만들기"
 source: "Learning Spring Boot 4, Ch. 1, 책 pp. 14-16 / PDF pp. 39-41"
-terms: [구성-프로퍼티, 프로퍼티-바인딩, 스프링-빈, 자바빈, 애플리케이션-컨텍스트, 외부화된-구성]
+terms: [구성-프로퍼티, 프로퍼티-바인딩, 느슨한-바인딩, 스프링-빈, 자바빈, 애플리케이션-컨텍스트, 외부화된-구성]
 related: [03-customizing-the-setup-with-configuration-properties, 03b-externalizing-application-configuration, 03c-configuring-property-based-beans, 01-autoconfiguring-spring-beans]
 status: prepared
 ---
@@ -206,10 +206,49 @@ public class ApplicationSecuritySettings {
 
 이 단계가 **[[외부화된-구성]]**(=환경별 값을 코드와 산출물 밖에서 공급하는 방식)으로 이어진다. 단, “설정으로 뺐다”는 것과 “안전한 비밀 저장소에 보관했다”는 것은 다르다. 평문 파일, 로그, Git 커밋에 비밀이 남지 않도록 별도 보호가 필요하다.
 
+### 2.7 환경 변수로는 `my.app.header`라고 쓸 수 없다
+
+앞의 §2.2는 “여러 소스가 합쳐진 뒤의 승자 값”을 쓴다고 했다. 그런데 그 소스 중 하나인 환경 변수에는 **점을 쓸 수 없다.** 리눅스 셸 변수 이름에 허용되는 문자는 영문자, 숫자, 밑줄뿐이고 관례상 대문자다. 그러면 컨테이너 플랫폼이 `my.app.header`를 어떻게 주는가.
+
+```bash
+# 이건 대부분의 셸에서 아예 설정되지 않는다
+my.app.header=...
+
+# 실제로 쓰는 형태
+MY_APP_HEADER="Learning Spring Boot 4"
+```
+
+Spring Boot는 이 문제를 **[[느슨한-바인딩]]**(=소스마다 자연스러운 표기로 적어도 같은 키로 인식하는 규칙)으로 푼다. 표준형(canonical form) 하나를 두고 소스별 표기를 그 표준형으로 되돌린다.
+
+**표준형을 환경 변수 이름으로 바꾸는 규칙 세 가지**
+
+1. 점(`.`)을 밑줄(`_`)로 바꾼다.
+2. 하이픈(`-`)은 **지운다.**
+3. 대문자로 만든다.
+
+그래서 `spring.main.log-startup-info`는 `SPRING_MAIN_LOGSTARTUPINFO`가 된다. 하이픈이 밑줄이 되는 것이 **아니라 사라진다**는 점이 함정이다. 리스트는 인덱스를 밑줄로 감싼다 — `my.service[0].other`는 `MY_SERVICE_0_OTHER`다.
+
+**소스마다 허용 표기가 다르다**
+
+| 소스 | 단순 프로퍼티 표기 | 리스트 |
+|---|---|---|
+| properties 파일 | camelCase · kebab-case · 밑줄 | 대괄호 인덱스 또는 쉼표 구분 |
+| YAML 파일 | 위와 같음 | YAML 리스트 문법 또는 쉼표 구분 |
+| 시스템 프로퍼티 | camelCase · kebab-case · 밑줄 | 대괄호 인덱스 또는 쉼표 구분 |
+| **환경 변수** | **대문자 + 밑줄만** | 인덱스를 밑줄로 감싼다 |
+
+1. 바인더가 소스별 표기를 표준형으로 되돌린다. — 같은 설정을 여러 소스에서 줄 수 있어야 우선순위가 의미를 갖기 때문이다.
+2. 표준형끼리 비교해 우선순위 승자를 정한다. — `MY_APP_HEADER`가 파일의 `my.app.header`를 덮으려면 둘이 **같은 키**로 인식돼야 하기 때문이다.
+3. 승자 값을 설정 객체의 프로퍼티에 변환해 넣는다. — 애플리케이션이 표기 차이를 몰라도 되게 하기 위해서다.
+
+**적을 때는 kebab-case를 권장한다.** 공식 문서가 `my.person.first-name=Rod`처럼 소문자 kebab으로 저장하기를 권한다. 표준형에 가장 가까워 다른 표기로 옮길 때 규칙을 한 번만 적용하면 되기 때문이다.
+
+**경계**: 이 느슨함은 `@ConfigurationProperties` 바인딩의 규칙이다. 문자열 키를 직접 지정하는 방식에는 같은 관대함을 기대하면 안 된다. 그리고 대소문자를 무시한다고 해서 오타까지 봐주지는 않는다 — `my.app.headr`는 그냥 존재하지 않는 키이고, 조용히 무시된다.
+
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["여러 프로퍼티 소스"] --> B["최종 my.app.* 값"]
     B --> C["ConfigurationProperties Binder"]
@@ -219,7 +258,7 @@ flowchart LR
 ```
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Q{"설정 객체를<br/>변경 가능하게 둘까?"}
     Q -- "setter 방식" --> J["JavaBean 클래스<br/>Component + ConfigurationProperties"]
@@ -237,6 +276,7 @@ flowchart TD
 |---|---|---|
 | 구성 프로퍼티 | 이름-값 입력으로 빈의 설정을 조정하는 모델 | [[_glossary#구성-프로퍼티]] |
 | 프로퍼티 바인딩 | 외부 값을 Java 설정 객체에 타입에 맞게 연결하는 과정 | [[_glossary#프로퍼티-바인딩]] |
+| 느슨한 바인딩 | 소스마다 다른 표기를 같은 키로 인식하는 규칙 | [[_glossary#느슨한-바인딩]] |
 | 스프링 빈 | 컨텍스트가 생성·연결·관리하는 객체 | [[_glossary#스프링-빈]] |
 | 자바빈 | getter/setter와 인자 없는 생성자 같은 객체 관례 | [[_glossary#자바빈]] |
 | 애플리케이션 컨텍스트 | Spring 빈과 의존 관계를 관리하는 컨테이너 | [[_glossary#애플리케이션-컨텍스트]] |
@@ -282,6 +322,8 @@ flowchart TD
 4. `my.app` 같은 접두사가 설정의 충돌과 탐색 비용을 어떻게 줄이는가?
 5. 기본값을 넣으면 좋은 설정과 넣으면 위험한 설정을 각각 예로 들 수 있는가?
 6. API 토큰을 구성 프로퍼티로 옮기는 것만으로 보안 문제가 끝나지 않는 이유는 무엇인가?
+
+> 여섯 문항을 스스로 답한 **뒤에** [[_03a-creating-custom-properties]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

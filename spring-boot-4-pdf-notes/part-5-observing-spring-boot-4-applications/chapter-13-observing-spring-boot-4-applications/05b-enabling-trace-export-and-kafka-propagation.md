@@ -147,7 +147,7 @@ public class EmployeeService {
 책이 "이 버전의 핵심 트레이싱 변경"이라고 짚는 부분이다. [[04b-adding-custom-business-metrics-with-micrometer]]와 비교해 보자.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     subgraph 전["메트릭만 있던 버전"]
         T1["Timer.record( ... )"] --> W1["createEmployeeAndPublishEvent"]
@@ -198,7 +198,7 @@ flowchart TD
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["자동 계측<br/>HTTP · Kafka · JDBC"] --> W["waterfall"]
     B["커스텀 관측<br/>Observation.createNotStarted"] --> W
@@ -269,6 +269,9 @@ flowchart TD
 6. `employee.role`이 저 카디널리티인 이유와, `employee.id`였다면 무엇이 문제인가?
 7. 고 카디널리티 속성이 유용한 경우는 언제인가?
 8. 작업 공정 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_05b-enabling-trace-export-and-kafka-propagation]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

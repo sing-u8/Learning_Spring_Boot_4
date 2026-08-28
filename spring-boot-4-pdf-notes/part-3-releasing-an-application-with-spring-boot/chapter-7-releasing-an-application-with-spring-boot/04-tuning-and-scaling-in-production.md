@@ -93,7 +93,7 @@ o.s.boot.tomcat.TomcatWebServer : Tomcat started on port 9000 (http) with contex
 이것이 **[[외부-설정-파일]]**(= 실행 가능한 JAR 옆에 두는 설정 파일)의 성질이고, 근거는 [[../chapter-6-configuring-an-application-with-spring-boot/05-ordering-property-overrides|Chapter 6 · 프로퍼티 우선순위]]의 Config Data 4단계다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["1. JAR 안 application.properties<br/>가장 낮음"] --> B["2. JAR 안 application-{profile}.properties"]
     B --> C["3. JAR 밖 application.properties"]
@@ -125,7 +125,7 @@ flowchart TD
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     J["ch7-0.0.1-SNAPSHOT.jar<br/>불변"] --> R1["기본 실행<br/>8080"]
     J --> R2["SERVER_PORT=9000<br/>매번 타이핑"]
@@ -183,6 +183,9 @@ flowchart LR
 6. `/opt/app/`에 JAR과 프로퍼티 파일을 나란히 두는 배치가 지키는 원칙은?
 7. 이 절이 다음 절로 넘어가는 요구는 무엇인가?
 8. 설정 스위치 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_04-tuning-and-scaling-in-production]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

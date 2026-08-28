@@ -202,7 +202,7 @@ public class ObservabilityConfig {
 왜 이 조각이 필요한지는 **생명주기의 어긋남** 때문이다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["Logback이 먼저 초기화된다<br/>XML을 읽고 OTEL appender 생성"] --> B["이 시점에는 Spring 컨텍스트가 없다<br/>OpenTelemetry 빈이 아직 없다"]
     B --> C["Spring 컨텍스트 기동<br/>OpenTelemetry 빈 생성"]
@@ -252,7 +252,7 @@ public class EmployeeController {
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     C["log.info(...) — SLF4J"] --> LB["Logback"]
     LB --> CO["CONSOLE appender<br/>구조화 JSON을 터미널에"]
@@ -324,6 +324,9 @@ flowchart TD
 6. `ObservabilityConfig`가 필요한 이유를 초기화 순서로 설명할 수 있는가?
 7. `System.out.println`과 `log.info`의 차이를 파이프라인 관점에서 네 가지 말할 수 있는가?
 8. 센서 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_03b-instrumenting-the-application-for-logging]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

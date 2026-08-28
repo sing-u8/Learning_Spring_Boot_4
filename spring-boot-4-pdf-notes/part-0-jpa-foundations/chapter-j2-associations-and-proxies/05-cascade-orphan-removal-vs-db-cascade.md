@@ -203,7 +203,7 @@ private List<MaterialSubstance> substanceLinks = new ArrayList<>();
 ### 무엇을 켤지 고르는 흐름
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["자식의 생명주기가<br/>부모에 종속되는가?"] -- "아니다" --> B["전이를 걸지 않는다<br/>각자 저장하고 삭제한다"]
     A -- "그렇다" --> C{"부모를 하드 삭제하는<br/>경로가 있는가?"}
@@ -273,6 +273,9 @@ flowchart TD
 6. 성분 쪽 외래 키가 `RESTRICT`인 것이 ADR-0001과 어떻게 이어지는가?
 7. `@OnDelete`가 아끼는 것과 잃는 것은 각각 무엇인가?
 8. 전이가 지연 로딩을 무력화하는 지점은 메커니즘의 몇 번째 단계인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_05-cascade-orphan-removal-vs-db-cascade]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

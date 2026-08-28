@@ -124,7 +124,7 @@ macOS에서 처음 실행하면 "ch8이 들어오는 네트워크 연결을 받�
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph PREP["준비 — JDK 전환"]
         S1["sdk install java 25.0.2-graal"] --> S2["sdk use java 25.0.2-graal"]
@@ -193,6 +193,9 @@ flowchart TB
 - 빌드 출력에서 "이미지를 키우는 주범"을 찾으려면 어느 줄을 보는가?
 - 159.62MB 실행 파일과 "네이티브는 메모리를 적게 쓴다"는 말은 모순인가?
 - 로컬에서 되던 네이티브 빌드가 CI에서 실패한다면 가장 먼저 확인할 것은?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_03-building-and-running-a-native-application]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

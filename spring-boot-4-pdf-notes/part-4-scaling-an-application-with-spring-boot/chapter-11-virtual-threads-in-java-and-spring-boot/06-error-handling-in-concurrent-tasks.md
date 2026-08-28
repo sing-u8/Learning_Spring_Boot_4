@@ -49,7 +49,7 @@ public void registerEmployeeCreation(Employee employee) {
 **[[예외-전파]]**(= 던져진 예외가 호출 스택을 거슬러 올라가 처리자를 찾는 과정)는 **한 스레드 안에서만** 일어난다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     subgraph 동기["동기 흐름 — 같은 스레드"]
         S1["Repository"] --> S2["Service"] --> S3["Controller"] --> S4["Spring MVC 예외 처리기"]
@@ -154,7 +154,7 @@ public void registerEmployeeCreation(Employee employee) {
 그런데 **인쇄된 예제 코드는 실행자를 주지 않는다.**
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["taskExecutor.execute(...)"] --> A1["Spring Boot의 기본 실행자<br/>= 가상 스레드 (프로퍼티가 켜졌다면)"]
     B["CompletableFuture.runAsync(...)"] --> B1["ForkJoinPool.commonPool()<br/>= 플랫폼 스레드"]
@@ -205,7 +205,7 @@ Project Loom이 내놓는 다음 답이 **[[구조적-동시성]]**(= 관련된 
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Q{"배경 작업이 실패했다"} --> A["아무것도 안 하면"]
     Q --> B["try-catch로 감싸면"]
@@ -276,6 +276,9 @@ flowchart TD
 6. 가상 스레드와 `CompletableFuture`가 "층이 다르다"는 것이 무슨 뜻인가?
 7. 구조적 동시성이 보장하는 세 가지와, "구조적"이라는 이름의 유래는?
 8. 반송 편지 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_06-error-handling-in-concurrent-tasks]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

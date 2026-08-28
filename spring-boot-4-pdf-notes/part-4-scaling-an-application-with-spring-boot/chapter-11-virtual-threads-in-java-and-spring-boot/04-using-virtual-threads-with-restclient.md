@@ -35,7 +35,7 @@ status: prepared
 플랫폼 스레드에서 이런 호출을 하면 무슨 일이 벌어지는지 보자.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#fff7df', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["플랫폼 스레드가 HTTP 호출"] --> B["300ms 동안 응답 대기"]
     B --> C["그 300ms 내내<br/>OS 스레드 하나가 묶여 있다"]
@@ -145,7 +145,7 @@ public class NotificationService {
 무슨 일이 벌어지는지 단계로 보자.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["가상 스레드가 toBodilessEntity() 호출"] --> B["소켓 읽기에서 대기"]
     B --> C["JVM이 가상 스레드를 중단하고<br/>캐리어에서 내린다"]
@@ -208,7 +208,7 @@ Notification sent for: Gandalf | Thread: VirtualThread[#71,tomcat-handler-3]/run
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant U as 사용자
     participant C as HomeController<br/>VirtualThread #71
@@ -282,6 +282,9 @@ sequenceDiagram
 6. 로그 두 줄에서 "양쪽 다 가상 스레드"를 어떻게 읽어 내는가?
 7. 자기 자신을 호출하는 구조가 플랫폼 스레드였다면 왜 위험한가?
 8. 보류음 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_04-using-virtual-threads-with-restclient]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

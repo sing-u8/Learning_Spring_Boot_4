@@ -136,11 +136,46 @@ starter 선언 → 관련 의존성 유입 → classpath 변화
 
 **[[서블릿]]**(=웹 컨테이너가 HTTP 요청을 Java 코드에 전달하는 서버 규약) 기반 애플리케이션에 필요한 상당 부분이 이 스타터로 준비된다. 하지만 템플릿 엔진은 포함 범위로 가정하면 안 된다. Thymeleaf 같은 서버 측 화면 렌더링을 원하면 목적에 맞는 별도 스타터를 선택해야 한다.
 
+#### 실제 좌표로 확인하면
+
+위 여섯 항목은 책의 기능 단위 설명이다. Spring Boot 저장소의 `starter/spring-boot-starter-webmvc/build.gradle`을 열면 실제 의존 대상은 다섯 줄이다.
+
+```groovy
+api(project(":starter:spring-boot-starter"))          // 로깅·설정 등 공통 기반
+api(project(":starter:spring-boot-starter-jackson"))  // JSON 직렬화
+api(project(":starter:spring-boot-starter-tomcat"))   // 내장 서블릿 컨테이너
+api(project(":module:spring-boot-http-converter"))    // HTTP 메시지 변환
+api(project(":module:spring-boot-webmvc"))            // MVC와 그 자동 구성
+```
+
+기능 여섯 개가 좌표 다섯 개에 담긴 구조가 보인다. 공통 기반(`spring-boot-starter`)이 로깅과 설정을 맡고, 나머지가 각각 JSON·서버·변환·MVC를 맡는다. 같은 저장소에서 **옛 `spring-boot-starter-web`은 이 스타터를 위해 deprecated**로 표시돼 있다. 이름이 바뀐 것이 아니라 실행 모델을 이름에 드러내는 쪽으로 교체된 것이다.
+
+> **주의 — 검증은 자동으로 따라오지 않을 수 있다.** 위 다섯 줄에 Bean Validation 스타터가 없다. 책은 "검증과 오류 처리 인프라"를 MVC 스타터의 범위로 열거하지만, 실제 좌표에서는 확인되지 않는다. `@Valid`로 요청 본문을 검증하려면 `spring-boot-starter-validation`을 별도로 추가해야 할 수 있다. 오류 처리(`@ExceptionHandler`, 기본 오류 응답)는 MVC 모듈 쪽 기능이라 별개다. 이 대조는 저장소의 `main` 브랜치 빌드 파일을 본 것이므로, 쓰는 정확한 버전에서 `dependency:tree`로 한 번 확인하는 편이 안전하다.
+
 ### 2.5 Jakarta EE와 Spring Boot의 관계
 
 책은 현대 Spring Boot가 Servlet, Persistence, Validation 같은 **[[Jakarta-EE]]**(=엔터프라이즈 Java 표준 사양의 모음) API 위에 구축된다고 설명한다. Jakarta EE는 Java EE 사양이 Eclipse Foundation으로 이관된 뒤의 이름이며, 최신 Spring 애플리케이션은 `javax.*`가 아니라 `jakarta.*` 네임스페이스를 사용한다.
 
 여기서 흔한 오해는 “Spring과 Jakarta EE 중 하나만 선택한다”는 것이다. Spring Framework와 Spring Boot는 자체 프로그래밍 모델을 제공하면서도 Servlet·Validation·Persistence 같은 표준 계약은 Jakarta EE API를 활용한다.
+
+#### 왜 모순이 아닌가 — 이름 하나가 두 가지를 가리킨다
+
+“Spring이냐 Jakarta EE냐”가 대립처럼 들리는 이유는 **Jakarta EE라는 이름이 층이 다른 두 가지를 함께 가리키기 때문**이다.
+
+| 가리키는 것 | 내용 | Spring과의 관계 |
+|---|---|---|
+| ① 개별 **API 사양** | `jakarta.servlet`, `jakarta.persistence`, `jakarta.validation` — 인터페이스와 계약만 정의한다 | **가져다 쓴다.** 경쟁 대상이 아니다 |
+| ② 완전한 **엔터프라이즈 런타임** | 그 사양들을 다 구현한 애플리케이션 서버와 EJB·CDI 중심의 프로그래밍 모델 | **여기가 대안 관계다.** Spring이 다른 길을 제시한 곳 |
+
+Spring이 대체한 것은 ②이고, 계속 의존하는 것은 ①이다. 두 층을 한 이름으로 부르기 때문에 모순처럼 보일 뿐이다.
+
+그러면 왜 ①까지 자체 규약으로 갈아치우지 않았을까. Servlet API는 “HTTP 요청을 Java 객체로 만들어 애플리케이션 코드에 넘긴다”는 **컨테이너와 애플리케이션 사이의 계약**이다. Tomcat, Jetty, Undertow는 그 계약의 서로 다른 구현이다. Spring MVC가 자기만의 서버 규약을 새로 만들었다면 그 컨테이너들을 하나도 쓸 수 없었을 것이고, 사용자는 서버를 바꿀 때마다 애플리케이션을 고쳐야 했을 것이다. **표준 계약에 의존하는 것이 구현 교체 가능성을 사는 값이다.** [[01-autoconfiguring-spring-beans]]에서 `BookRepository`가 `DataSource`라는 계약에만 의존한 것과 같은 형태의 판단이며, 그 판단이 프레임워크 규모로 적용된 것이다.
+
+공식 문서에서 확인되는 근거가 셋 있다.
+
+- Spring Boot 4는 **Servlet 6.1**을 요구하고 Tomcat 11.0.x·Jetty 12.1.x를 지원하며, “any Servlet 6.1+ compatible container”에 배포할 수 있다고 명시한다. 교체 가능성이 실제로 문서화된 계약이다.
+- Boot의 BOM이 `jakarta.servlet-api` 6.1.0, `jakarta.persistence-api` 3.2.0, `jakarta.validation-api` 3.1.1 같은 사양 API의 버전을 **직접 관리한다.** 감추는 것이 아니라 정면으로 의존한다.
+- Boot 4는 빌드 단계에서 `javax.*` 의존성을 **금지한다**(`javax.batch`·`javax.cache`·`javax.money`만 예외). `javax.*` → `jakarta.*`는 사양의 소유권이 Oracle에서 Eclipse Foundation으로 넘어가며 이름공간이 바뀐 결과이고, Boot 4는 그 이관을 완료된 것으로 강제한다.
 
 ### 2.6 테스트 스타터도 대상 기술과 맞춘다
 
@@ -154,6 +189,19 @@ Spring Boot 4의 명시적인 접근은 테스트에도 이어진다.
 3. 테스트 범위에 맞는 컨텍스트와 도구를 사용한다. — 테스트 속도와 실패 원인의 명확성을 높이기 위해서다.
 
 책은 구체적인 테스트 슬라이스를 Chapter 5에서 더 다룬다. Chapter 1에서 기억할 것은 “운영 스타터와 마찬가지로 테스트 의존성도 기술 의도를 표현한다”는 점이다.
+
+#### 나뉘면 무엇이 좋아지는가 — 두 축으로 갈라 보기
+
+“기술별로 나뉜다”의 이점은 성격이 다른 두 가지다. 한 덩어리로 말하면 둘 다 흐려진다.
+
+| 축 | 나뉘기 전 | 나뉜 뒤 |
+|---|---|---|
+| **테스트 범위** | 대상 계층과 무관한 의존성까지 함께 들어와, 무엇을 띄워야 하는지가 빌드에서 드러나지 않는다 | 대상 계층에 맞춘 지원만 들어온다. 컨텍스트가 작아져 **빠르고**, 실패했을 때 **의심할 범위가 좁다** |
+| **빌드 가독성** | 테스트 의존성 한 줄이 모든 프로젝트에서 똑같아 정보가 없다 | 빌드 파일만 보고 “이 프로젝트가 어느 계층을 시험하는가”를 읽을 수 있다 |
+
+두 번째 축은 운영 스타터에서 `webmvc`와 `webflux`를 이름으로 가른 것과 **같은 논리가 테스트에 적용된 것**이다. 빌드 파일이 라이브러리 목록이 아니라 설계 선언이 된다.
+
+> **책의 단순화에 대한 주의.** 이 서술은 기술별 테스트 스타터가 범용 테스트 스타터를 **대체했다**는 인상을 줄 수 있으나 그렇지 않다. Spring Boot 4 공식 문서는 여전히 “대부분의 개발자는 `spring-boot-starter-test`를 쓴다”고 안내하며, 그 범용 스타터가 JUnit Jupiter·AssertJ·Hamcrest 같은 공통 도구를 가져오고 **거기에 더해** 해당 애플리케이션에 맞는 기술별 `-test` 모듈을 함께 쓰는 구성을 설명한다. 즉 범용 스타터와 기술별 모듈은 대체 관계가 아니라 **누적 관계**다. 또한 이번 대조에서 실제 좌표로 확인된 이름은 `spring-boot-jdbc-test`·`spring-boot-data-jdbc-test`처럼 `spring-boot-{기술}-test` 형태의 **모듈**이었다. 책이 쓰는 `spring-boot-starter-webmvc-test`·`spring-boot-starter-data-jpa-test`라는 정확한 스타터 좌표는 이번 대조에서 확인하지 못했으므로, 실제로 빌드 파일에 적기 전에 쓰는 버전의 좌표를 확인한다.
 
 ### 2.7 스타터, 자동 구성, BOM의 책임을 분리한다
 
@@ -170,7 +218,7 @@ Spring Boot 4의 명시적인 접근은 테스트에도 이어진다.
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["개발자 선택<br/>starter-webmvc"] --> B["Maven·Gradle<br/>의존성 그래프 해석"]
     B --> C["MVC · Spring Web<br/>Jackson · 내장 서버<br/>Validation · Logging"]
@@ -182,7 +230,7 @@ flowchart LR
 ```
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     W["웹 애플리케이션을 만든다"] --> Q{"어떤 실행 모델인가?"}
     Q -- "Servlet 기반" --> M["spring-boot-starter-webmvc"]
@@ -255,6 +303,8 @@ flowchart TD
 5. MVC 스타터가 제공하는 여섯 범위와 별도로 선택해야 하는 템플릿 엔진을 설명할 수 있는가?
 6. Spring Boot가 Spring을 쓰면서도 Jakarta EE의 Servlet·Validation API에 의존하는 것이 모순이 아닌 이유는 무엇인가?
 7. 테스트 스타터가 기술별로 나뉘면 테스트의 범위와 빌드 가독성에 어떤 이점이 생기는가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_02-adding-portfolio-components-using-spring-boot-starters]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

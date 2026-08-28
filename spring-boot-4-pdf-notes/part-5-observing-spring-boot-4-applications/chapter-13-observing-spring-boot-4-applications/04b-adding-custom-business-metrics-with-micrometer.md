@@ -113,7 +113,7 @@ public class EmployeeService {
 `.tag("role", role)` 한 줄이 만드는 차이가 크다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["태그 없음<br/>employee.created.count = 1500"] --> A1["알 수 있는 것<br/>총 1500건"]
     B["태그 있음<br/>employee.created.count{role=ENGINEER} = 900<br/>{role=MANAGER} = 600"] --> B1["알 수 있는 것<br/>역할별 분포 · 특정 역할만의 이상"]
@@ -133,7 +133,7 @@ Prometheus에서는 이 태그가 **질의 가능한 차원**이 된다. `sum by
 > 직원 생성 워크플로는 `EmployeeService`가 저장하는 것으로 **끝나지 않는다.** 저장 후 Kafka에 이벤트를 발행하고, 알림 흐름이 비동기로 이어진다. 즉 **비즈니스 프로세스의 일부가 원래 HTTP 요청 밖에서 일어나고, 그 부분에는 자기만의 메트릭이 필요하다.**
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph 동기["HTTP 요청 안 — Timer가 재는 범위"]
         C["컨트롤러"] --> S["EmployeeService"] --> D[("DB 저장")]
@@ -226,7 +226,7 @@ public class NotificationService {
 | `employee.notification.count` | Counter | `outcome` | 알림이 수신·발송·실패·중복 각각 몇 건인가 |
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Q{"무엇을 알고 싶은가?"}
     Q -- "몇 번 일어났나" --> C["Counter"]
@@ -271,6 +271,21 @@ flowchart TD
 - **비즈니스 메트릭에도 카디널리티 상한이 있다.** `role`이 수백 종이 되면 태그로 부적합해진다.
 - **비유의 한계.** 인프라 메트릭과 비즈니스 메트릭의 관계는 "차량 계기판과 매출 장부"에 가깝다. 엔진은 정상인데 배달이 안 되고 있을 수 있다. 다만 이 비유는 **둘이 같은 계측기에서 나온다**는 점을 담지 못한다. 여기서는 `MeterRegistry` 하나가 JVM 메모리도, 생성된 직원 수도 함께 다루고, 같은 파이프라인으로 나가 같은 대시보드에 놓인다. 장부와 계기판이 한 화면에 있는 셈이다.
 
+- **이 `Timer`로는 p99가 나오지 않는다.** 이 장이 동기로 내세운 장면은 [[01-three-pillars-of-observability]]의 *"메트릭이 p99가 어제보다 3배라고 알린다"*였는데, **위 코드가 만드는 것은 평균이다.** Micrometer 문서의 규정이 그 이유다 — *"모든 `Timer` 구현은 **최소한 총 시간과 이벤트 수**를 별도 시계열로 보고하며, 다른 시계열(max·백분위수·히스토그램)은 백엔드가 지원하는 바에 따라 보고될 수 있다."* 기본 `Timer`는 `_sum`과 `_count`를 낼 뿐이고, [[04c-verifying-metrics-in-prometheus-and-grafana]]가 가르치는 `rate(…_sum[1m]) / rate(…_count[1m])`도 그래서 **평균 지연**이다.
+
+  **평균은 p99가 드러내는 것을 정확히 가린다.** 요청 100건 중 99건이 10ms이고 1건이 3초여도 평균은 40ms에 머문다. "느린 소수"를 찾으려고 관측을 붙였는데 평균만 보면 그 소수가 평균에 녹아 사라진다.
+
+  백분위수를 실제로 얻으려면 빌더에 설정을 더해야 하고, **두 방식의 차이가 중요하다.**
+
+  | 방식 | 무엇이 나가나 | 인스턴스 여럿일 때 |
+  |---|---|---|
+  | `.publishPercentiles(0.95, 0.99)` | 애플리케이션이 **계산해 둔 값** | **합산할 수 없다.** 인스턴스별 p99를 평균 내는 것은 의미 없는 수다 |
+  | `.publishPercentileHistogram()` | **히스토그램 버킷** | **합산된다.** Prometheus에서 `histogram_quantile()`로 전체 p99를 구한다 |
+
+  Micrometer 문서가 이 구조를 설명한다 — 히스토그램 버킷은 *"보통 카운터처럼 동작하므로 백엔드에 따라 누적값으로 보고될 수 있다"*(Prometheus가 그 경우다). 반면 클라이언트 측 백분위수는 각 인스턴스가 자기 HDR 히스토그램으로 계산한 결과값이다.
+
+  **인스턴스가 하나면 둘 다 되지만, 늘리는 순간 앞의 것은 못 쓰게 된다.** 스케일 아웃은 흔한 조치이므로 처음부터 `publishPercentileHistogram()`을 쓰는 편이 안전하다. 다만 버킷마다 시계열이 생겨 **카디널리티가 늘어난다** — 이 노트가 §6에서 경계하는 태그 카디널리티와 같은 축의 비용이다.
+
 ## 7. 연결
 
 - [[04a-setting-up-prometheus-for-metrics]] — 그 노트가 세운 파이프라인에 이 노트가 실제 데이터를 흘려보낸다.
@@ -287,6 +302,9 @@ flowchart TD
 6. 알림 결과를 메트릭 4개가 아니라 태그 하나로 묶은 판단의 근거는?
 7. `employee.create.time`이 재지 **못하는** 구간은 어디이며 왜인가?
 8. 계기판/장부 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_04b-adding-custom-business-metrics-with-micrometer]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

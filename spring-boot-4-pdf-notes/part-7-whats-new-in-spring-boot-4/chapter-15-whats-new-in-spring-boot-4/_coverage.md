@@ -144,3 +144,27 @@ Chapter 1–3과 달리 이 Chapter는 **절 단위로 쪼개지 않고 하나�
 - [x] 이름·좌표·프로퍼티 변경 목록이 대조표로 전수 반영됨
 - [x] PDF 내 raster 이미지 부재를 `pdfimages -list`로 실제 확인함
 - [x] 절 단위로 쪼개지 않고 챕터 단위 단일 노트로 정리함
+
+## 공식 문서 대조 검증 (2026-08-29)
+
+이 챕터는 **Boot 4의 변경 사항 카탈로그**라 버전 민감한 단정이 밀집해 있다. 검증 가치가 높은 둘을 대조했다.
+
+| 주장 | 위치 | 결과 |
+|---|---|---|
+| Actuator의 liveness·readiness **상태 프로브가 모든 애플리케이션에서 기본으로 켜진다** (Kubernetes 감지 시에만이 아니라) | `01` | **확인됨 ✅** — Boot 4.0.3 문서: *"두 HealthIndicator 빈이 **기본으로 활성화된다** — `LivenessStateHealthIndicator`와 `ReadinessStateHealthIndicator`. `management.endpoint.health.probes.enabled`로 끌 수 있다."* |
+| Boot 4의 `spring-boot-starter-batch`가 **인메모리 `JobRepository`를 기본으로 쓴다** | `01` | **확인됨 ✅** — 아래 참고 |
+
+### Batch 주장 — 상류 문서까지 추적해 확정 (2026-08-29 2차)
+
+처음에는 Boot 문서만 보고 **확인 불가**로 남겼다. Boot 레퍼런스가 조건부로만 서술하기 때문이다(*"**SQL 데이터베이스에 작업 상세를 저장하는** 배치 애플리케이션은 `DataSource` 빈이 필요하다"*). 실수 대가가 큰 항목이라 **상류로 거슬러 올라가** 확정했다.
+
+| 단계 | 문서 | 얻은 것 |
+|---|---|---|
+| 1 | Boot 4 레퍼런스 — Spring Batch | 자동 구성 가능한 저장소를 *"**In-memory**, JDBC, MongoDB"*로 나열. **인메모리가 정식 선택지**임은 확인되나 기본값은 미기재 |
+| 2 | Boot 4.0 릴리스 노트 | Batch 항목은 *"Spring Batch 6.0"* 의존성 업그레이드 한 줄뿐. **상류를 가리킨다** |
+| 3 | Spring Batch 6.0 릴리스 노트 | 기본값 서술 없음. **마이그레이션 가이드를 가리킨다** |
+| 4 | **Spring Batch 6.0 마이그레이션 가이드** | **확정.** *"`DefaultBatchConfiguration`이 이제 **'resourceless' 배치 인프라**를 구성한다(즉 **`ResourcelessJobRepository`**와 `ResourcelessTransactionManager`)."* 이유 — *"배치 메타데이터가 필요 없는 사람들에게 **인메모리 데이터베이스에 대한 추가 의존성을 요구하지 않기 위해서**다."* JDBC 유지에는 **`@EnableJdbcJobRepository`**(또는 `JdbcDefaultBatchConfiguration`)가 필요하다 |
+
+**판정 — 책이 옳다.** 다만 변경의 주체가 Boot가 아니라 **Spring Batch 6 자체**이며, Boot 4는 그 기본값 위에 올라탄 것이다. 노트에 그 층위와 클래스 이름(`ResourcelessJobRepository`·`ResourcelessTransactionManager`), Batch 층의 복구 방법(`@EnableJdbcJobRepository`), 확인 방법을 함께 적었다.
+
+**방법론적 교훈.** 프레임워크의 기본값 변경은 **그 프레임워크의 문서에 없을 수 있다.** Boot는 상류 라이브러리의 결정을 그대로 물려받으므로, Boot 문서에서 안 나오면 **릴리스 노트 → 상류 릴리스 노트 → 상류 마이그레이션 가이드** 순으로 따라가야 한다. 네 단계를 거쳐야 나왔다.

@@ -64,7 +64,7 @@ status: prepared
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     BUILT["완성된 기능<br/>ChatClient · 프롬프트 · 툴 콜링 · RAG · 메모리 · MCP"]
 
@@ -110,6 +110,9 @@ flowchart TB
 - 네 질문의 순서에 의존 관계가 있다고 했다. 평가가 관측보다 먼저인 이유는?
 - 요청 수는 그대로인데 비용이 6배가 된 상황을 이 장에서 만든 기능들로 설명해 보라.
 - 관측을 켜는 것이 왜 보안 결정이기도 한가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_07-operating-llm-applications]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

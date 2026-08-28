@@ -140,7 +140,7 @@ public class HomeController {
 ### 요청 하나가 지나가는 길
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant B as 브라우저
     participant T as 내장 Tomcat
@@ -236,6 +236,8 @@ sequenceDiagram
 6. `return "index"`가 파일 경로가 아니라는 사실이 실제로 어떤 자유를 주는가?
 7. 클래스·메서드 이름이 "중요하지 않다"와 "의미 있게 지으라"가 모순이 아닌 이유는?
 8. 컨트롤러 필드에 이번 요청의 사용자 이름을 저장하면 무엇이 잘못되는가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_02-creating-a-spring-mvc-web-controller]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

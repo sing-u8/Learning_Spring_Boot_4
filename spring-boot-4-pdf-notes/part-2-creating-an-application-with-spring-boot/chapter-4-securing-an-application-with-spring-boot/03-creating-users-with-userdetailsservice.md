@@ -103,7 +103,7 @@ UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
 이 좁은 계약이 하는 일은 **"사용자가 어디 있는가"와 "인증이 어떻게 동작하는가"를 완전히 떼어 놓는 것**이다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph 바뀌는쪽["구현 — 상황마다 다름"]
         M["메모리 맵"]
@@ -159,7 +159,7 @@ flowchart LR
 로그인 요청 하나가 이 빈까지 도달하는 경로다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant B as 브라우저
     participant F as 인증 필터
@@ -226,6 +226,8 @@ sequenceDiagram
 5. `withDefaultPasswordEncoder()`를 책이 쓰면서 동시에 금지하는 이유는 무엇인가?
 6. `.roles("ADMIN")`이 실제로 저장하는 문자열은 무엇인가?
 7. 안내 데스크 비유가 깨지는 지점은 어디인가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_03-creating-users-with-userdetailsservice]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

@@ -57,7 +57,7 @@ status: prepared
 **[[스크레이프]]**(= Prometheus가 대상의 메트릭 엔드포인트를 주기적으로 긁어 오는 동작)가 Prometheus의 기본 수집 모델이다. 대상이 보내는 게 아니라 Prometheus가 **가지러 간다.**
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["애플리케이션"] -->|"OTLP push<br/>step 5s"| C["Collector<br/>:9464에 Prometheus 형식으로 노출"]
     P["Prometheus"] -->|"scrape pull<br/>scrape_interval 5s"| C
@@ -198,7 +198,7 @@ management:
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     subgraph 앱설정["application.yml"]
         S1["otlp.metrics.export.enabled: true"]
@@ -275,6 +275,9 @@ flowchart TD
 6. `step`과 `scrape_interval`이 어긋나면 각각 어떤 문제가 생기는가?
 7. 이 구성에서 `/actuator/metrics`는 어떤 역할인가?
 8. 우편함/게시판 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_04a-setting-up-prometheus-for-metrics]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

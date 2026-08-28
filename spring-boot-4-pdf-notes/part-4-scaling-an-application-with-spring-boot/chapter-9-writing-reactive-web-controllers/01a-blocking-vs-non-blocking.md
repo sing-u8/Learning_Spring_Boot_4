@@ -89,7 +89,7 @@ DB 호출 같은 연산이 **시작되면 스레드가 놓여나** 다른 일을
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant C as 클라이언트 3명
     participant T as 스레드
@@ -156,6 +156,9 @@ sequenceDiagram
 - "한 스레드로 더 많은 일을 동시에"가 왜 틀린 요약인가?
 - 스레드를 늘려 동시성을 올리는 방식이 부딪히는 세 가지 한계는?
 - 별도 스레드에 던져 놓고 거기서 블로킹하면 왜 자원 관점에서 개선이 없는가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_01a-blocking-vs-non-blocking]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

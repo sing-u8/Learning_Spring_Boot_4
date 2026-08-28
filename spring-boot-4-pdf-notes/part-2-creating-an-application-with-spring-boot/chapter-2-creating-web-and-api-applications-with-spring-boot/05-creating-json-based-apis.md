@@ -230,7 +230,7 @@ curl localhost:8080/api/videos
 ### 하나의 서비스, 두 개의 표현
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     B["브라우저 (사람)"] --> HC["HomeController<br/>@Controller"]
     M["모바일 앱 · SPA · 파트너 서버"] --> AC["ApiController<br/>@RestController"]
@@ -315,6 +315,7 @@ Jackson이 기본값으로 잘 동작한다는 것이지 조정이 불가능하�
 - `@RequestBody`는 **검증하지 않는다.** `{"name": ""}`도 그대로 `Video`가 된다.
 - 예외가 나면 무엇이 응답으로 나가는지 이 장에서는 다루지 않는다. 실제 API에는 오류 응답 형식의 약속이 함께 필요하다.
 - API를 공개한다는 것은 **소비자와 계약을 맺는 일**이다. 잘 동작하는 엔드포인트를 만드는 것과 그것을 오래 유지하는 것은 다른 문제다.
+- **`@RestController`가 JSON을 보장하는 것은 아니다.** 이 장에서 JSON이 나오는 것은 클래스패스에 Jackson만 있어서다. 정확히는 `@RestController` = `@Controller` + `@ResponseBody`이고, **"본문에 직접 쓴다"는 뜻이지 "JSON으로 쓴다"는 뜻이 아니다.** 실제 형식은 클라이언트의 `Accept` 헤더와 등록된 메시지 컨버터를 맞춰 보는 **콘텐트 협상**의 결과다. 그래서 XML 컨버터를 딸려 오게 하는 의존성을 하나 추가하면 `Accept: */*`인 클라이언트에게 **같은 코드가 XML을 내보낼 수 있다.** 이 층의 상세는 `part-0-spring-core-internals`의 `chapter-c3-mvc-request-pipeline/04-httpmessageconverter-and-content-negotiation`에 있고, 형식을 고정하려면 `produces`를 명시한다.
 
 ## 7. 연결
 
@@ -333,6 +334,8 @@ Jackson이 기본값으로 잘 동작한다는 것이지 조정이 불가능하�
 7. curl verbose 출력에서 `>`와 `<`는 각각 무엇인가?
 8. `create()`가 인자를 그대로 돌려주도록 만든 이유는 무엇인가?
 9. `Video` record에 필드를 하나 더하면 어떤 일이 자동으로 일어나고, 왜 그것이 위험한가?
+
+> 아홉 문항을 스스로 답한 **뒤에** [[_05-creating-json-based-apis]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

@@ -36,7 +36,7 @@ if ("youtube".equals(videoProvider)) {
 
 공급자 선택은 애플리케이션을 시작할 때 한 번 결정해도 되는 구성 문제다. Spring Boot는 **[[구성-프로퍼티]]**(=이름-값 입력으로 애플리케이션 구성을 조정하는 모델)를 단순한 필드 값뿐 아니라 빈 생성 조건으로도 사용할 수 있다.
 
-**[[조건부-빈]]**(=정해진 조건이 맞을 때만 컨텍스트에 등록되는 빈)을 사용하면 환경별 구현 선택을 구성 경계에 모을 수 있다. 나머지 서비스는 어떤 공급자가 선택되었는지 묻는 대신 주입된 공통 역할을 사용한다.
+**[[조건부-빈]]**(=정해진 조건이 맞을 때만 컨텍스트에 등록되는 빈)을 사용하면 환경별 구현 선택을 `@Bean` 메서드가 모인 구성 클래스 한곳으로 모을 수 있다. 나머지 서비스는 어떤 공급자가 선택되었는지 묻는 대신 주입된 공통 역할을 사용한다.
 
 ### 프로파일을 만들지 않고 작은 선택을 표현한다
 
@@ -193,7 +193,7 @@ my.app.video의 최종값
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["프로퍼티 소스 병합"] --> B["my.app.video 최종값"]
     B --> C{"값은 무엇인가?"}
@@ -205,7 +205,7 @@ flowchart TD
 ```
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant P as Property Sources
     participant C as ConditionalOnProperty
@@ -275,6 +275,8 @@ sequenceDiagram
 5. `youtube`와 `vimeo` 조건이 서로 배타적이어야 하는 이유는 무엇인가?
 6. 프로파일 파일과 `@ConditionalOnProperty`가 함께 동작하는 예를 만들 수 있는가?
 7. 실행 중 요청마다 구현을 바꾸는 요구에는 왜 이 패턴만으로 부족한가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_03c-configuring-property-based-beans]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

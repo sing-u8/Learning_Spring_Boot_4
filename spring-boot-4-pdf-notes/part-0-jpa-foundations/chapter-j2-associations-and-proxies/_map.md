@@ -39,7 +39,7 @@
 ## 축 3: 읽기 비용 — 언제 몇 번 읽는가
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["연관을 매핑했다"] --> B{"fetch 전략은?"}
     B -- "EAGER 기본값" --> C["원본과 함께 항상 읽는다<br/>목록에서 행 수만큼 반복"]

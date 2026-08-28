@@ -77,7 +77,7 @@ Grafana(`localhost:3000`, admin/admin)에서 **[[Explore]]**(= 대시보드 없�
 이 짧은 질의에 [[03a-setting-up-the-logging-infrastructure]]의 설계 결정이 전부 담겨 있다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["application.yml<br/>service.name: employee-service"] --> B["OTLP로 리소스 속성 전달"]
     B --> C["Collector resource 프로세서<br/>loki.resource.labels에 service.name 포함"]
@@ -139,7 +139,7 @@ deployment_environment=local   exporter=OTLP   job=employee-service   service_na
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Q["LogQL 질의"] --> S["1단계: 라벨 선택자<br/>{service_name=..., level=...}"]
     S --> I["색인에서 스트림 선택<br/>싸다"]
@@ -201,6 +201,9 @@ flowchart TD
 6. 라벨 필터와 라인 필터의 비용 차이는 어디서 오는가?
 7. 이 시점에 traceId가 없는 것이 정상인 이유는?
 8. 도서관 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_03c-verifying-logs-in-grafana]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

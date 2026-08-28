@@ -139,7 +139,7 @@ public String index(Model model) {
 ### 컨테이너가 조립하는 순서
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant S as 컴포넌트 스캔
     participant C as 애플리케이션 컨텍스트
@@ -248,6 +248,8 @@ sequenceDiagram
 6. `@Autowired`가 없는데 autowiring이 동작하는 이유는?
 7. 생성자 주입이 필드 주입보다 나은 점을 `final`·테스트·순환 의존 세 가지로 말할 수 있는가?
 8. 같은 타입의 빈이 둘일 때 Spring이 임의로 고르지 않고 실패하는 것이 왜 좋은 설계인가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_04c-injecting-dependencies-through-constructor-calls]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

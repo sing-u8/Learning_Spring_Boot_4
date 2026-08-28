@@ -73,7 +73,7 @@ Spring Security가 classpath에 있으면 Spring MVC는 **[[Authentication]]**(=
 `authentication.getName()`이 사용자 이름을 돌려준다. 이 메서드가 `Authentication`에 있는 이유는 상속 때문이다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     P["java.security.Principal<br/>자바 표준 · getName()"] --> A["org.springframework.security.core.Authentication<br/>+ getAuthorities() + isAuthenticated() + getCredentials()"]
     A --> U["실제 구현<br/>UsernamePasswordAuthenticationToken 등"]
@@ -111,7 +111,7 @@ public VideoEntity create(NewVideo newVideo, String
 ### 2.4 값이 흘러가는 전체 경로
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant B as 브라우저
     participant F as 보안 필터
@@ -139,7 +139,7 @@ sequenceDiagram
 | `id` | 데이터베이스 시퀀스 | 아니오 |
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph 신뢰못함["클라이언트가 보낸 값"]
         N["name"]
@@ -194,6 +194,8 @@ flowchart LR
 5. `VideoService`가 `Authentication` 대신 `String`을 받는 것의 이점 세 가지는?
 6. 이 코드에서 클라이언트가 정할 수 있는 값과 없는 값을 구분할 수 있는가?
 7. 은행 창구 비유가 깨지는 지점은 어디인가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_06b-taking-ownership-of-data]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

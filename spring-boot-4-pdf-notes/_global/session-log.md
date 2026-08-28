@@ -15,6 +15,20 @@
 | chapter-7-releasing-an-application-with-spring-boot | 아직 미실시 | 인출 학습 시작 후 결정 |
 | chapter-11-virtual-threads-in-java-and-spring-boot | 아직 미실시 | 인출 학습 시작 후 결정 |
 
+## 2026-08-28 — part-0-spring-core-internals 신규 트랙 (c1~c4)
+
+- **Modes**: Prepare / batch. 사용자 요청에 따라 인출 연습은 시작하지 않았다.
+- **계기**: 사용자가 "이 노트가 공식 문서로 깊이 공부한 것과 같은 수준인가"를 물었다. 실측으로 답했다 — 178개 노트 중 공식 문서가 1차 소스인 것은 15개(8%)뿐이었고, `BeanPostProcessor`·`CGLIB`·`HandlerAdapter`·`ArgumentResolver`·`HttpMessageConverter`·`ApplicationEvent`는 저장소 전체에서 **0건**이었다. 그 격차를 메우는 트랙을 사용자가 지시했다.
+- **Source**: PDF가 아니라 **공식 문서 1차**. `docs.spring.io` 직접 조회 12개 페이지(Framework Reference의 Container Extension Points·Lifecycle Callbacks·Proxying Mechanisms·AOP Concepts·Autoproxying·@Bean/@Configuration·DispatcherServlet 4개 절·Method Arguments·Content Types, Boot Reference의 Auto-configuration·Developing Auto-configuration) + Context7(`/websites/spring_io_spring-framework_reference`, `/spring-projects/spring-boot/v4.0.3` — 소스·Actuator API 포함).
+- **산출**: concept note 17개(c1 4 · c2 4 · c3 5 · c4 4), `_map`·`_glossary`·`_coverage` 각 4개. 176,337자, 용어 50개, coverage 매핑 292행.
+- **검증**: `check-note.sh` 17/17, `check-chapter.sh` 4/4, frontmatter `terms` ↔ glossary 50/50, wiki link 미해결 0, **Mermaid 21개 전부 mermaid-cli로 SVG 실제 렌더 성공**(21 블록 = 21 dark init = 21 렌더), `git diff --check` 통과.
+- **공식 문서 대조로 드러난 흔한 설명과의 차이**: 각 챕터 `_coverage.md` §4에 총 41행. 대표 3건 —
+  1. "인터페이스가 있으면 JDK 프록시"는 **Boot에서 틀리다.** Boot 자동 구성은 CGLIB가 기본(`spring.aop.proxy-target-class`).
+  2. back-off는 우선순위가 아니라 **조건 불통과**다. 빈이 둘 생겼다가 하나가 선택되는 것이 아니다.
+  3. `postHandle`에서 응답 헤더를 못 바꾼다. `@ResponseBody`는 `HandlerAdapter` 안에서 커밋되므로 공식 문서 표현대로 "이미 늦었다".
+- **작업 중 발견한 기존 결함**: `part-0-web-foundations`(w1)가 `_global`에 **등록돼 있지 않았다.** 저장소 전체 노트 수가 177로 적혀 있었으나 실제는 178이었다. 이번 갱신에서 `config.md`·`source-manifest.md`를 바로잡았다(현재 195).
+- **다음 범위**: 인출 연습. 사용자가 노트를 읽을 시간을 둔다. 답안 파일은 `config.md`의 진행 상태 표 순서를 따른다.
+
 ## 2026-08-27 — PDF-first 재작성 시작
 
 - 기존 노트는 구조만 확인하고 본문은 재사용하지 않기로 확정했다.
@@ -337,3 +351,376 @@
 - **Validation**: concept note **177/177** deep-tutor PASS, wiki link **7,292개 중 미해결 0**, `git diff --check` PASS.
 - **Gaps added / resolved**: 없음. 인출 연습 전이므로 [[gaps]]는 여전히 비어 있는 것이 맞다.
 - **Next**: 정리 단계에서 남은 작업이 없다. 다음은 사용자가 노트를 읽은 뒤의 **인출 연습**이다.
+
+## 2026-08-28 — 첫 인출 세션 · Ch1 `01-autoconfiguring-spring-beans`
+
+- **Modes**: Depth(2단계 인출). Map 워크스루는 생략했다 — 대상 노트가 이미 지정된 상태로 세션이 열렸다.
+- **Source**: 새 원문 대조 없음. 기존 정리물에 대한 인출 훈련이다.
+- 사용자가 노트의 「8. 스스로 확인」 8문항 중 **7문항을 시도, 1문항(Q8) 미시도**했다. 답변 전문을 노트 구분자 아래 `## 내 설명 시도`에 기록했다.
+- **매끄러웠던 곳**: Q1(DI가 만드는 교체 경계), Q3(Spring bean vs JavaBean), Q7(Framework/Boot 책임 분리).
+- **정밀도 부족**: Q2(`@Bean` 반환값이 메서드 이름으로 등록된다는 점 누락), Q4(자동 구성 사이의 ordering 단계 누락), Q6(뼈대는 맞으나 본인이 확신하지 못함).
+- **Gaps added**: 4건. 전부 `open`. 이 저장소의 **첫 gap 기록**이라 [[gaps]]의 "아직 인출 연습을 시작하지 않았다"는 안내 문장도 함께 갱신했다.
+  - `core-mechanism` — 백오프의 검사 대상을 이름으로만 답함(Q5, Level 2 미달)
+  - `vs-사용자-구성` — 백오프 시 사용자 빈의 등록 주체를 자동 구성으로 잘못 귀속(Q4)
+  - `depends-on-애플리케이션-컨텍스트` — 자동 구성이 빈을 만드는지 빈 정의만 보태는지 미확정(Q6)
+  - `core-mechanism` — Boot 4 모듈화의 인과 사슬 미시도(Q8)
+- **Gaps resolved**: 없음.
+- **Validation**: `check-note.sh` PASS. frontmatter `status: prepared → attempted`.
+- **정리물 보강 판단**: 4건 모두 노트 본문(§2.4·2.5·2.6·2.8, §5)에 답이 있으므로 **설명 부족이 아니라 인출 실패**로 판정했다. 정리물은 고치지 않았다.
+- **후속(같은 날)**: 사용자가 꼬리질문 A~D를 시도하는 대신 **모범답안 전체를 요청**해 제공했다. 스킬 기본 규칙(시도 전 답 제공 금지)보다 사용자의 명시적 지시를 우선했다.
+  - Context7로 `/spring-projects/spring-boot/v4.0.3`을 3회 대조했다. 확인된 것: `@ConditionalOnMissingBean`의 기본 대상 타입 = `@Bean` 메서드의 **반환 타입**, 자동 구성 클래스는 **사용자 빈 정의가 등록된 뒤** 처리되므로 백오프가 성립한다는 점, `OnBeanCondition`이 filter/`REGISTER_BEAN` 2단계로 동작하고 `@ConditionalOnMissingBean`은 `REGISTER_BEAN` 단계에서만 평가된다는 점.
+  - **노트가 담지 못한 Boot 4 사실 2건을 확인했다.** (1) `DataSourceAutoConfiguration`이 Boot 4에서는 `spring-boot-autoconfigure`가 아니라 **`spring-boot-jdbc` 모듈**의 `org.springframework.boot.jdbc.autoconfigure` 패키지에 있다 — §2.6의 모듈화 서술에 붙일 구체 근거다. (2) `AutoConfigurationReplacements`가 `META-INF/spring/<annotation>.replacements`로 옛 자동 구성 클래스명 참조를 새 이름에 매핑한다 — 모듈 분할이 호환 레이어를 요구할 만큼의 변화였다는 증거다.
+- **Gaps 상태**: 4건 전부 `open` 유지. 답을 읽은 것은 인출이 아니므로 닫지 않았다.
+- **후속 2 — 정리물 보강 + 답안 파일 분리 (사용자 요청)**: Ch1 `01`의 **구분자 위**만 고쳤다. 구분자 아래는 손대지 않았다.
+  - `§2.4`에 조건 평가의 두 단계(필터 / `REGISTER_BEAN`)와 순서 지정 애노테이션(`@AutoConfiguration(before, after)`, `@AutoConfigureBefore/After`)을 추가하고, 자동 구성의 산출물이 객체가 아니라 **빈 정의**임을 명시했다.
+  - `§2.5`에 「백오프는 우선순위 경쟁이 아니다」(무엇을·언제·누가 3칸 표 + `NoUniqueBeanDefinitionException`이 나지 않는다는 대조)와 「판정 기준은 이름이 아니라 타입이다」를 추가했다. Q5 stall을 정면으로 겨냥한 보강이다.
+  - `§2.6`에 Boot 4의 실제 모듈·패키지 위치 표, 빌드 파일이 아키텍처 선언이 되는 인과, `AutoConfigurationReplacements` 호환 레이어를 추가했다. Q8 stall 대응이다.
+  - `§6`의 "편의 기능을 잃을 수 있다" 한 줄을 구체 항목 4개(`spring.datasource.*` 조용한 무시 포함)와 오버라이드 3단계 전략으로 확장했다.
+  - `_glossary.md`에 **빈-정의 (BeanDefinition)** 1건 신설, `01`의 frontmatter `terms`에 등재.
+  - **답안 파일 신설**: `_answers-01-autoconfiguring-spring-beans.md`. `_` 접두라 `check-note.sh`·`check-chapter.sh`의 concept note 스키마와 고아 검사에서 면제된다(챕터 노트 수는 8개 그대로). `01`의 `§8` 끝에 "먼저 답한 뒤에 열라"는 경고와 함께 링크를 걸었다.
+- **Validation**: `check-chapter.sh` **PASS**(필수 파일 3, coverage 참조·미해결·고아 전부 OK), 챕터 노트 **8/8** `check-note.sh` PASS, 새 파일의 wiki link 4개 전부 해결, `git diff --check` PASS.
+- **미해결로 남긴 것**: `01`의 Mermaid init 2개가 작업 트리에서 프로젝트 규칙(밝은 theme)이 아닌 `{'theme': 'dark'}`로 바뀐 채 커밋되지 않은 상태다. 이번 세션의 변경이 아니고 사용자 확인 전이라 되돌리지 않았다.
+- **Next**: 다음 세션은 Review 모드. 같은 문항을 반복하지 말고 엣지 형태로 재출제한다. 재출제 문항 5개는 `_answers-01-autoconfiguring-spring-beans.md` 끝에 적어 두었다. Level 3 도달 시 `resolved` 전환.
+
+## 2026-08-28 — Ch1 `02` 답안 파일 + §2 보강
+
+- **Modes**: 사용자 요청에 따른 답안 정리. 합의한 절차([[config]] 「인출 진행 방식」) 6번대로 **답안을 쓰기 전에 본문이 그 질문에 답하는지 먼저 점검**했다.
+- **본문 점검 결과**: 7문항 중 **Q1~Q5는 답이 충분**(§2.2 6단계 · §2.7 표 · §2.3 표 · §2.4 6항목), **Q6·Q7은 얇았다.**
+  - Q6은 §2.5가 "Spring은 자체 모델을 제공하면서도 표준 계약은 Jakarta EE API를 활용한다"고 **사실만 진술**하고 "왜 모순이 아닌가"의 논증이 없었다.
+  - Q7은 §2.6이 "범위"와 "빌드 가독성" 두 축으로 정리된 곳이 없었고, 나뉘기 전 상태와의 대비도 없었다.
+- **§2 보강 3건** (구분자 위만):
+  - `§2.5` — "Jakarta EE"가 ①API 사양과 ②완전한 엔터프라이즈 런타임 두 층을 함께 가리킨다는 구분표, Spring이 대체한 것은 ②이고 의존하는 것은 ①이라는 논증, Servlet 계약이 컨테이너 교체 가능성을 산다는 이유, 공식 문서 근거 3건.
+  - `§2.6` — 「나뉘면 무엇이 좋아지는가」 두 축 표(범위 / 빌드 가독성) + 범용 스타터와의 관계에 대한 주의.
+  - `§2.4` — `spring-boot-starter-webmvc`의 실제 build.gradle 좌표 5줄과 옛 `spring-boot-starter-web`의 deprecated 표시.
+- **공식 문서 대조로 찾은 것** (Context7, `/spring-projects/spring-boot/v4.0.3`):
+  - ✅ `spring-boot-starter-webmvc`의 실제 구성 = `starter` + `starter-jackson` + `starter-tomcat` + `http-converter` + `webmvc`. 옛 `spring-boot-starter-web`은 이 스타터를 위해 **deprecated**.
+  - ⚠ **책의 단순화 1** — 책은 MVC 스타터의 범위로 "검증과 오류 처리"를 들지만 **실제 좌표에 Bean Validation 스타터가 없다.** `spring-boot-starter-validation`이 따로 필요할 수 있다. `§2.4`에 주의 문단으로 넣었다. (main 브랜치 빌드 파일 기준이므로 사용 버전에서 dependency tree 확인 권고를 함께 적었다.)
+  - ⚠ **책의 단순화 2** — 기술별 테스트 스타터가 범용 `spring-boot-starter-test`를 **대체한 것이 아니다.** Boot 4 문서는 여전히 범용 스타터를 기본으로 안내하고 기술별 `-test` 모듈을 **누적**해 쓰는 구성을 설명한다. 또 실제 좌표로 확인된 이름은 `spring-boot-{기술}-test` 형태의 **모듈**이며, 책이 쓰는 `spring-boot-starter-{기술}-test` 스타터 좌표는 이번 대조에서 확인하지 못했다. 둘 다 `§2.6` 주의 문단에 적었다.
+  - ✅ Jakarta: BOM이 `jakarta.servlet-api` 6.1.0 · `jakarta.persistence-api` 3.2.0 · `jakarta.validation-api` 3.1.1을 직접 관리. Boot 4는 빌드 단계에서 `javax.*`를 금지(`javax.batch`·`cache`·`money`만 예외). Servlet 6.1 요구, Tomcat 11.0.x·Jetty 12.1.x.
+- **답안 파일**: `_answers-02-adding-portfolio-components-using-spring-boot-starters.md` 신설. `§8` 끝에 경고와 함께 링크. 끝에 재출제 문항 7개.
+- **Validation**: `check-chapter.sh` **PASS**, 챕터 노트 8/8 `check-note.sh` PASS, `git diff --check` PASS. `check-chapter`의 WARN(원문 2쪽 이하 독립 노트)은 이번 변경과 무관한 기존 경고이며, 병합 조건 (b)에 해당하지 않는다 — `02`는 자체 Mermaid 2개와 독립 메커니즘을 가진다.
+- **Gaps**: 이번에는 사용자의 인출 시도가 없었으므로 추가하지 않았다. Ch1 `01`의 4건은 여전히 `open`.
+- **Next**: 사용자가 `02`의 7문항을 스스로 시도한 뒤 답안과 대조. 다음 인출은 재출제 문항으로.
+- **후속 — 답안 파일 배치 변경(사용자 요청)**: 챕터 루트에 두던 `_answers-*.md`를 **`{챕터}/answers/`** 폴더로 옮기고 이름을 `_{노트파일명}.md`로 줄였다. 폴더가 "답안"이라는 의미를 이미 주기 때문이다.
+  - 훅은 `-notes` 아래 **깊이 1~2**만 검사하므로 `chapter-*/answers/*.md`(깊이 3)는 게이트 대상이 아니고, `check-chapter.sh`도 `$DIR/*.md`만 훑어 제외된다.
+  - **그럼에도 `_` 접두는 유지해야 한다.** 이유가 폴더와 무관하다 — `check-note.sh`가 노트 본문의 `[[링크]]` 중 `_` 접두가 아닌 것을 용어로 보고 용어집과 대조한다. 비접두 이름으로 시험했더니 링크를 건 `01` 노트가 `FAIL 용어집 미등재: [[01-autoconfiguring-spring-beans-answers]]`로 떨어졌다. 실측으로 확인하고 되돌렸다.
+  - 재검증: 노트 2개 `check-note.sh` PASS, `check-chapter.sh` PASS, 답안 파일의 wiki link 8개와 노트→답안 링크 2개 전부 해결, `git diff --check` PASS.
+  - [[config]] 「인출 진행 방식」 4번을 새 경로와 두 제약으로 다시 썼다.
+
+## 2026-08-28 — Ch1 `03`·`03a`·`03b`·`03c`·`04` 답안 파일 + §2 보강
+
+- **Modes**: 사용자 요청에 따른 답안 정리. [[config]] 「인출 진행 방식」 6번대로 **답안을 쓰기 전에 본문 점검을 먼저** 했다.
+- **본문 점검 결과 — 33문항 중 30개는 답이 충분, 3개가 얇았다.**
+
+| 노트 | 문항 | 판정 |
+|---|---:|---|
+| `03` | 6 | Q6(properties vs yml이 **동일하게** 해결하는 것) 얇음 — 표가 차이만 보여 주고 공통점이 없었다 |
+| `03a` | 6 | Q1의 **환경 변수 경로**를 설명할 근거가 본문에 없었다. §2.2가 "여러 소스가 합쳐진 승자 값"이라 하는데 환경 변수는 점 표기를 못 쓴다 |
+| `03b` | 7 | Q5(`location` vs `additional-location`) 얇음 — 한 문장으로만 언급 |
+| `03c` | 7 | 전부 충분. 보강 없음 |
+| `04` | 8 | 전부 충분. 보강 없음 |
+
+- **§2 보강 3건** (구분자 위만):
+  - `03 §2.2` — 「무엇이 같은가」 표 신설(키 이름 공간·우선순위 층·도달 지점·바인딩 규칙). 진짜 차이는 두 파일 형식 사이가 아니라 **파일과 환경 변수 사이**임을 짚고 `03a`로 넘겼다.
+  - `03a §2.7` **신설** — 「환경 변수로는 `my.app.header`라고 쓸 수 없다」. 느슨한 바인딩의 표준형 개념, 환경 변수 변환 규칙 3가지, 소스별 허용 표기 표, kebab-case 권장, `@ConfigurationProperties` 한정이라는 경계.
+  - `03b §2.2` — `location`/`additional-location` 비교표 + 실패 증상(“JAR 안 기본값이 통째로 사라진다”) + `optional:`·디렉터리 `/`·처리 순서.
+- **용어집**: `느슨한-바인딩 (relaxed binding)` 1건 신설, `03a` frontmatter `terms`와 §4 표에 등재.
+- **공식 문서 대조** (Context7, `/spring-projects/spring-boot/v4.0.3`), 전부 ✅로 답안에 표시:
+  - 표준형 → 환경 변수: 점을 밑줄로, **하이픈은 제거**, 대문자. `spring.main.log-startup-info` → `SPRING_MAIN_LOGSTARTUPINFO`. 리스트는 인덱스를 밑줄로 감싼다(`MY_SERVICE_0_OTHER`). `SystemEnvironmentPropertyMapper` javadoc과 external-config 문서 양쪽에서 확인.
+  - 소스별 허용 표기: 파일·시스템 프로퍼티는 camelCase·kebab·밑줄, **환경 변수는 대문자+밑줄만**. 저장은 소문자 kebab 권장.
+  - `spring.config.location`은 기본 위치를 **대체**, `additional-location`은 **추가**하며 추가 위치가 기본 위치를 **덮는다**. 없는 위치는 `ConfigDataLocationNotFoundException`으로 **시작 실패**, `optional:` 접두사와 `spring.config.on-not-found=ignore`가 회피 수단. 디렉터리는 `/`로 끝내야 하고, 두 키 모두 **환경 프로퍼티로 줘야** 한다.
+- **답안 파일 5개 신설**: `answers/_03-*.md`(114줄), `_03a-*.md`(164줄), `_03b-*.md`(159줄), `_03c-*.md`(164줄), `_04-*.md`. 각 노트 `§8` 끝에 경고와 링크를 달았고, 파일 끝에 재출제 문항을 5~7개씩 넣었다.
+- **Validation**: `check-chapter.sh` **PASS**, 챕터 노트 **8/8** `check-note.sh` PASS, 답안 파일 7개의 wiki link 전부 해결, 노트→답안 링크 7개 전부 해결, `git diff --check` PASS.
+- **Gaps**: 사용자의 인출 시도가 없었으므로 추가하지 않았다. Ch1 `01`의 4건은 여전히 `open`.
+- **Next**: Ch1 답안 파일이 8개 노트 중 7개에 갖춰졌다(`00-technical-requirements`만 없음). 사용자가 각 노트의 문항을 시도한 뒤 대조한다.
+
+## 2026-08-28 — Ch2 전체 답안 파일 (15개 노트 · 122문항)
+
+- **Modes**: 사용자 요청("Ch2부터 순서대로")에 따른 답안 정리. [[config]] 「인출 진행 방식」 6번대로 **답안을 쓰기 전에 본문 점검을 먼저** 했다.
+- **본문 점검 결과 — 122문항 전부 답이 충분했다. 보강 0건.**
+  - Ch1과 대비된다. Ch1은 33문항 중 3개가 얇아 `§2`를 세 곳 보강해야 했는데, **Ch2는 15개 노트 어디에도 보강이 필요 없었다.**
+  - 이유가 노트 자체에 있다. Ch2 노트들은 `§1`에 "출발 장면 → 여기서 뭐가 무너지나 → 그래서 나온 생각" 구조를 두고, 비유마다 "→ 비유가 깨지는 지점"을 명시하며, `§5`·`§6`에 판별 질문과 경계를 따로 둔다. `§8` 문항이 그 구조의 각 지점을 그대로 겨냥하고 있어 대응이 1:1에 가깝다.
+  - 그리고 Ch2 노트들은 **책의 오류를 이미 잡아 두었다** — `07a`의 `fetch(...).json()` 코드 오류와 "shadow DOM"→virtual DOM 용어 오류, `07`의 "`npm install`이 번들을 빌드한다"는 표현 정정. 답안은 그 정정을 그대로 반영했다.
+- **답안 파일 15개 신설**: `chapter-2-.../answers/_01-*.md` ~ `_10-*.md`. 각 노트 `§8` 끝에 경고와 링크를 달았고, 파일 끝에 재출제 문항을 5~7개씩 넣었다.
+- **공식 문서 대조** (Context7, `/spring-projects/spring-boot/v4.0.3`): 이번 챕터에서 새로 대조한 것은 `spring-boot-starter-webmvc`의 실제 구성뿐이며, 이는 Ch1 `02` 작업에서 확인한 것을 재사용했다(✅ 표시). 나머지는 노트 본문이 이미 공식 문서 보강을 담고 있어 추가 대조가 불필요했다.
+- **Validation**: 챕터 노트 **15/15** `check-note.sh` PASS, `check-chapter.sh` **PASS**, 답안 파일 15개의 wiki link 전부 해결(`_09`의 `[[08]]` 축약 링크 1건을 전체 이름으로 고쳤다), `git diff --check` PASS.
+- **Gaps**: 사용자의 인출 시도가 없었으므로 추가하지 않았다. Ch1 `01`의 4건은 여전히 `open`.
+- **누적 상태**: 답안 파일이 Ch1에 7개(8개 노트 중 `00-technical-requirements` 제외), Ch2에 15개. **합계 22개.**
+- **Next**: Ch3(12개 노트, 96문항)부터 같은 절차로 이어간다. 남은 범위는 Ch3~Ch15와 part-0을 합쳐 **노트 154개**다.
+
+## 2026-08-28 — Ch3 전체 답안 파일 (12개 노트 · 96문항)
+
+- **Modes**: 답안 정리. [[config]] 「인출 진행 방식」 6번대로 **본문 점검을 먼저** 했다.
+- **본문 점검 결과 — 96문항 전부 답이 충분했다. 보강 0건.** Ch2에 이어 두 챕터 연속이다.
+- **Ch3 노트가 이미 잡아 둔 책의 오류·모호점** (답안에 그대로 반영):
+  - `04a` — 책의 `TypedSort` 예제(`Sort.sort(Video.class)`, `Video::getName`)가 이 장 코드로는 컴파일되지 않는다. 도메인 타입이 `VideoEntity`이고 Chapter 2의 `Video`는 getter가 없는 record이기 때문.
+  - `05` — 책 예제의 `probe.setTags(...)`가 이 장 `VideoEntity`에 없는 필드다. 설명용 예시로 읽어야 한다.
+  - `06` — `spring.aot.enabled=true`만으로는 AOT 리포지토리가 생기지 않는다. ✅ 공식 문서 기준 **빌드 시점 생성**(Maven `-Pnative` / Gradle `org.springframework.boot.aot`)이 선행돼야 하고, 그 프로퍼티는 실행 시점 스위치다.
+  - `01b` — 책의 `spring-boot-starter-data-jpa-test` 좌표가 ✅ 공식 문서의 `spring-boot-data-jpa-test` **모듈** 표기와 다르다. Initializr가 내주는 좌표를 그대로 쓰는 것이 확실하다.
+  - `01b` — ✅ `spring-boot-h2console`이 이미 `com.h2database:h2`를 api 의존성으로 갖는데도 책이 `h2`를 따로 넣는 이유(콘솔 제거 시 드러난 의도 + `runtime` scope 직접 지정).
+- **답안 파일 12개 신설**: `chapter-3-.../answers/_01-*.md` ~ `_06-*.md`. 각 노트 `§8` 끝에 경고와 링크, 파일 끝에 재출제 문항 5~6개.
+- **Validation**: 챕터 노트 **12/12** `check-note.sh` PASS, `check-chapter.sh` **PASS**, 답안 파일 12개의 wiki link 전부 해결, `git diff --check` PASS.
+- **Gaps**: 사용자의 인출 시도가 없었으므로 추가하지 않았다.
+- **누적**: 답안 파일 Ch1 7 + Ch2 15 + Ch3 12 = **34개**.
+- **Next**: **Ch4**(23개 노트, 168문항). 이 저장소에서 가장 큰 챕터다.
+
+## 2026-08-28 — Ch4 전체 답안 파일 (23개 노트 · 168문항)
+
+- **Modes**: 답안 정리. 본문 점검을 먼저 했다.
+- **본문 점검 결과 — 168문항 전부 답이 충분했다. 보강 0건.** Ch2·Ch3에 이어 **세 챕터 연속**이다.
+- **Ch4 노트가 이미 잡아 둔 책의 오류** (답안에 반영):
+  - `04` — 책이 `UserDetailsService`의 메서드를 `loadUserByName`, 두 문단 뒤 `loadUserName()`으로 **서로 다르게** 적는다. 실제는 `loadUserByUsername`. 그리고 `List<GrantedAuthority>` + `@ElementCollection`은 **그대로는 부팅되지 않는다**(인터페이스는 대상이 될 수 없다).
+  - `05` — 코드에 규칙이 6줄인데 설명은 5개뿐이고 `/admin` 규칙을 건너뛴다.
+  - `05a` — "직전 정책과 뒤에서 둘째 줄만 다르다"고 하지만 `.requestMatchers("/admin")` 규칙도 함께 사라졌다.
+  - `08b` — 스타터 이름이 Boot 4에서 `spring-boot-starter-security-oauth2-client`로 바뀌었다(✅ 배포물 확인). `clientId` 표기는 완화된 바인딩 덕에 동작하지만 정규 표기는 kebab-case.
+  - `08c` — 프록시 등록 코드(`@ImportHttpServices` 등)를 **끝내 보여 주지 않는다.** 그리고 `&order`가 HTML 엔티티로 해석돼 `ℴ`로 인쇄된 조판 사고.
+  - `08d` — CSS 선택자가 `thead th`인데 템플릿 헤더는 `<td>`다. Figure 4.8에서 테두리만 먹고 열 너비가 균등한 이유.
+  - `09a` — 책의 `spring.ssl.bundle.pkcs12.*` 표기가 Boot 4.1과 맞지 않는다. 번들 타입은 **`jks`와 `pem` 둘뿐**이고 키스토어 경로 키는 `keystore.location`이다. 또 "번들은 `server.ssl.bundle` 아래에 정의한다"는 서술도 틀렸다(그건 참조 키다).
+- **답안 파일 23개 신설**: `chapter-4-.../answers/_01-*.md` ~ `_09b-*.md`. 각 노트 `§8` 끝에 경고와 링크, 파일 끝에 재출제 문항 5~7개.
+- **Validation**: 챕터 노트 **23/23** `check-note.sh` PASS, `check-chapter.sh` **PASS**, 답안 파일 23개의 wiki link 전부 해결, `git diff --check` PASS.
+- **누적**: Ch1 7 + Ch2 15 + Ch3 12 + Ch4 23 = **57개**.
+- **Next**: **Ch5**(8개 노트, 64문항).
+
+## 2026-08-28 — Ch5 답안 파일 (8/8)
+
+- **Mode**: 인출 대비 답안 정리(Prepare 보조). 대상 `part-2-.../chapter-5-testing-with-spring-boot/`.
+- **범위**: 노트 8개, `## 8. 스스로 확인` **65문항**(01=7, 02~07=8, 08=9).
+- **본문 보강**: **0건.** 65문항 전부 노트 본문(§1 출발 장면 / §2 단계별 이유 / §5 판별 / §6 경계)에서 답이 나온다. Ch2~Ch4와 같은 결과.
+- **Ch5 노트가 이미 잡아 둔 책의 문제** (답안에 반영):
+  - `08` — 책 p.182 리스팅이 `void () throws Exception {`으로 인쇄돼 **메서드 이름이 비어 있다.** 다음 문단이 `unauthUserShouldNotAccessHomePage`를 언급하므로 조판 사고.
+  - `08` — 책이 `05`절에서 예고한 **`delete()` 보안 테스트가 이 절에 없다.** `delete`는 `SecurityConfig` 규칙 목록에만 나온다.
+  - `07` — 저자 스스로 `findByNameContainsOrDescriptionContainsAllIgnoreCase`가 "책의 편집을 망가뜨린다"며 Query by Example 전환을 권한다.
+  - `06` — Testcontainers 2.x 좌표 변경(`junit-jupiter` → `testcontainers-junit-jupiter`)이 Boot 3 예제와 어긋나는 지점.
+- **답안 파일 8개 신설**: `chapter-5-.../answers/_01-*.md` ~ `_08-*.md`. 각 노트 `§8` 끝에 경고와 링크, 파일 끝에 재출제 문항 5~9개.
+- **수정 1건**: `_04` 답안을 실제 문항 순서에 맞춰 재작성했다(초안이 Q1 "원문 제목이 오해를 부르는 이유"를 건너뛰어 번호가 한 칸씩 밀려 있었다).
+- **Validation**: 챕터 노트 **8/8** `check-note.sh` PASS, `check-chapter.sh` **PASS**, 답안 파일 8개 wiki link **unresolved 0**(`_01`의 Ch1 링크가 part 경계를 넘어 `../../part-1-...`로 교정), `git diff --check` PASS.
+- **누적**: Ch1 7 + Ch2 15 + Ch3 12 + Ch4 23 + Ch5 8 = **65개**.
+- **Next**: **Ch6**(5개 노트).
+
+## 2026-08-28 — Ch6 답안 파일 (5/5)
+
+- **Mode**: 인출 대비 답안 정리. 대상 `part-3-.../chapter-6-configuring-an-application-with-spring-boot/`.
+- **범위**: 노트 5개, `## 8. 스스로 확인` **41문항**(01=9, 02=8, 03=8, 04=7, 05=9).
+- **본문 보강**: **0건.** 41문항 전부 노트 본문에서 답이 나온다.
+- **Ch6 노트가 이미 잡아 둔 책의 문제** (답안에 반영):
+  - `01` — `app.config.users`를 정의하고 컨버터까지 만들지만 **그 사용자들이 Spring Security에 어떻게 도달하는지 끝내 보여 주지 않는다.** Ch4의 `UserDetailsService`는 여전히 `UserRepository`를 본다. `UserAccount` 재정의도 없다(Ch4의 것은 JPA 엔티티).
+  - `02` — `-D`와 `SPRING_PROFILES_ACTIVE`를 **동등한 선택지**로 제시하지만, 같은 장 `05`의 우선순위 목록에서는 **시스템 프로퍼티가 환경 변수보다 높다.** 동시 지정 시 `-D`가 이긴다는 사실이 언급되지 않는다.
+  - `03` — 본문은 `application-alternate.yaml`을 만들라고 하는데 Figure 6.2의 편집기 탭은 **`application-alt.yaml`**이다. 실행 예제가 `SPRING_PROFILES_ACTIVE=alternate`이므로 본문 쪽이 맞다.
+- **답안 파일 5개 신설**: `chapter-6-.../answers/_01-*.md` ~ `_05-*.md`. 각 노트 `§8` 끝에 경고와 링크, 파일 끝에 재출제 문항 7~9개.
+- **Validation**: 노트 **5/5** `check-note.sh` PASS, `check-chapter.sh` **PASS**, 답안 wiki link **unresolved 0**, `git diff --check` PASS.
+- **누적**: Ch1 7 + Ch2 15 + Ch3 12 + Ch4 23 + Ch5 8 + Ch6 5 = **70개**.
+- **Next**: **Ch7**(8개 노트).
+
+## 2026-08-28 — Ch7 답안 파일 (8/8)
+
+- **Mode**: 인출 대비 답안 정리. 대상 `part-3-.../chapter-7-releasing-an-application-with-spring-boot/`.
+- **범위**: 노트 8개, `## 8. 스스로 확인` **66문항**(01·02·03·04·04a·04b=8, 02a·04c=9).
+- **본문 보강**: **0건.** 66문항 전부 노트 본문에서 답이 나온다.
+- **Ch7 노트가 이미 잡아 둔 책의 문제** (답안에 반영):
+  - `02a` — build-image 로그는 `spring-boot-maven-plugin:**4.0.0**`인데 바로 아래 컨테이너 실행 로그 배너는 `Spring Boot (v**4.1.0**)`이다.
+  - `04b` — 코드 블록의 **`spring.jpa.hibernate.show-sql`은 존재하지 않는 키**다(정답은 `spring.jpa.show-sql`). 바로 아래 설명은 올바른 키를 쓰고 있어 블록과 설명이 어긋난다. `spring.jpa.properties.hibernate.dialect` 명시도 Hibernate 6 이후 대개 불필요.
+  - `04b` — `-p 5432:5432`를 "public에 export된다"고 설명하지만 실제로는 호스트 인터페이스 바인딩이다.
+  - `04c` — **가장 큰 공백.** `compose.yml`이 `image: ch7:...`를 그대로 띄우는데, 앞 절이 만든 `application-instance{N}.properties`는 **호스트의 JAR 옆**에 있어 이미지 안에 없다. 그대로 따르면 프로파일 설정도 DB 접속 정보도 적용되지 않는다. 이미지에 담으면 이번엔 `server.port`(9000)와 포트 매핑(→8080)이 어긋난다. 책은 둘 다 설명하지 않는다.
+  - `04c` — `depends_on`을 "DB가 먼저 뜨도록 **보장한다**"고 쓰지만 실제로는 **기동 순서만** 보장한다.
+- **답안 파일 8개 신설**: `chapter-7-.../answers/_01-*.md` ~ `_04c-*.md`. 각 노트 `§8` 끝에 경고와 링크, 파일 끝에 재출제 문항 8~9개.
+- **Validation**: 노트 **8/8** `check-note.sh` PASS, `check-chapter.sh` **PASS**, 답안 wiki link **unresolved 0**, `git diff --check` PASS.
+- **누적**: Ch1 7 + Ch2 15 + Ch3 12 + Ch4 23 + Ch5 8 + Ch6 5 + Ch7 8 = **78개**.
+- **Next**: **Ch8**(12개 노트).
+
+## 2026-08-28 — Ch8 답안 파일 (12/12)
+
+- **Mode**: 인출 대비 답안 정리. 대상 `part-3-.../chapter-8-going-native-with-spring-boot/`.
+- **범위**: 노트 12개, `## 8. 스스로 확인` **48문항**(전 노트 4문항, `-` 불릿).
+- **본문 보강**: **0건.**
+- **Ch8 노트가 이미 잡아 둔 책의 문제** (답안에 반영):
+  - `01` — 책이 GraalVM을 "새로운 가상 머신"으로 소개하지만 이 장이 실제로 쓰는 것은 **`native-image` AOT 컴파일러**다. 최종 산출물에 JVM이 없다.
+  - `02` — Hibernate 강화 옵션 셋(`enableLazyInitialization` 등)이 공식 문서 기준 **모두 deprecated for removal**.
+  - `03a` — **숫자 불일치.** 책이 "우리 앱이 방금 그랬듯 0.1초"라 쓰지만 실측 로그는 **0.528초**다. "5.6시간 → 17분" 대비가 그 가정 위에 서 있고, 실측으로는 약 8.8분.
+  - `05` — 책이 패키지를 안 적는다(`@ImportRuntimeHints`만 `context.annotation`, 나머지는 `aot.hint`). 필드 카테고리는 SF7에서 `ACCESS_*`로 개명.
+  - `06` — **CDS를 통째로 빠뜨렸다.** Java 24 미만 팀에게는 유일한 선택지인데 언급이 없다.
+  - `07` — 근거 JEP로 483·515만 들지만, 단일 training-run 명령과 `-XX:AOTCacheOutput`을 실제로 도입한 것은 **JEP 514**다.
+  - `07a` — **`jarmode=tools extract` 단계 누락.** 공식 절차는 uber JAR을 먼저 풀고 그 디렉터리에서 훈련한다. 또 one-step 워크플로가 **힙을 두 배** 요구한다는 점도 없다. `onRefresh` 종료와 "대표적 동작 시키기"가 한 명령으로 양립 불가인 것도 설명하지 않는다.
+  - `07b` — CRaC만 명령이 없다. 실제로는 `spring.context.checkpoint=onRefresh`가 있고 배너도 `Restored`로 바뀐다.
+- **답안 파일 12개 신설**: `chapter-8-.../answers/_01-*.md` ~ `_07b-*.md`.
+- **Validation**: 노트 **12/12** `check-note.sh` PASS, `check-chapter.sh` **PASS**, 답안 wiki link **unresolved 0**, `git diff --check` PASS.
+- **누적**: Ch1 7 + Ch2 15 + Ch3 12 + Ch4 23 + Ch5 8 + Ch6 5 + Ch7 8 + Ch8 12 = **90개**.
+- **Next**: **Ch9**(12개 노트).
+
+## 2026-08-28 — Ch9 답안 파일 (12/12)
+
+- **Mode**: 인출 대비 답안 정리. 대상 `part-4-.../chapter-9-writing-reactive-web-controllers/`.
+- **범위**: 노트 12개, `## 8. 스스로 확인` **48문항**(전 노트 4문항, `-` 불릿).
+- **본문 보강**: **0건.**
+- **Ch9 노트가 이미 잡아 둔 책의 문제** (답안에 반영):
+  - `03` — `Flux.just(...)` 예제가 리액티브의 미래적 성격을 거스른다는 점을 **책 자신이 Note로 인정**한다.
+  - `04a` — 절의 **배치가 어색하다.** POST 절 뒤에 있지만 내용은 §1의 연장("리액티브가 어떻게 확장을 만드나")이라 흐름이 끊긴다.
+  - `04b` — **"4코어에서 25% 손실"은 낙관적 하한.** Netty가 연결을 이벤트 루프에 고정 배정하므로 실제 영향은 25%를 크게 넘을 수 있다.
+  - `05b` — redirect를 `Mono<String>` + `"redirect:/"` 문자열로 처리하지만, **`Rendering.redirectTo(String)`**이라는 타입 있는 방법이 있다(`spring-webflux` 7.0.9 확인). 같은 장에서 `Rendering`을 쓰면서 redirect만 문자열 규약인 것이 일관되지 않는다.
+  - `05b` — **WebFlux와 가상 스레드의 결정 기준을 어느 장에서도 정면으로 비교하지 않는다.** 답안에서 판별표를 세웠다(핵심: 가상 스레드는 배압을 주지 않는다).
+  - `06` — **`@EnableHypermediaSupport(type = HAL)`을 그대로 붙여 넣으면 컴파일되지 않는다.** `HypermediaType.HAL`의 static import가 필요한데 책이 import 목록을 안 보인다.
+  - `06` — 책 p.275에 **`InIn this case,`** 오타.
+- **답안 파일 12개 신설**: `chapter-9-.../answers/_01-*.md` ~ `_06-*.md`.
+- **Validation**: 노트 **12/12** `check-note.sh` PASS, `check-chapter.sh` **PASS**, 답안 wiki link **unresolved 0**, `git diff --check` PASS.
+- **누적**: Ch1 7 + Ch2 15 + Ch3 12 + Ch4 23 + Ch5 8 + Ch6 5 + Ch7 8 + Ch8 12 + Ch9 12 = **102개**.
+- **Next**: **Ch10**(6개 노트).
+
+## 2026-08-28 — Ch10 답안 파일 (6/6)
+
+- **Mode**: 인출 대비 답안 정리. 대상 `part-4-.../chapter-10-working-with-data-reactively/`.
+- **범위**: 노트 6개, **24문항**(전 노트 4문항).
+- **본문 보강**: **0건.**
+- **Ch10 노트가 이미 잡아 둔 책의 문제** (답안에 반영):
+  - `04` — 책이 `02`에서 "R2DBC는 저수준이니 툴킷을 쓰라"고 해 놓고, 초기화 코드는 `getDatabaseClient().sql(...)`로 **저수준을 직접 쓴다.** 스키마 정의만은 툴킷이 덮지 않는다는 사실이 명시되지 않는다. 그리고 인자 없는 `subscribe()`가 **오류를 삼킨다.**
+  - `04a` — 책 p.291 POST 코드에 **`});f`** 오타(그대로 복사하면 컴파일 실패).
+  - `04b` — **접근자 불일치.** p.293이 `e.getName()`/`e.getRole()`을 쓰는데 `Employee`는 **record**라 `e.name()`이 맞다. 같은 장 p.290은 올바르게 쓴다. 게다가 p.294가 "템플릿은 변경 없이 복사하라"로 끝나 독자가 스스로 판단해야 하는 상태로 마무리된다.
+- **답안 파일 6개 신설**: `chapter-10-.../answers/_01-*.md` ~ `_04b-*.md`.
+- **Validation**: 노트 **6/6** `check-note.sh` PASS, `check-chapter.sh` **PASS**, 답안 wiki link **unresolved 0**(part-0 j1 노트명 `01-persistence-context-and-first-level-cache`로 교정), `git diff --check` PASS.
+- **누적**: **108개**.
+- **Next**: **Ch11**(6개 노트).
+
+## 2026-08-28 — Ch11 답안 파일 (6/6)
+
+- **Mode**: 인출 대비 답안 정리. 대상 `part-4-.../chapter-11-virtual-threads-in-java-and-spring-boot/`.
+- **범위**: 노트 6개, **47문항**(01=7, 02~06=8).
+- **본문 보강**: **0건.**
+- **Ch11 노트가 이미 잡아 둔 책의 문제** (답안에 반영):
+  - `01` — 본문이 "**Project Loom, introduced in Java 21**"이라 해 프로젝트 자체가 Java 21에 도입된 것처럼 읽힌다. Loom은 2017년경 시작됐고 Java 21에서 최종화된 것은 산물인 가상 스레드다.
+  - `04` — 수신 측 로그 스레드 이름이 **`http-nio-8080-exec-1`**인데 같은 앱의 다른 로그는 전부 `tomcat-handler-N`이다. 전자는 **가상 스레드를 안 켠 Tomcat의 워커 이름**이라 한 실행에 두 명명 규칙이 섞인 것이 설명되지 않는다. 또 `baseUrl`로 **자기 자신을 호출**하는데 왜 안전한지(가상 스레드라 자기 호출 교착이 없다) 언급이 없다.
+  - `05` — 프록시 빈을 `HttpServiceProxyFactory`로 **손수 조립**한다. Boot 4에는 `@ImportHttpServices` + `spring.http.serviceclient.*`가 있고 Ch2가 이미 다뤘는데 언급하지 않는다.
+  - `06` — **가장 큰 공백.** 마지막 예제 `CompletableFuture.runAsync(...)`가 실행자를 안 줘서 **`ForkJoinPool.commonPool()`의 플랫폼 스레드**에서 돈다. 장의 주제가 가상 스레드인데 마지막 예제만 적용 밖이고 그 사실이 강조되지 않는다.
+- **답안 파일 6개 신설**: `chapter-11-.../answers/_01-*.md` ~ `_06-*.md`.
+- **Validation**: 노트 **6/6** PASS, `check-chapter.sh` **PASS**, wiki link **unresolved 0**.
+- **누적**: **114개**.
+- **Next**: **Ch12**(13개 노트).
+
+## 2026-08-28 — Ch12 답안 파일 (13/13)
+
+- **Mode**: 인출 대비 답안 정리. 대상 `part-4-.../chapter-12-messaging-and-asynchronous-communication-in-spring-boot-4/`.
+- **범위**: 노트 13개, **52문항**(전 노트 4문항).
+- **본문 보강**: **0건.**
+- **Ch12 노트가 이미 잡아 둔 책의 문제** (답안에 반영):
+  - `04` — **Figure 12.5가 본문과 어긋난다.** 화면은 `Enable Zookeeper access` + port 2181 + cluster version `0.11`인데, 이 장의 compose는 **KRaft 모드라 Zookeeper가 없고** 이미지는 `cp-kafka:7.8.8`이다. 그대로 따라 하면 막힌다.
+  - `04a` — `EmployeeCreatedEvent`의 `createdAt`이 p.323은 **`Instant`**, p.330은 **`LocalDateTime`**이다. JSON 표현이 달라 producer/consumer가 어긋나면 깨진다.
+  - `04b` — **트랜잭션 경계가 없다.** `save()`와 `send()`가 원자적이지 않은데 책은 outbox 패턴을 **멱등성 절 Note에** 지나가듯 두고 이 코드와 연결하지 않는다. 게다가 `send`의 `CompletableFuture` 반환값을 버려 **발행 실패가 조용히 지나간다.** `employeeRepository` 필드에만 `final`이 빠져 있다.
+  - `04c` — `spring.json.trusted.packages: "*"`가 **예제 그대로 남아 있다.** 임의 클래스 역직렬화를 허용하는 알려진 취약점 경로.
+  - `05` — 시뮬레이션 코드에서 `Math.random() < 0.5`가 **맨 앞**이라 `email` 검사에 닿기 전에 절반이 일시적 실패로 빠진다. 영구 실패 경로 도달 확률이 1/8이라 **두 유형을 대비해 보이려는 의도와 실행이 어긋난다.**
+  - `05a` — **제목은 DLQ, 본문은 DLT.** Kafka에는 topic만 있으므로 본문이 정확하다.
+  - `05b` — **재시도와 멱등 검사가 맞물리지 않는다.** ID 추가가 성공 뒤라 재시도가 만드는 중복은 못 막는다. `contains` + `add`에 경합도 있다.
+- **부수 수정 1건**: `_coverage.md` 84행의 셀 안 `||`가 이스케이프되지 않아 `check-chapter.sh`의 칸 수 검사에 걸렸다. `\|\|`로 고쳐 **PASS**.
+- **답안 파일 13개 신설**: `chapter-12-.../answers/_01-*.md` ~ `_06-*.md`.
+- **Validation**: 노트 **13/13** PASS, `check-chapter.sh` **PASS**, wiki link **unresolved 0**, `git diff --check` PASS.
+- **누적**: **127개**.
+- **Next**: **Ch13**(15개 노트).
+
+## 2026-08-29 — Ch13 답안 파일 (15/15)
+
+- **Mode**: 인출 대비 답안 정리. 대상 `part-5-.../chapter-13-observing-spring-boot-4-applications/`.
+- **범위**: 노트 15개, **116문항**(01·02·03·04·05=7, 나머지=8, 06=9).
+- **본문 보강**: **0건.**
+- **Ch13 노트가 이미 잡아 둔 책의 문제** (답안에 반영):
+  - `03a` — grafana 볼륨 경로에 **슬래시 중복**(`provisioning//datasources`)과 `depends_on:` 아래 항목 누락.
+  - `03b`·`03c` — 설정은 패키지를 `com.learningspringboot4`로 적는데 실제 화면은 **`com.springbootlearning4`**다. `logging.level` 필터가 실제 패키지와 맞지 않는다.
+  - `04b` — Note는 모든 `System.out`을 SLF4J로 바꿨다고 하지만 중복 이벤트 분기에 **`System.out.println`이 남아 있다.** 또 항목 설명은 `recordNotificationMetric("received")`/`("duplicate")`를 호출한다고 하지만 **인쇄된 코드에 그 두 호출이 없다**(대시보드에는 값이 찍혀 있다).
+  - `04c` — `Notification Failure Rate` 0%와 `failed 8`이 함께 있는데 **책이 그 차이(rate vs 누적)를 설명하지 않는다.**
+  - `05c` — **Trace ID 표기 세 가지 문제.** 두 Figure 설명의 값이 다르고, 후자에 **16진수가 아닌 `w`·`s`**가 섞였다. Span Filters는 "4 spans"인데 패널에는 **5개 행**. 본문 나열에 **루트 span이 빠졌다.**
+- **답안 파일 15개 신설**: `chapter-13-.../answers/_01-*.md` ~ `_06-*.md`.
+- **Validation**: 노트 **15/15** PASS, `check-chapter.sh` **PASS**, wiki link **unresolved 0**, `git diff --check` PASS.
+- **누적**: **142개**.
+- **Next**: **Ch14**(19개 노트).
+
+## 2026-08-29 — Ch14 답안 파일 (19/19)
+
+- **Mode**: 인출 대비 답안 정리. 대상 `part-6-.../chapter-14-building-intelligent-applications-with-spring-ai/`.
+- **범위**: 노트 19개, **75문항**(04=3, 나머지=4).
+- **본문 보강**: **0건.**
+- **Ch14 노트가 이미 잡아 둔 책의 문제** (답안에 반영):
+  - **대소문자 오타 3건** — `03`의 `.Stream()`(p.418), `04b`의 `.Call()`(p.430), `05c`의 `.User(...)`(p.442). 셋 다 **코드 블록은 소문자로 정확**하고 **설명 항목만** 틀렸다.
+  - `05a` — `spring-ai-rag` 의존성 블록이 **`<artifactId>`를 `<groupId>`보다 먼저** 쓴다(다른 블록과 순서가 다르다).
+  - `05b` — `TokenTextSplitter`의 **`withChunkSize`가 이미 구버전 API**다. 책 자신이 다음 쪽에서 `chunkSize(...)`로 바뀌었다고 경고한다.
+  - `05c` — 응답 예시를 **`{"reply": ...}` JSON**으로 보여 주는데 메서드 반환형이 **`String`**이라 실제로는 평문이다.
+  - `06b` — `McpClientController` 코드 블록에 **클래스를 닫는 `}`가 없다.**
+  - `07b` — **metric 이름 불일치.** p.460은 `gen_ai.client.token.usage`, p.465는 같은 대상을 `gen_ai.usage.input_tokens`로 부른다.
+  - `07d` — "defensive system prompt와 **`SafeGuardAdvisor`를 결합**하는 방법을 보여 준다"고 쓰는데 **제시된 코드에 `SafeGuardAdvisor`가 없다.**
+- **답안 파일 19개 신설**: `chapter-14-.../answers/_01-*.md` ~ `_07d-*.md`.
+- **Validation**: 노트 **19/19** PASS, `check-chapter.sh` **PASS**, wiki link **unresolved 0**, `git diff --check` PASS.
+- **누적**: **161개**.
+- **Next**: **Ch15**(1개 노트).
+
+## 2026-08-29 — Ch15 모범답안 (1노트 / 12문항)
+
+- 모드: 모범답안 정리 (Prepare 파생). 대상 `part-7-whats-new-in-spring-boot-4/chapter-15-whats-new-in-spring-boot-4/`.
+- 소스: 노트 본문 재독(§1 네 성격 표 → §2.0~§2.10 아홉 영역 34항목 → §3 도표 3개 → §5 혼동 6개 → §6 경계 6개). 이 장은 실행 코드 예제가 없어 코드 대조 없음.
+- 산출: `answers/_01-whats-new-in-spring-boot-4.md` (12문항 + 재출제 8문항). 노트 `§8`에 열두 문항 포인터 삽입.
+- **본문 보강 0건.** 12문항 전부 노트 본문에서 근거를 찾았다. 특히 Q3(Undertow)·Q6(슬라이스 확장)·Q11(⑤의 역방향 예외)은 본문이 이미 "왜"까지 적어 둔 항목이다.
+- 답안에서 명시적으로 정리한 것:
+  - Q1의 위험 기준을 "오류 유무"가 아니라 **발견 시점**으로 재진술.
+  - Q3에 반사실 검사(기준선을 포기하거나 기다리는 두 선택지밖에 없다)를 추가.
+  - Q4에 일괄 치환 시 오류 메시지가 "덜 바꿨다"로 오독되는 경로를 추가.
+  - Q7에 Boot 3.5 / Boot 4 재시작 시나리오 대조 다이어그램, "조용함"의 세 겹.
+  - Q9를 "애플리케이션이 아니라 **감시 장치**가 조용히 멎는다"로 규정 — 침묵이 정상 신호라 경보 사망을 감지할 수 없다는 점.
+  - Q12에 프로퍼티 21개 내역 표와 마이그레이터의 한계(프로퍼티 아닌 기본값 변경은 못 잡는다).
+- 검증: `check-note.sh` 노트 1/1 PASS · `check-chapter.sh` PASS · answers 위키링크 unresolved 0 · `git diff --check` OK.
+  - 부수 조정 1건: answers 파일에서 용어 위키링크 4개(`전이-의존성`·`클래식-스타터`·`테스트-슬라이스`·`배치-메타데이터`)를 굵은 글씨로 바꿨다. answers 폴더에는 `_glossary.md`가 없어 링크가 해소되지 않으며, 다른 챕터 answers도 용어를 링크하지 않는 관례다.
+- 누적: **162개** 모범답안 파일 (Ch1 8 · Ch2 15 · Ch3 12 · Ch4 23 · Ch5 8 · Ch6 5 · Ch7 8 · Ch8 12 · Ch9 12 · Ch10 6 · Ch11 6 · Ch12 13 · Ch13 15 · Ch14 19 · Ch15 1).
+- **책 트랙(Ch1~Ch15) 전 챕터 모범답안 완료.**
+- 다음: `part-0-jpa-foundations` (chapter-j1/j2/j3, 14노트). 그 뒤 `part-0-web-foundations` w1(1), `part-0-spring-core-internals` c1~c4(17).
+
+## 2026-08-29 — part-0-jpa-foundations 모범답안 (14노트 / 114문항)
+
+- 모드: 모범답안 정리. 대상 `part-0-jpa-foundations/chapter-j1~j3/`.
+- 소스: 각 노트 본문 재독(§1 출발 장면·§2 메커니즘·§5 혼동·§6 경계·§7 연결). 이 트랙은 PDF가 아니라 Spring Data JPA·Hibernate 공식 문서가 1차 소스이므로, 답안의 인용도 노트가 이미 대조해 둔 공식 문서 문장을 그대로 따랐다.
+- 산출: `answers/_01…` 14개 파일. 각 노트 `§8`에 포인터 삽입.
+  - j1 (영속성 컨텍스트) 4노트 32문항 — 1차 캐시·쓰기 지연/플러시·더티 체킹/스냅샷·생명주기/준영속
+  - j2 (연관과 프록시) 5노트 39문항 — 주인/`mappedBy`·연결 엔티티·배타적 연관·프록시/지연 로딩·전이/고아 제거/DB 연쇄
+  - j3 (성능과 트랜잭션) 5노트 43문항 — N+1·페치 전략 3종·전파/프록시 한계·격리/낙관적 락·OSIV
+- **본문 보강 0건.** 114문항 전부 노트 본문에서 근거를 찾았다.
+- 답안에서 명시적으로 정리한 것:
+  - j1-01 Q4를 "캐시를 끄는 스위치는 JPA를 끄는 스위치"로 재진술하고, 수명이 짧다는 것을 부수성의 증거로 제시.
+  - j1-04 Q1에 두 축이 만드는 네 칸 중 "관리하는데 식별자 없는" 칸이 없는 이유(1차 캐시가 `(타입, 식별자)` 맵이라서)를 추가.
+  - j2-01 Q4에 "무시한다가 버그처럼 보이지만 설계"임을 Q1의 충돌 문제와 연결.
+  - j2-03 Q3에 `@Any`의 "안 거는 것"과 "못 거는 것"을 부채 대 영구 손실로 대비.
+  - j2-05 Q6에 같은 테이블에서 `CASCADE`/`RESTRICT`가 갈리는 기준을 "누가 소유자인가"로 일반화.
+  - j3-01 Q7에 인덱스 추가라는 흔한 오진과 그것이 왜 효과가 없는지를 추가.
+  - j3-03 Q6에 ①분리가 ②③과 달리 "제약을 우회"가 아니라 "설계를 요구에 맞추는" 것이라는 대비.
+  - j3-04 Q4에 갱신 0건이 유일하게 충돌로만 해석되는 논리 사슬을 단계로 분해.
+  - j3-05 Q4에서 "커넥션을 요청 끝까지 붙잡는다"의 부정확함이 **결론이 아니라 진단 방향**을 바꾼다는 점을 강조.
+- 검증: `check-note.sh` 14/14 PASS · `check-chapter.sh` j1·j2·j3 전부 PASS · answers 위키링크 unresolved 0 · `git diff --check` OK.
+  - 부수 조정 3건: answers 파일에서 용어 위키링크(`동일성-보장`·`배타적-연관`·`메모리-페이징`)를 굵은 글씨로 바꿨다. answers 폴더에 `_glossary.md`가 없어 해소되지 않으며, 다른 챕터 answers도 용어를 링크하지 않는 관례다.
+- 누적: **176개** 모범답안 파일 (책 트랙 162 + part-0 j1~j3 14).
+- 다음: `part-0-web-foundations` w1(1노트), 그 뒤 `part-0-spring-core-internals` c1~c4(17노트).
+
+## 2026-08-29 — part-0-web-foundations + part-0-spring-core-internals 모범답안 (18노트 / 160문항)
+
+- 모드: 모범답안 정리. 대상 `part-0-web-foundations/chapter-w1`, `part-0-spring-core-internals/chapter-c1~c4`.
+- 소스: 각 노트 본문 재독. 이 트랙들도 1차 소스가 PDF가 아니라 Spring Framework·Spring Boot 공식 문서이므로, 답안의 인용은 노트가 대조해 둔 문서 문장을 따랐다.
+- 산출: `answers/_01…` 18개 파일. 각 노트 `§8`에 포인터 삽입.
+  - w1 (서블릿과 컨테이너) 1노트 6문항 — 계약/구현/배치 3층, 내장 대 외부, Undertow 제거 근거
+  - c1 (컨테이너 생명주기) 4노트 36문항 — 빈 정의·두 후처리기·8단계 생명주기·순환 참조
+  - c2 (AOP 프록시 내부) 4노트 39문항 — JDK/CGLIB·어드바이저와 자동 프록시·final/private/자기 호출·설정 클래스 강화
+  - c3 (MVC 요청 파이프라인) 5노트 49문항 — 프런트 컨트롤러·매핑과 어댑터·인자/반환값·컨버터와 협상·예외와 필터/인터셉터
+  - c4 (자동 구성 내부) 4노트 39문항 — imports 파일·조건과 백오프·순서·조건 평가 보고서
+- **본문 보강 0건.** 160문항 전부 노트 본문에서 근거를 찾았다.
+- 답안에서 명시적으로 정리한 것:
+  - c1-01 Q4를 "클래스는 '나는 이런 것이다'만 말하고 '어떻게 쓰일지'는 정의가 정한다"로 IoC의 구체적 형태와 연결.
+  - c1-02 Q5에 "자기가 자기를 감쌀 수 없는" 두 이유(위치·논리)를 분해.
+  - c1-04 Q10에 엔티티 양방향 연관이 빈 순환 참조와 다른 이유를 표로 대비 — "진단명이 같다고 처방이 같지 않다".
+  - c2-01 Q6에 CGLIB 전환으로 해결되는 증상과 안 되는 증상을 나누고, `final` 제약이 오히려 새로 생긴다는 역설을 추가.
+  - c2-04 Q10에 `@Component`의 `@Bean`이 `proxyBeanMethods = false`보다 위험한 이유(눈에 안 보인다)를 추가.
+  - c3-01 Q4에 "6단계 파이프라인"이라는 그림이 REST API에서 부정확하다는 점(4단계가 부풀고 5단계가 빈다)을 명시.
+  - c3-05 Q10에 "DTO를 반환하라"에 근거가 넷(j1-03·j3-05·c3-04·c3-05)이라는 것을 표로 모음 — "근거가 넷이면 취향이 아니라 원칙이다".
+  - c4-02 Q10에 "이름은 좋은 은유이지만 은유는 메커니즘이 아니다"를 챕터 전체의 교훈으로 정리.
+  - c4-04 Q7에 `final`이 c2-03에서는 제약이고 여기서는 보증이라는 대비.
+- 검증: `check-note.sh` 18/18 PASS · `check-chapter.sh` w1·c1·c2·c3·c4 전부 PASS · answers 위키링크 unresolved 0 · `git diff --check` OK.
+  - 부수 조정: answers 파일의 용어 위키링크를 굵은 글씨로 일괄 변환(스크립트화). answers 폴더에 `_glossary.md`가 없어 해소되지 않으며, 다른 챕터 answers도 용어를 링크하지 않는 관례다.
+- 누적: **194개** 모범답안 파일 (책 트랙 162 + part-0 32).
+- **책 트랙 Ch1~Ch15와 part-0 전 트랙(j1~j3·w1·c1~c4) 모범답안 완료. 사용자가 지시한 범위를 전부 끝냈다.**
+- 다음: 없음. 사용자가 인출 연습을 시작하겠다고 하면 그때 `_map.md` 리뷰부터 연다.
+
+## 2026-08-29 — Ch1 `00-technical-requirements` 보완 (1노트 / 5문항)
+
+- 진행 중 `_global/config.md`에 "그 노트에는 `§8`이 없다"고 잘못 적었다가, 실제 파일을 확인해 `§8` 5문항이 있는 것을 발견하고 답안을 채웠다. config의 해당 메모도 바로잡았다.
+- 산출: `part-1-.../chapter-1-.../answers/_00-technical-requirements.md` (5문항 + 재출제 5문항). 노트 `§8`에 포인터 삽입.
+- **본문 보강 0건.**
+- 답안에서 정리한 것: Q1의 "Java 버전이 정해지는 지점 셋", Q2의 "최소 지원 버전 대 검증 기준 버전" 구분(Ch15의 같은 정리와 연결), Q4의 "IDE 설정은 공유되지 않는다 → 빌드 파일이 정본", Q5의 원본 저장소 대조 3단계(막힌 조각만 본다).
+- 검증: `check-note.sh` PASS · Ch1 `check-chapter.sh` PASS(노트 8개) · 위키링크 unresolved 0 · `git diff --check` OK.
+- 누적: **195개** 모범답안 파일. **전 범위 완료.**

@@ -158,7 +158,7 @@ REST API로 같은 걸 하려면 client에 새 호출 코드를 넣고 배포해
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     autonumber
     participant U as 사용자
@@ -223,6 +223,9 @@ sequenceDiagram
 - `toolcallback.enabled=false`일 때 나타나는 증상과, 그 증상을 오진하기 쉬운 이유는?
 - 서버에 도구를 하나 추가했을 때 REST API 방식과 MCP 방식에서 각각 무엇을 배포해야 하는가?
 - 원격 도구가 돌려준 문자열이 왜 신뢰 경계 밖의 데이터인가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_06b-consuming-mcp-tools-as-a-client]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

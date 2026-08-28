@@ -132,7 +132,7 @@ start.spring.io에서 Maven / Java 25 / Spring Boot 4.1.x, group `com.learningsp
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph DC["docker-compose.yml — 브로커 하나"]
         direction TB
@@ -197,6 +197,9 @@ flowchart TB
 - `LISTENERS`와 `ADVERTISED_LISTENERS`가 왜 둘 다 필요한가?
 - `REPLICATION_FACTOR: 1`이 이 구성의 어떤 성격을 드러내는가?
 - Figure 12.5의 화면을 그대로 따라 하면 왜 막히는가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_04-building-event-driven-services]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

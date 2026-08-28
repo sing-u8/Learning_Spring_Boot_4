@@ -144,7 +144,7 @@ Boot의 parent POM이 **[[native-프로파일]]**(= `spring-boot-starter-parent`
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph ENTRY["도달성 분석의 진입점"]
         E1["main 메서드"]
@@ -221,6 +221,9 @@ flowchart TB
 - "리플렉션이 지원되지 않는다"는 서술이 왜 틀렸고, 정확히 어떻게 고쳐 말해야 하는가?
 - `@Profile`이 빌드 시점에 평가된다는 사실이 CI/CD 파이프라인을 어떻게 바꾸는가?
 - Hibernate 바이트코드 강화를 빌드 시점으로 옮기는 이유는?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_02-adapting-an-application-for-native-image]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

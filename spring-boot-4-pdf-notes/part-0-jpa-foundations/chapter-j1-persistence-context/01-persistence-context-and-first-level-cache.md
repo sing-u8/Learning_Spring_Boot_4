@@ -129,7 +129,7 @@ Spring의 기본 구성에서 영속성 컨텍스트는 트랜잭션과 수명�
 ### `find()`와 JPQL이 캐시를 만나는 지점
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["조회 요청"] --> B{"find 인가<br/>JPQL 인가?"}
     B -- "find" --> C{"1차 캐시에<br/>있는가?"}
@@ -232,6 +232,9 @@ flowchart TD
 5. 1차 캐시와 2차 캐시를 범위·목적·수명 세 축으로 구분할 수 있는가?
 6. `@Transactional`을 빼면 동일성 보장이 왜 사라지는가?
 7. 수만 건을 읽는 배치에서 영속성 컨텍스트가 비용이 되는 이유를 두 가지 이상 댈 수 있는가?
+
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_01-persistence-context-and-first-level-cache]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

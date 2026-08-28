@@ -119,7 +119,7 @@ Chapter 4까지 만든 애플리케이션에 이제 테스트를 붙이려 한�
 ### 하나의 공구함에서 여러 개로
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph OLD["Boot 3까지"]
         T["spring-boot-starter-test<br/>(단일 거대 스타터)"] --> ALL["웹 · 데이터 · 보안 · 템플릿<br/>테스트 인프라가 전부 함께"]
@@ -215,6 +215,9 @@ flowchart TB
 5. JUnit 5 → 6이 4 → 5보다 훨씬 싼 이유는?
 6. Boot 4가 test starter를 나눈 이유가 "배포물 크기"가 아닌 근거는?
 7. 이 장에서 쓸 네 가지 관심사(웹·데이터·보안·컨테이너)를 각각 어떤 애노테이션이 대표하는가?
+
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_01-junit-6-and-focused-test-starters]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

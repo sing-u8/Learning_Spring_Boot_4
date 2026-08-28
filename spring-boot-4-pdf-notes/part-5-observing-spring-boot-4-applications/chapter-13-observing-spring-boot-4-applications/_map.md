@@ -12,7 +12,7 @@
 세 신호가 **정확히 같은 리듬**으로 붙는다. 이 반복을 알아채면 나머지 두 벌은 빠르게 읽힌다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["① 흐름 이해<br/>일곱 정거장"] --> B["② 인프라 세우기<br/>컨테이너 + 설정"]
     B --> C["③ 애플리케이션 계측<br/>의존성 · 설정 · 코드"]
@@ -52,7 +52,7 @@ flowchart LR
 이 장의 목적은 개별 기능이 아니라 **이 이동 경로**다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     M["메트릭<br/>p99가 3배 올랐다"] -->|"어느 요청?"| T["트레이스<br/>process employee notification이 46%"]
     T -->|"거기서 무슨 일?"| L["로그<br/>재시도 후 타임아웃"]

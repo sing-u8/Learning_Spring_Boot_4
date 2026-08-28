@@ -82,7 +82,7 @@ Spring Boot 참조 문서가 정리하듯, 네이티브 이미지는 라이브�
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     APP["내 애플리케이션"]
 
@@ -152,6 +152,9 @@ flowchart TB
 - 어떤 성격의 라이브러리가 네이티브에서 위험한지 두 부류로 나눠 말해 보라.
 - reachability metadata가 있으면 사용하는 쪽이 무엇을 안 해도 되는가?
 - 네이티브 전환 프로젝트를 시작할 때 의존성 목록으로 먼저 해야 할 일은?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_04b-graalvm-and-third-party-libraries]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

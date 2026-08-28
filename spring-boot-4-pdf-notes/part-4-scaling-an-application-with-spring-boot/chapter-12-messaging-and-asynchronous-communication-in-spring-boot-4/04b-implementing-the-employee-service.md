@@ -120,7 +120,7 @@ spring:
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     IN["createEmployee(employee)"]
     IN --> S1["① employeeRepository.save(employee)<br/>DB 트랜잭션"]
@@ -198,6 +198,9 @@ flowchart TB
 - 저장은 성공하고 발행이 실패하면 시스템은 어떤 상태가 되는가? 반대는?
 - `key-serializer`로 `StringSerializer`를 고른 근거는 코드의 어느 줄에 있는가?
 - Boot 4에서 `JsonSerializer` 대신 `JacksonJsonSerializer`를 써야 하는 이유는?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_04b-implementing-the-employee-service]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

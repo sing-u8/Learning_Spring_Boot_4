@@ -59,7 +59,7 @@ Employee 애플리케이션이 인스턴스 세 대로 돌고 있다. 사용자�
 책의 Figure 13.3을 개념 관계도로 다시 그렸다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["1. Spring Boot 애플리케이션<br/>log.info(...) 호출"] --> B["2. Logback<br/>JSON 포맷 + MDC · traceId · spanId"]
     B --> C["3. OpenTelemetry SDK<br/>표준 로그 데이터 모델로 변환"]
@@ -131,7 +131,7 @@ Loki가 다른 로그 저장소와 다른 점이 하나 있다. **로그 본문 
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph 앱["애플리케이션 안"]
         A1["log.info"]
@@ -200,6 +200,9 @@ flowchart LR
 5. 이 절에서 트레이싱을 꺼 두는 이유와, 그 결과 지금 로그에 없는 것은?
 6. Loki가 라벨만 색인하는 선택의 이득과 대가는?
 7. 우편물 비유가 깨지는 지점은 어디인가?
+
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_03-structured-logging-with-loki-and-grafana]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

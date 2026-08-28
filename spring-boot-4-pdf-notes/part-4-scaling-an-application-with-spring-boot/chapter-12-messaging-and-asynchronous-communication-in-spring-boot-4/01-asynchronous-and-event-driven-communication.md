@@ -113,7 +113,7 @@ status: prepared
 Figure 12.1과 12.2(책 pp. 319–320)의 재현이다. 같은 시나리오를 두 방식으로 나란히 놓는다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant C as 클라이언트
     participant E as employee service
@@ -129,7 +129,7 @@ sequenceDiagram
 ```
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant C as 클라이언트
     participant E as employee service
@@ -186,6 +186,9 @@ sequenceDiagram
 - "클라이언트 상호작용은 여전히 동기"라는 말이 정확히 무엇을 뜻하는가?
 - 디커플링이 producer에게 몰라도 되게 해 주는 세 가지는?
 - 이벤트 주도가 들여오는 새 설계 관심사를 다섯 가지 들어 보라.
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_01-asynchronous-and-event-driven-communication]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

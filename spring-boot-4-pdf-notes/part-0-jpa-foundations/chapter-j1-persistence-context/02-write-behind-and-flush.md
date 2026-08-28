@@ -160,7 +160,7 @@ static Company curated(String companyName, String normalizedName, UUID curatedBy
 ### 세 가지 플러시 계기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["엔티티 상태 변경<br/>persist · 필드 수정 · remove"] --> B["쓰기 지연 큐에 적재"]
     B --> C{"무슨 일이<br/>일어났나?"}
@@ -252,6 +252,9 @@ Spring Data의 `save()`는 "지금 DB에 써라"라는 뜻이 아니다. 영속�
 6. `IDENTITY` 전략이 쓰기 지연을 무너뜨리는 이유를 "식별자를 언제 알 수 있는가"로 설명할 수 있는가?
 7. 대량 INSERT에서 `flush()`만 부르고 `clear()`를 부르지 않으면 무엇이 남는가?
 8. `saveAndFlush()`를 부른 뒤 예외가 나면 저장된 데이터는 어떻게 되는가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_02-write-behind-and-flush]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

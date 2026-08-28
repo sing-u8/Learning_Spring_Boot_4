@@ -103,7 +103,7 @@ Spring Boot 이전의 자바 웹 배포는 이랬다.
 플러그인이 `package` 단계에 훅해 하는 일을 책이 일곱 단계로 나눈다. 각 단계의 이유를 붙여 보면 구조가 필연으로 읽힌다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["1. 표준 Maven이 만든 JAR을 가져와 푼다"] --> B["2. 원본을 .jar.original로 옆에 남긴다"]
     B --> C["3. 원래 이름으로 새 JAR을 만든다"]
@@ -182,7 +182,7 @@ flowchart TD
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph J["ch7-0.0.1-SNAPSHOT.jar"]
         L["Spring Boot 로더<br/>진입점"]
@@ -252,6 +252,9 @@ flowchart LR
 6. shaded JAR 방식의 문제 세 가지와, 그것이 지원 요청에까지 영향을 주는 이유는?
 7. "1만 개 복제"가 가능하려면 아티팩트가 어떤 성질을 가져야 하는가?
 8. 이동식 주택 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_01-creating-an-uber-jar]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

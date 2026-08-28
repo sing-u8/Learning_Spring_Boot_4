@@ -98,6 +98,18 @@ public class KafkaConsumerConfig {
 
 여기서 Spring Kafka의 설계가 드러난다. 우리는 **재시도 로직을 리스너 안에 쓰지 않는다.** `try-catch`도, 루프도 없다. **에러 핸들러 bean 하나**를 등록하면 프레임워크가 리스너 바깥에서 그 정책을 적용한다.
 
+> **책이 말하지 않는 대가 — 이 재시도는 블로킹이다.**
+>
+> `DefaultErrorHandler`의 기본 재시도는 **컨슈머 스레드를 붙잡고 기다린다.** Spring Kafka 공식 문서의 표현이 그대로다 — *"기본 핸들러는 백오프 시간이 지날 때까지(또는 컨테이너가 멈출 때까지) 단순히 **스레드를 정지시킨다.**"*
+>
+> 그래서 위 설정(`2000L, 3L`)은 실패한 메시지 하나가 **그 파티션을 최대 6초 동안 막는다**는 뜻이다. 뒤에 쌓인 메시지는 전부 그만큼 늦어진다. 파티션 단위로 순차 처리되기 때문이다.
+>
+> **더 위험한 경계가 있다.** 총 백오프가 컨슈머의 `max.poll.interval.ms`를 넘으면 브로커가 그 컨슈머를 죽은 것으로 판정하고 **리밸런싱**이 일어난다. 그러면 재시도가 완료되지 못한 채 파티션이 다른 컨슈머로 넘어가고, 같은 메시지가 처음부터 다시 처리된다 — 재시도를 늘리려다 **중복을 늘리는** 결과가 된다.
+>
+> 공식 문서가 그 지점의 도구도 준다 — `ContainerPausingBackOffHandler`는 스레드를 붙잡는 대신 리스너 컨테이너를 일시 정지시키며, 문서는 이것이 *"지연이 `max.poll.interval.ms` 컨슈머 프로퍼티보다 길 때 유용하다"*고 적는다. 아예 다른 파티션에서 재시도하는 **논블로킹 재시도**(`@RetryableTopic`)라는 선택지도 있다.
+>
+> 정리하면 — **재시도 횟수와 간격은 자유롭게 늘릴 수 있는 값이 아니다.** `재시도 횟수 × 간격 < max.poll.interval.ms`가 지켜지는지 확인해야 하고, 넘어야 한다면 블로킹 재시도가 아닌 다른 도구를 써야 한다.
+
 ### 2.4 그런데 모든 실패가 일시적이지 않다
 
 **어떤 메시지는 몇 번을 재시도해도 절대 성공하지 않는다.**
@@ -118,7 +130,7 @@ public class KafkaConsumerConfig {
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     Q["실패에 대비돼 있지 않다<br/>세 질문: 소비자가 죽으면? 처리가 실패하면? 중복이 오면?"]
 
@@ -182,6 +194,9 @@ flowchart TB
 - 재시도 로직을 리스너 안에 쓰지 않는 것이 왜 나은 설계인가?
 - `FixedBackOff(2000L, 3L)` 동안 그 partition에서 무슨 일이 생기는가?
 - 시뮬레이션 코드에서 `Math.random()` 줄의 위치가 왜 문제인가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_05-reliability-patterns-retries-dlt-idempotency]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

@@ -7,7 +7,7 @@
 이 장 전체를 관통하는 한 문장은 이것이다. **런타임에 하던 일을 빌드 시점으로 옮긴다.** 그러면 시작이 빨라지고, 대신 런타임의 자유가 준다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph RT["런타임에 하던 일"]
         R1["클래스 로딩 · 링크"]
@@ -53,7 +53,7 @@ flowchart LR
 네이티브 전환이 깨지는 지점을 원인별로 모으면 이렇게 갈린다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     ROOT["닫힌 세계 가정<br/>빌드 시점에 전부 알 수 있어야 한다"]
 

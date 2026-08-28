@@ -102,7 +102,7 @@ java -XX:AOTCache=app.aot -jar target/ch8-0.0.1-SNAPSHOT.jar
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph BOOK["책의 절차 — 가장 단순한 형태"]
         T1["java -XX:AOTCacheOutput=app.aot<br/>-Dspring.context.exit=onRefresh<br/>-jar target/ch8-0.0.1-SNAPSHOT.jar"]
@@ -187,6 +187,9 @@ java -XX:AOTCacheOutput=app.aot -Dspring.context.exit=onRefresh -jar my-app.jar
 - 공식 문서가 `jarmode=tools extract`를 먼저 시키는 이유를 uber JAR 구조로 설명해 보라.
 - "대표적 동작을 시켜야 한다"와 "refresh 후 종료한다"가 어떻게 충돌하는가?
 - `app.aot`를 재생성해야 하는 세 가지 조건은?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_07a-enabling-aot-cache-for-spring-boot]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

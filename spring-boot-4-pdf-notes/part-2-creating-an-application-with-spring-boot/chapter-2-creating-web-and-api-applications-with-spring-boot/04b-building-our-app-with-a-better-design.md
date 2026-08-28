@@ -151,7 +151,7 @@ public class HomeController {
 ### 두 번째 컨트롤러가 생길 때 갈리는 구조
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph BEFORE["리팩터링 전"]
         HC1["HomeController<br/>record Video<br/>List videos"]
@@ -246,6 +246,8 @@ Spring의 `@Service`는 애플리케이션 안의 한 계층을 뜻한다. 반�
 6. 계층의 화살표가 한 방향으로만 가야 한다는 규칙을 누가 강제하는가?
 7. 저장 방식을 인메모리에서 DB로 바꿀 때, 리팩터링 전과 후에 각각 어느 파일을 고쳐야 하는가?
 8. `getVideos()`가 내부 목록을 그대로 돌려주는 것이 지금은 왜 안전하고, 언제부터 위험해지는가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_04b-building-our-app-with-a-better-design]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

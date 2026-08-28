@@ -145,7 +145,7 @@ Spring Boot 애플리케이션에 대한 권장도 단순해진다 — **사용�
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant B as 브라우저
     participant A as 우리 앱
@@ -218,6 +218,8 @@ sequenceDiagram
 6. Implicit Flow가 당시에는 합리적이었던 이유와 지금 제거된 이유는?
 7. OAuth 2.1이 "새 기능이 아니라 정리"인 이유를 네 항목으로 말할 수 있는가?
 8. 출입증/신분증 비유가 깨지는 지점은 어디인가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_07a-oauth-vs-openid-connect]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

@@ -53,7 +53,7 @@
 ## 축 3: 조정 수단이 놓인 층
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["설정 한 줄<br/>매핑·코드 무수정"] --> A1["default_batch_fetch_size<br/>open-in-view: false"]
     B["쿼리 단위<br/>호출 지점마다 다르게"] --> B1["join fetch<br/>EntityGraph<br/>DTO 직접 조회"]

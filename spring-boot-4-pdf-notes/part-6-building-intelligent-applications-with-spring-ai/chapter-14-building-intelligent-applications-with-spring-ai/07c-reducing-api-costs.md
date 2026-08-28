@@ -104,7 +104,7 @@ OpenAI의 prompt caching은 **자동으로** 동작한다 — 같은 접두부�
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     OBS["gen_ai.client.token.usage<br/>입력 토큰이 출력의 40배"] --> WHY
 
@@ -177,6 +177,9 @@ flowchart TB
 - 시스템 프롬프트 맨 앞에 `현재 시각: {now}`를 넣으면 캐싱에 무슨 일이 생기는가?
 - `getCacheReadInputTokens()`와 `getCacheCreationInputTokens()`가 각각 커지는 시점은 언제인가?
 - 어떤 작업을 로컬 model로 넘길지 정하는 기준을 두 가지 이상 들어 보라.
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_07c-reducing-api-costs]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

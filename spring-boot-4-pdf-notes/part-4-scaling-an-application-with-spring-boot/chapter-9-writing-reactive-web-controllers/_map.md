@@ -7,7 +7,7 @@
 이 장의 원리 부분은 **네 노트에 흩어져 있고, 인쇄 순서가 이해 순서와 어긋난다.** `04a`·`04b`는 POST 절 뒤에 인쇄됐지만 내용은 §1의 연장이다. 원리를 먼저 잡으려면 이렇게 읽는다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["01 배압<br/>흐름을 누가 통제하나"] --> B["01a 블로킹 vs 논블로킹<br/>스레드가 낭비하는 것은 무엇인가"]
     B --> C["04b 동시성의 역사<br/>왜 스레드를 늘리는 길이 막혔나"]
@@ -47,7 +47,7 @@ flowchart LR
 ## 축 3 — 얻는 것과 내주는 것
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     GAIN["얻는 것"]
     GAIN --> G1["적은 스레드로 많은 동시 연결"]

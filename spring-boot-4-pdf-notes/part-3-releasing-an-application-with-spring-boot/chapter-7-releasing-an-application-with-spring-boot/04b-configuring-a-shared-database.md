@@ -110,7 +110,7 @@ spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialec
 ### 2.5 무엇이 달라졌나
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     LB["로드 밸런서"] --> A["인스턴스 1 :9000"]
     LB --> B["인스턴스 2 :9001"]
@@ -142,7 +142,7 @@ flowchart TD
 | 접속 정보 | Testcontainers가 주입 | 프로퍼티 파일 | 다르다 |
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     P["프로퍼티 6줄"] --> J["JDBC 3줄<br/>어디에 접속하나"]
     P --> H["JPA 3줄<br/>스키마와 SQL을 어떻게"]
@@ -199,6 +199,9 @@ flowchart LR
 6. `ddl-auto`가 테스트에서는 `create-drop`, 운영에서는 `update`인 이유는?
 7. `spring.jpa.hibernate.show-sql`의 무엇이 잘못됐는가?
 8. 창구와 장부 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_04b-configuring-a-shared-database]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

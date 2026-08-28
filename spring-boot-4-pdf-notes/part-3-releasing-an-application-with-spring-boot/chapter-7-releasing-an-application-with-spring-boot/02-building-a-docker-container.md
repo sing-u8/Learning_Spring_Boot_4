@@ -107,7 +107,7 @@ Docker 세계의 표현으로 **baking**은 컨테이너를 돌리는 데 필요
 이 단어가 담는 함의가 중요하다. **한 번 구우면 그 이미지로 필요한 만큼 인스턴스를 띄운다.**
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     S["소스 코드"] --> P["package<br/>단위 테스트 + uber JAR"]
     P --> B["build-image<br/>한 번 굽는다"]
@@ -146,7 +146,7 @@ build-image
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Q1["대상에 애플리케이션 서버가 있어야 하나?"] -->|"uber JAR이 해결"| A1["아니오"]
     Q2["대상에 JDK가 있어야 하나?"] -->|"컨테이너가 해결"| A2["아니오"]
@@ -203,6 +203,9 @@ flowchart TD
 6. "baking"이라는 말이 담는 함의는?
 7. `build-image`가 먼저 `package`를 도는 것이 만드는 두 가지 결과는?
 8. 컨테이너선 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_02-building-a-docker-container]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

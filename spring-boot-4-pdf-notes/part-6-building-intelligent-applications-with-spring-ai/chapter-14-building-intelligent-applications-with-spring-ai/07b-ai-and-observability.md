@@ -93,7 +93,7 @@ metric 이름의 점(`gen_ai.client.token.usage`)이 Prometheus에서는 밑줄(
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     REQ["GET /api/ai/chat — p95 4.2초"]
 
@@ -161,6 +161,9 @@ flowchart TB
 - `gen_ai.request.model`과 `gen_ai.response.model`을 따로 두는 이득은?
 - Grafana에서 PromQL 쿼리가 빈 결과를 낼 때 가장 먼저 의심할 것은?
 - 요청 수는 그대로인데 token이 늘었다면, 어느 metric의 어느 label을 먼저 보겠는가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_07b-ai-and-observability]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

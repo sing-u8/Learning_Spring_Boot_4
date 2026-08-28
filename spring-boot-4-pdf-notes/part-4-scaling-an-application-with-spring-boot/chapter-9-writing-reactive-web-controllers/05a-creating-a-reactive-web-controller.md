@@ -85,7 +85,7 @@ public class HomeController {
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     SRC["DATABASE.values()<br/>Java Iterable — 손에 든 컬렉션"]
     SRC -->|"Flux.fromIterable"| F["Flux&lt;Employee&gt;<br/>이제 리액티브 연산자를 쓸 수 있다"]
@@ -147,6 +147,9 @@ flowchart LR
 - `fromIterable` → `collectList`가 왕복처럼 보이는데도 올바른 처리인 이유는?
 - "컨테이너 안에 두고 map한다"는 원칙을 어기면 무슨 일이 생기는가?
 - `collectList`가 쓸 수 없는 상황은 언제인가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_05a-creating-a-reactive-web-controller]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

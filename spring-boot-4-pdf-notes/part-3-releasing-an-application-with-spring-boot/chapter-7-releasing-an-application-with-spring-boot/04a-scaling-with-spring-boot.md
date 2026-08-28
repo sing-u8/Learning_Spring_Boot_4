@@ -76,7 +76,7 @@ o.s.boot.tomcat.TomcatWebServer : Tomcat started on port 9001 (http) with contex
 **세 번 모두 같은 JAR 파일이다.** 달라진 것은 환경 변수 하나뿐이다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     J["ch7-0.0.1-SNAPSHOT.jar<br/>불변 아티팩트 하나"] --> I1["SPRING_PROFILES_ACTIVE=instance1<br/>+ application-instance1.properties<br/>→ :9000"]
     J --> I2["SPRING_PROFILES_ACTIVE=instance2<br/>+ application-instance2.properties<br/>→ :9001"]
@@ -112,7 +112,7 @@ Spring Boot가 `instance1` 프로파일을 인식했다는 확인이다. 나머�
 **[[인메모리-데이터베이스]]**(= 프로세스 메모리 안에서만 사는 데이터베이스)의 성질이 여기서 정면으로 문제가 된다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     LB["로드 밸런서"] --> A["인스턴스 1 :9000"]
     LB --> B["인스턴스 2 :9001"]
@@ -147,7 +147,7 @@ flowchart TD
 | **데이터** | **나누면 안 되는데 나뉘어 있다** | **아니다** |
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     Q["수평 확장이 성립하려면"] --> A["① 인스턴스마다 다른 주소"]
     Q --> B["② 인스턴스가 무상태"]
@@ -201,6 +201,9 @@ flowchart LR
 6. 인메모리 DB로 세 인스턴스를 돌릴 때 사용자가 겪는 증상을 순서대로 그릴 수 있는가?
 7. 수평 확장이 성립하기 위한 두 조건은?
 8. 세 무대 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_04a-scaling-with-spring-boot]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

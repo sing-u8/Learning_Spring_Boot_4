@@ -272,7 +272,7 @@ return Collections.emptyList();
 ### 이름 하나가 SQL이 되기까지
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     M["findByNameContainsIgnoreCase(String name)"] --> P1["findBy 접두어 인식<br/>→ 이건 쿼리다"]
     P1 --> P2["Name → 엔티티 필드와 대조"]
@@ -386,6 +386,8 @@ flowchart TD
 6. `findByAddressZipCode`가 관계 탐색이 아닌 다른 뜻으로 해석될 수 있는 경우는? 밑줄은 무엇을 지시하는가?
 7. 검색어가 비어 있을 때 `hasText`로 거르지 않으면 무엇이 나오는가? 왜인가?
 8. 검색 필드가 4개로 늘면 finder와 `if`가 각각 몇 개 필요한가? 그 증가의 근본 원인은?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_04-using-custom-finders]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

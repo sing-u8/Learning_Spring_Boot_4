@@ -65,7 +65,7 @@ status: prepared
 ### 2.1 세 방향의 이동
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     L["Loki<br/>로그"] -->|"derivedFields<br/>View Trace"| T["Tempo<br/>트레이스"]
     T -->|"tracesToLogsV2<br/>Related logs"| L
@@ -260,7 +260,7 @@ Related logs
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["증상: 오류 로그를 발견"] --> B["View Trace 클릭"]
     B --> C["waterfall에서 긴 span 확인"]
@@ -334,6 +334,9 @@ flowchart TD
 7. `tracesToMetrics`의 `tags`가 `exported_job`인 근거를 어느 화면에서 확인할 수 있는가?
 8. `clamp_min(..., 1)`이 막는 문제는?
 9. 상호 참조 색인 비유가 깨지는 지점은 어디인가?
+
+
+> 아홉 문항을 스스로 답한 **뒤에** [[_06-correlating-logs-metrics-and-traces]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

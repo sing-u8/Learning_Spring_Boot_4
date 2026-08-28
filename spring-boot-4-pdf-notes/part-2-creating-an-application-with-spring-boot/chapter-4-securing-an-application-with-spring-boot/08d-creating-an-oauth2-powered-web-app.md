@@ -212,7 +212,7 @@ th, td { padding: 20px; }
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     T["템플릿이 필요로 하는 것<br/>썸네일 하나 · 짧은 설명"] --> Q{"Mustache가 할 수 있나?"}
     Q -- "맵 조회 · 조건문 · 문자열 자르기" --> N["할 수 없다<br/>로직리스 템플릿"]
@@ -276,6 +276,8 @@ flowchart TD
 6. 채널 선택 프롬프트가 뜨는 인과를 스코프로 설명할 수 있는가?
 7. Figure 4.8에서 CSS가 부분적으로만 먹은 것을 어떻게 알 수 있는가?
 8. 조리대 비유가 깨지는 지점은 어디인가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_08d-creating-an-oauth2-powered-web-app]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

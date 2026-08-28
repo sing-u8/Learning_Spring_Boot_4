@@ -191,7 +191,7 @@ CosmoRoute는 물리 삭제 대신 `deleted_at` 컬럼으로 소프트 삭제를
 ### 네 상태와 전이
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 stateDiagram-v2
     [*] --> 비영속: new
     비영속 --> 영속: persist
@@ -307,6 +307,9 @@ CosmoRoute의 `deleted_at`을 채우는 것은 **필드 변경**이지 삭제 �
 7. `merge()`로 부분 수정을 하면 왜 데이터가 지워지는가? 정석 방식은 무엇인가?
 8. 트랜잭션 밖 수정이 예외 없이 무시되는데도 테스트가 통과할 수 있는 이유는 무엇인가?
 9. CosmoRoute의 `deleted_at` 갱신이 삭제 상태와 무관한 이유는 무엇인가?
+
+
+> 아홉 문항을 스스로 답한 **뒤에** [[_04-entity-lifecycle-and-detachment]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

@@ -125,7 +125,7 @@ IDE에서 Initializr가 만들어 준 메인 애플리케이션 클래스를 우
 ### 정적 파일과 템플릿의 갈림길
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     R["GET /"] --> C["HomeController.index()"]
     C --> N["문자열 index 반환"]
@@ -207,6 +207,8 @@ flowchart TD
 5. `templates/`와 `static/`을 가르는 판별 질문 한 문장은?
 6. `index.mustache`에 Mustache 문법이 하나도 없는데도 Mustache 스타터가 필요한 이유는?
 7. 컴포넌트 스캔과 자동 구성이 이 화면을 만드는 데 각각 무엇을 기여했는가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_04-leveraging-templates-to-create-content]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

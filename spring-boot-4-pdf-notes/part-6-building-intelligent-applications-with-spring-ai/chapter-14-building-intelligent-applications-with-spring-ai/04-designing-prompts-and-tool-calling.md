@@ -82,7 +82,7 @@ Spring AI는 이 층을 두 개로 나눠 놓았다.
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     Q["사용자 질문<br/>spring-book 얼마예요?"]
 
@@ -132,6 +132,9 @@ flowchart TB
 - "이 코드 리뷰해 줘"와 "지금 재고 몇 개야"는 각각 어느 축의 문제인가? 이유는?
 - 시스템 프롬프트가 매 요청 다시 전송되는 이유는 무엇인가?
 - 도구 설명(`description`)이 prompt 설계의 일부인 이유를 한 문장으로 설명해 보라.
+
+
+> 세 문항을 스스로 답한 **뒤에** [[_04-designing-prompts-and-tool-calling]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

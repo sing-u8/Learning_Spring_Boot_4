@@ -197,7 +197,7 @@ A: Standard (5-7 business days): free on orders over $50, otherwise $4.99.
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph KW["키워드 검색"]
         K1["질의: vehicle malfunction"] --> K2["LIKE '%vehicle%'"]
@@ -262,6 +262,9 @@ flowchart LR
 - 임베딩 model을 `text-embedding-3-large`로 바꾸면 무엇을 함께 바꿔야 하고, 기존 데이터는 어떻게 되는가?
 - HNSW가 "근사"인데도 RAG에서 문제가 되지 않는 이유는?
 - `initialize-schema=true`를 production에서 끄는 이유는 무엇인가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_05a-embeddings-and-vector-stores]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

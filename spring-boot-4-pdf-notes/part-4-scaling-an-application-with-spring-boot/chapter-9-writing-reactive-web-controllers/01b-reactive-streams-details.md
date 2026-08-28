@@ -114,7 +114,7 @@ Flux<String> sample = Flux.just("learning", "spring", "boot")
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant S as Subscriber
     participant SUB as Subscription
@@ -190,6 +190,9 @@ sequenceDiagram
 - `onSubscribe` → `request(n)` → `onNext` 순서에서 배압이 강제되는 지점은 어디인가?
 - 리액티브에 void 메서드가 없는 이유는?
 - `flux.map(x -> save(x))`를 호출하고 반환값을 버리면 무슨 일이 생기는가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_01b-reactive-streams-details]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

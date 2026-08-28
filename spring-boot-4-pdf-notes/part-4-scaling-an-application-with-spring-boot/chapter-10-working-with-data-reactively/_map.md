@@ -7,7 +7,7 @@
 이 장은 짧지만 논증이 한 줄로 이어진다. **각 단계가 앞 단계의 결론에서 나온다.**
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     S1["Chapter 9 를 다 만들었는데<br/>데이터가 통조림이었다"]
     S1 --> S2["시스템의 모든 부분이 리액티브여야 한다<br/>Reactor 스레드는 코어 수만큼뿐이다"]
@@ -43,7 +43,7 @@ Chapter 9의 코드와 이 장의 코드를 나란히 놓으면, **데이터 소
 Chapter 3에서 JPA를 배운 상태로 오면 **기대가 어긋나는 지점이 넷**이다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph JPA["Chapter 3 — JPA 에서 하던 것"]
         A1["ddl-auto 가 테이블을 만들어 준다"]

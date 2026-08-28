@@ -93,7 +93,7 @@ Google 계정으로 영상을 불러오겠습니다.
 ### 2.3 누가 무엇을 맡는가
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant U as 사용자
     participant A as 우리 앱 (클라이언트)
@@ -133,7 +133,7 @@ OAuth는 **"이 앱이 사용자를 대신해 무엇을 해도 되는가"**를 �
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph 옛방식["비밀번호 공유"]
         P1["사용자 → 우리 앱: 비밀번호"]
@@ -199,6 +199,8 @@ flowchart LR
 5. OAuth의 네 역할을 우리 예제에 대응시킬 수 있는가?
 6. OAuth만으로는 "이 사용자가 누구인가"에 답할 수 없는 이유는?
 7. 발레파킹 키 비유가 깨지는 지점은 어디인가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_07-understanding-oauth-2-1]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

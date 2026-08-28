@@ -159,7 +159,7 @@ override는 “Spring Boot를 쓰면서 자유를 잃지 않는다”는 확장 
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     B["Spring Boot 버전"] --> BOM["spring-boot-dependencies BOM"]
     BOM --> F["Spring Framework"]
@@ -173,7 +173,7 @@ flowchart TD
 ```
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant P as Project
     participant B as Boot Release
@@ -249,6 +249,8 @@ Boot 업그레이드는 정렬된 생태계를 함께 이동시킨다. 개별 ov
 6. CVE가 해결된 Boot 패치가 나왔을 때 실제 프로젝트가 해야 할 단계는 무엇인가?
 7. 개별 버전 override가 가능한데도 Spring Framework 버전 재정의를 권장하지 않는 이유는 무엇인가?
 8. “Boot는 미리 구운 케이크”라는 비유가 설명하는 장점과 설명하지 못하는 경계는 무엇인가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_04-managing-application-dependencies]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

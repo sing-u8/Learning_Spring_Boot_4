@@ -108,7 +108,7 @@ public class HttpClientConfig {
 어댑터가 왜 필요한지가 설계상 의미가 있다. `HttpServiceProxyFactory`는 **어떤 HTTP 클라이언트를 쓸지 모른다.** `RestClient`일 수도, `WebClient`일 수도, 다른 것일 수도 있다. 어댑터가 그 차이를 흡수하므로 **프록시 기능과 전송 구현이 분리**된다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     I["NotificationClient 인터페이스<br/>@PostExchange 선언"] --> F["HttpServiceProxyFactory"]
     A["RestClientAdapter"] --> F
@@ -158,7 +158,7 @@ public class NotificationClientService {
 이 절이 이 장에 있는 이유를 짚어 둘 필요가 있다. **인터페이스 프록시는 동시성 모델을 바꾸지 않는다.**
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     S["NotificationClientService"] --> P["프록시"]
     P --> R["RestClient — 블로킹"]
@@ -175,7 +175,7 @@ flowchart LR
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Q["관심사 둘"] --> A["실행 모델<br/>가상 스레드"]
     Q --> B["API 표현<br/>인터페이스 프록시"]
@@ -237,6 +237,9 @@ flowchart TD
 6. 이 절이 동시성과 무관하다는 것이 왜 배울 점인가?
 7. Boot 4에 있는 더 선언적인 대안은 무엇인가?
 8. 메뉴판 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_05-using-interface-proxy-http-service-clients]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

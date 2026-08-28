@@ -75,7 +75,7 @@ Netty가 쓰는 실행 모델이 **[[이벤트-루프]]**(= 적은 스레드가 
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     PICK["start.spring.io<br/>의존성: Spring Reactive Web 하나"]
 
@@ -138,6 +138,9 @@ flowchart TB
 - 파이프라인이 논블로킹인데 서버가 블로킹이면 정확히 무엇이 낭비되는가?
 - `spring-boot-starter-web`과 `spring-boot-starter-webflux`를 같이 넣으면 무엇이 뜨는가?
 - Boot 4에서 WebFlux 앱의 테스트 의존성으로 무엇을 골라야 하는가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_02-creating-a-webflux-application]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

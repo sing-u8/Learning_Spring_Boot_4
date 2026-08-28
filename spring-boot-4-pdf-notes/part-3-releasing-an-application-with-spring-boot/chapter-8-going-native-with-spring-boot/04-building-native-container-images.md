@@ -81,7 +81,7 @@ Chapter 7에서 `./mvnw spring-boot:build-image`로 **[[Paketo-Buildpack]]**(= D
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     PROB["문제: 개발은 macOS · arm64<br/>배포는 Linux 컨테이너"]
 
@@ -142,6 +142,9 @@ flowchart TB
 - buildpack이 해결해 주는 것과 해결해 주지 않는 것을 OS·아키텍처로 나눠 설명해 보라.
 - 이 명령이 로컬 네이티브 빌드보다 더 느린 이유는?
 - 이미지가 만들어진 뒤의 배포 절차가 Chapter 7과 같은 것이 왜 이득인가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_04-building-native-container-images]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

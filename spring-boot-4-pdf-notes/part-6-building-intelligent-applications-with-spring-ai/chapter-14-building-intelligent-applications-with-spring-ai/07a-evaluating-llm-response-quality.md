@@ -146,7 +146,7 @@ class RagEvaluationTest {
 Figure 14.5(책 p.457)의 재현이다. 참고로 이 그림의 캡션만 "Illustrates the…"처럼 동사로 시작해, 명사구인 다른 캡션들과 형태가 다르다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     Q["① 사용자 질문<br/>TechStore 환불 정책이 뭔가요?"]
 
@@ -212,6 +212,9 @@ flowchart LR
 - 평가자에게 `DOCUMENT_CONTEXT`를 넘기지 않으면 판정이 왜 무의미해지는가?
 - `RelevancyEvaluator`와 `FactCheckingEvaluator`가 각각 잡는 실패를 하나씩 만들어 보라.
 - 이 테스트를 CI의 매 커밋마다 돌리면 안 되는 이유를 세 가지 들어 보라.
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_07a-evaluating-llm-response-quality]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

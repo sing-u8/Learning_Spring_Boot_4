@@ -93,7 +93,7 @@ employee-service  http post /employees (4.69s)
 오른쪽 막대들을 보면 답이 즉시 나온다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["http post /employees<br/>4.69s = 100%"] --> B["create employee<br/>1.17s"]
     A --> C["process employee notification<br/>2.18s ≈ 46%"]
@@ -118,7 +118,7 @@ flowchart LR
 `employee-events send`(생산자)와 `employee-events process`(소비자)가 **같은 트레이스 안에** 있다. 즉 **[[컨텍스트-전파]]**가 성공했다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     S["employee-events send<br/>생산자 프로세스 · 스레드 A"] -->|"메시지 헤더에 trace ID"| K["Kafka 토픽"]
     K -->|"헤더에서 trace ID 복원"| P["employee-events process<br/>소비자 스레드 B"]
@@ -145,7 +145,7 @@ flowchart TD
 | 막대 길이가 다르다 | 시간 배분이 보인다 | — |
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Q["waterfall을 읽는 순서"] --> A["1. 총 시간을 본다"]
     A --> B["2. 가장 긴 막대를 찾는다"]
@@ -202,6 +202,9 @@ flowchart TD
 6. span 시간을 단순 합산하면 안 되는 이유는?
 7. 가장 긴 span이 범인이 아닐 수 있는 경우는?
 8. 막대그래프 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_05c-verifying-distributed-traces-in-tempo]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

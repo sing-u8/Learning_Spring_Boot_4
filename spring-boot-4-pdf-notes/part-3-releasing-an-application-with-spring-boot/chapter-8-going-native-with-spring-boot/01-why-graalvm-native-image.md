@@ -92,7 +92,7 @@ Java 초창기의 혁명은 **[[write-once-run-anywhere]]**(= 같은 바이트�
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     SRC["Java 소스"]
 
@@ -161,6 +161,9 @@ flowchart TB
 - JVM이 시작할 때 하는 네 가지 일 중 네이티브 이미지가 없애는 것은 무엇이고, 그 대가는?
 - "GraalVM에서 돌린다"는 말이 이 장에서 실제로 뜻하는 것은 무엇인가?
 - write once, run anywhere를 포기해도 괜찮은 배포 환경의 조건은?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_01-why-graalvm-native-image]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

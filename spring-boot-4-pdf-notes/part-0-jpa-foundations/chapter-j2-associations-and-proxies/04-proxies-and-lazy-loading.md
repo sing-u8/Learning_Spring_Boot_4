@@ -164,7 +164,7 @@ MaterialSubstance link = MaterialSubstance.toCanonical(material, substance);
 ### 프록시가 초기화되는 순간
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant A as 애플리케이션
     participant M as Material
@@ -265,6 +265,9 @@ sequenceDiagram
 6. 엔티티 `equals()`를 `getClass()`로 구현하면 무엇이 깨지는가?
 7. "지연 로딩은 읽지 않는 것이 아니라 미루는 것"이라는 말을 쿼리 수로 설명할 수 있는가?
 8. `getReference()`로 성분 40개를 연결할 때 아끼는 것과 잃는 것은 각각 무엇인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_04-proxies-and-lazy-loading]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

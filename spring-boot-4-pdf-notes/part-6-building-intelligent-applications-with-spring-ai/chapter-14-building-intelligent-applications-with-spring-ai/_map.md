@@ -7,7 +7,7 @@
 이 장 전체를 관통하는 문제는 하나다. **LLM은 우리 DB도, 오늘 날짜도, 사내 문서도, 방금 나눈 대화도 모른다.** 각 절은 그 무지의 서로 다른 조각을 메운다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     GAP["LLM이 모르는 것"]
 
@@ -50,7 +50,7 @@ flowchart TB
 같은 pipeline이라도 어느 시점에 무엇이 정해지는지가 성능과 비용을 가른다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph T1["빌드·설정 시점"]
         B1["어떤 starter를 넣을까<br/>= 어떤 provider를 쓸까"]

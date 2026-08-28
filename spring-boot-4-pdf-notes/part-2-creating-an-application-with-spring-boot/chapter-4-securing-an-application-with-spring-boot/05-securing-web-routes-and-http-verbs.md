@@ -131,7 +131,7 @@ SecurityFilterChain configureSecurity(HttpSecurity http)
 `authorizeHttpRequests` 안의 규칙은 **선언 순서대로** 검사되고 **처음 일치한 규칙에서 판정이 끝난다.**
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     R["GET /admin/users 도착"] --> M1{"/resources, /about, /login 인가?"}
     M1 -- 아니오 --> M2{"GET /admin/** 인가?"}
@@ -214,7 +214,7 @@ SecurityFilterChain configureSecurity(HttpSecurity http)
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph 브라우저경로["브라우저 — HTML"]
         H1["GET /"]
@@ -293,6 +293,8 @@ flowchart LR
 6. `.roles("ADMIN")`, `hasRole("ADMIN")`, DB의 `ROLE_ADMIN`이 왜 표기가 다른가?
 7. Spring Security에 "모든 역할을 가졌는가"가 내장돼 있지 않은데도 그 규칙을 쓸 수 있는 이유는?
 8. 출입 등급표 비유가 깨지는 지점은 어디인가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_05-securing-web-routes-and-http-verbs]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

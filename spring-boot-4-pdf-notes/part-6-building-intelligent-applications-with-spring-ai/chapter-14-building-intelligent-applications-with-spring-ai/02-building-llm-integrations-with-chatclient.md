@@ -252,7 +252,7 @@ public AiAnswer askStructureResponse(@RequestParam String question) {
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph S1["1단계 Prompt — 요청 조립"]
         SYS["시스템 메시지<br/>defaultSystem(...) 또는 system(...)"]
@@ -311,6 +311,9 @@ flowchart TB
 - `defaultSystem(...)`에 넣을 문장과 `system(...)`에 넣을 문장을 나누는 기준은?
 - `entity(List.class)`가 왜 안 되고 `ParameterizedTypeReference`가 필요한가?
 - API key를 `application.properties`에 직접 적으면 정확히 무엇이 위험해지는가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_02-building-llm-integrations-with-chatclient]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

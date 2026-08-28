@@ -191,7 +191,7 @@ model이 **두 번의 tool call**을 한 상호작용 안에서 발행했다 —
 Figure 14.2(책 p.425)의 8단계 재현이다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant C as 클라이언트
     participant A as Spring Boot 앱 · ChatClient
@@ -250,6 +250,9 @@ sequenceDiagram
 - `description`을 "Gets data."로 바꾸면 어떤 증상이 생기는가?
 - 한 질문에 두 도구가 불린 예제에서, 우리가 작성하지 **않은** 코드는 무엇인가?
 - `deleteOrder(Long id)`를 `@Tool`로 노출하기 전에 확인해야 할 것을 두 가지 이상 말해 보라.
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_04b-tool-calling]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

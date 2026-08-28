@@ -127,7 +127,7 @@ public class DocumentIngestionService {
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     START["@PostConstruct — 컨텍스트 초기화 직후 1회"] --> R
 
@@ -195,6 +195,9 @@ flowchart TB
 - `DocumentReader`·`DocumentTransformer`·`DocumentWriter`를 각각 `Supplier`·`Function`·`Consumer`에 대응시키면 무엇이 명확해지는가?
 - `vectorStore.accept(chunks)` 한 줄이 실제로 하는 두 가지 일은?
 - `@PostConstruct` 색인을 production 3-인스턴스 환경에 그대로 두면 무슨 일이 생기는가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_05b-ingesting-documents-with-the-etl-pipeline]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

@@ -88,7 +88,24 @@ java -Dspring.config.location=file:/opt/my-app/config/ \
 2. `spring.config.location`을 애플리케이션이 아주 이른 시점에 읽는다. — 일반 config data를 찾기 전에 검색 위치부터 알아야 하기 때문이다.
 3. 지정된 위치에서 구성 파일을 로드한다. — 컨테이너 볼륨, 서버 공용 디렉터리 같은 운영 배치를 지원하기 위해서다.
 
-`spring.config.location`은 기본 검색 위치를 대체하는 성격이 있으므로, 기존 기본 위치를 유지하면서 위치를 더하려면 `spring.config.additional-location`의 의미를 구분해야 한다. Chapter 1의 핵심은 “설정 파일 위치 자체도 배포 환경이 제어할 수 있다”는 점이다.
+Chapter 1의 핵심은 “설정 파일 위치 자체도 배포 환경이 제어할 수 있다”는 점이다.
+
+#### `location`과 `additional-location`은 한 글자 차이가 아니다
+
+| | `spring.config.location` | `spring.config.additional-location` |
+|---|---|---|
+| 기본 검색 위치에 하는 일 | **대체한다** | **더한다** |
+| JAR 내부 `application.properties` | 지정 위치에 없으면 **읽히지 않는다** | 그대로 읽힌다 |
+| 같은 키가 겹치면 | 지정 위치의 값만 존재한다 | 추가 위치의 값이 기본 위치의 값을 덮는다 |
+| 쓰는 상황 | 설정 소스를 완전히 통제해야 할 때 | 패키지된 기본값 위에 환경 값만 얹을 때 |
+
+실무에서 잘못 쓰면 증상이 이렇게 나타난다. 운영 배포에서 `spring.config.location=file:/opt/app/config/`만 주고 그 디렉터리에 바꿀 키 몇 개만 적어 두면, **JAR 안에 넣어 둔 기본값 전체가 사라진다.** 기본값을 남기고 일부만 덮으려는 의도였다면 `additional-location`이 맞다.
+
+세 가지를 더 알아 두면 실수를 줄인다.
+
+- **없는 위치를 지정하면 애플리케이션이 시작되지 않는다.** 기본 동작은 `ConfigDataLocationNotFoundException`을 던지는 것이다. 있을 수도 없을 수도 있는 위치라면 `optional:` 접두사를 붙인다 — 예: `optional:file:./config/`. 모든 경우를 무시하려면 `spring.config.on-not-found=ignore`를 쓴다.
+- **디렉터리를 가리킬 때는 `/`로 끝낸다.** 그래야 런타임에 `spring.config.name`이 만든 파일 이름이 뒤에 붙는다. 파일을 직접 가리키면 그대로 import된다. 두 경우 모두 프로파일별 파일까지 함께 확장해 찾는다.
+- **여러 위치는 적은 순서대로 처리되고 뒤가 앞을 덮는다.** 그래서 “기본값 파일 → 환경별 파일” 순으로 나열하는 것이 자연스럽다.
 
 ### 2.3 Profile로 환경별 덮어쓰기를 묶는다
 
@@ -181,7 +198,7 @@ java -Dspring.profiles.active=test -jar learning-spring-boot-4.jar
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart BT
     D["코드 기본값"] --> C["Config data"]
     C --> E["환경 변수 · JVM 시스템 프로퍼티"]
@@ -191,7 +208,7 @@ flowchart BT
 ```
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     I1["JAR 내부<br/>application.properties"] --> M["프로퍼티 병합"]
     I2["JAR 내부<br/>application-test.properties"] --> M
@@ -257,6 +274,8 @@ JAR 밖에 있다는 사실만으로 안전하지 않다. 파일 권한, 저장 
 5. `spring.config.location`과 `spring.config.additional-location`의 의도 차이는 무엇인가?
 6. 외부화된 구성이 재빌드를 줄여도 비밀 관리 문제를 자동으로 해결하지 못하는 이유는 무엇인가?
 7. 값이 예상과 다를 때 어떤 순서로 출처를 역추적할 것인가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_03b-externalizing-application-configuration]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

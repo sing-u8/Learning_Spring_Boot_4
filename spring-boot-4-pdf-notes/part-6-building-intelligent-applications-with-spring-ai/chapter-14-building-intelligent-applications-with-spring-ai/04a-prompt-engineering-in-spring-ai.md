@@ -169,7 +169,7 @@ curl --location 'http://localhost:8080/api/ai/code-review' \
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph L1["프롬프트의 두 층"]
         SYS["시스템 프롬프트<br/>중앙 1회 설정 · 전 요청 자동 적용"]
@@ -226,6 +226,9 @@ flowchart TB
 - `PromptTemplate.create(Map)`이 반환하는 것과 `chatClient.prompt()`가 반환하는 것은 어떻게 다른가?
 - `{code}`에 사용자 코드가 들어가는 코드 리뷰 서비스에서 생길 수 있는 보안 문제는?
 - template이 "입력은 고정하지만 출력은 고정하지 않는다"는 말의 실제 결과는 무엇인가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_04a-prompt-engineering-in-spring-ai]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

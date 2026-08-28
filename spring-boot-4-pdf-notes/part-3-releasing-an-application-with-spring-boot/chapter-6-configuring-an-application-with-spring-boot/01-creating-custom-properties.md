@@ -233,7 +233,7 @@ return SimpleGrantedAuthority::new;                    // 메서드 참조
 **둘 다 동작하지 않는다.** 원인은 자바의 **[[타입-소거]]**(= 컴파일 후 제네릭 타입 인자를 지워 버리는 성질)다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["익명 클래스<br/>new Converter&lt;String, GrantedAuthority&gt;(){…}"] --> A1["클래스 파일에 상위 타입 인자가 남는다"]
     A1 --> A2["Spring이 String → GrantedAuthority 임을 읽어낸다"]
@@ -269,7 +269,7 @@ GrantedAuthorityCnv converter() {
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     P["application.properties<br/>app.config.header=…"] --> B["바인더"]
     R["AppConfig record<br/>접두사 + 필드 이름"] --> B
@@ -346,6 +346,9 @@ flowchart TD
 7. 메서드 참조로 줄이면 깨지는 이유를 "선언에 남는가"로 설명할 수 있는가?
 8. `GrantedAuthorityCnv`가 메서드를 하나도 추가하지 않는데도 문제를 푸는 이유는?
 9. 봉인되는 서류 비유가 깨지는 지점은 어디인가?
+
+
+> 아홉 문항을 스스로 답한 **뒤에** [[_01-creating-custom-properties]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

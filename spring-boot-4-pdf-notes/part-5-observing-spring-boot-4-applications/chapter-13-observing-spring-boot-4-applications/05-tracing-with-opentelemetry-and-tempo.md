@@ -57,7 +57,7 @@ Average Employee Creation Time: 1.2s  (평소 40ms)
 4. 나중에 그 ID로 모으면 전체 경로가 재구성된다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     T["trace ID = abc123"] --> S1["span: 컨트롤러"]
     T --> S2["span: 서비스"]
@@ -78,7 +78,7 @@ flowchart LR
 책의 Figure 13.8을 개념 관계도로 다시 그렸다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     R["1. Request<br/>Trace ID 생성"] --> C["2. Employee Controller<br/>첫 span"]
     C --> S["3. Employee Service<br/>비즈니스 로직 + 저장"]
@@ -146,7 +146,7 @@ flowchart TD
 | 이 장의 백엔드 | Loki | Prometheus | Tempo |
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Q1["전파가 되면"] --> A1["트레이스 1개<br/>HTTP + 알림이 한 흐름"]
     Q2["전파가 안 되면"] --> A2["트레이스 2개<br/>인과 관계가 끊긴다"]
@@ -198,6 +198,9 @@ flowchart TD
 5. 컨텍스트 전파가 실패하면 구체적으로 무엇이 보이게 되는가?
 6. span이 로그 줄과 다른 점 두 가지는?
 7. 택배 송장 비유가 깨지는 지점은 어디인가?
+
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_05-tracing-with-opentelemetry-and-tempo]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

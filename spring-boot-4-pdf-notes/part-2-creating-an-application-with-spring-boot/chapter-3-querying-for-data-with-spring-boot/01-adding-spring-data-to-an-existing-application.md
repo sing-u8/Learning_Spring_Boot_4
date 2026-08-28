@@ -119,7 +119,7 @@ Cassandra의 예를 책이 구체적으로 든다 — 정족수(quorum) 노드�
 ### 무엇을 포기하고 무엇을 얻는가
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Q["저장소를 고른다"] --> A{"필요한 보장은?"}
     A -- "여러 변경이 전부 되거나<br/>전부 안 되어야 한다" --> R["관계형<br/>ACID · 고정 스키마"]
@@ -210,6 +210,8 @@ flowchart TD
 6. "NoSQL이 관계형의 모든 기능을 흉내 내면 장점을 잃는다"는 말의 논리는 무엇인가?
 7. "NoSQL은 스키마가 없다"는 표현이 왜 부정확한가?
 8. 관계형을 골랐는데도 이 장의 내용이 NoSQL에도 통한다고 말할 수 있는 근거는 무엇인가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_01-adding-spring-data-to-an-existing-application]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

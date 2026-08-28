@@ -134,7 +134,7 @@ Spring Boot의 각 모듈은 자기가 제공하는 설정 키들을 이 JSON에
 **[[spring-boot-configuration-processor]]**(= `@ConfigurationProperties` 타입을 컴파일 시점에 훑어 설정 메타데이터를 생성하는 애노테이션 프로세서)가 하는 일은 이름 그대로다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["AppConfig record<br/>@ConfigurationProperties(app.config)"] --> P["컴파일 시점<br/>애노테이션 프로세서"]
     P --> J["META-INF/spring-configuration-metadata.json<br/>키 이름 + 선언된 타입"]
@@ -169,7 +169,7 @@ app.config.intro     String
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Q{"설정이 어떤 모양인가?"}
     Q -- "평평하고 길다" --> P[".properties<br/>한 줄이 자기 완결적"]
@@ -236,6 +236,9 @@ flowchart TD
 6. Figure 6.2에서 `List<UserAccount>`라는 타입 표시가 가능한 이유는?
 7. 메타데이터가 없으면 프로퍼티 바인딩이 실패하는가?
 8. 주소록 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_03-switching-to-yaml-and-metadata]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

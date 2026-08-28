@@ -217,7 +217,7 @@ List<VideoEntity> findCustomWithPureSql(String name);
 ### 사다리의 마지막 두 칸
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["파생 finder<br/>메서드 이름이 곧 쿼리"] -- "조건이 런타임에 달라진다" --> B["Query By Example<br/>객체가 곧 조건"]
     A -- "이름으로 담을 수 없다" --> C["@Query JPQL<br/>문자열이 곧 쿼리"]
@@ -340,6 +340,8 @@ flowchart TD
 6. 네이티브 SQL로 내려갈 때 **꺼지는 것 셋**과 **유지되는 것 둘**을 말할 수 있는가?
 7. JPQL에서는 되던 동적 정렬이 네이티브에서 안 되는 이유는?
 8. `spring.aot.enabled=true`만으로 AOT 리포지토리가 생기지 않는 이유는?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_06-writing-custom-jpa-queries]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

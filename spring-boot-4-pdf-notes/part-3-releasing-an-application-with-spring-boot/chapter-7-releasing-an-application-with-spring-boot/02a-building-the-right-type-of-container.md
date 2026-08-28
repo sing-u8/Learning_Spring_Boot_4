@@ -46,7 +46,7 @@ Docker에는 캐싱이 내장돼 있다. 이미지를 여러 **레이어**의 �
 문제는 **무효화 규칙**이다. 한 레이어의 내용이 바뀌면 **그 레이어와 그 위의 모든 레이어**가 무효가 된다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     subgraph 나쁨["섞어 담은 경우"]
         B1["베이스 이미지"] --> B2["Spring + 내 코드<br/>한 레이어"]
@@ -179,7 +179,7 @@ CONTAINER ID   IMAGE                COMMAND              CREATED         STATUS 
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     J["uber JAR<br/>+ layers.idx"] --> P["Paketo Buildpacks"]
     B["builder 이미지<br/>빌드 중에만"] --> P
@@ -247,6 +247,9 @@ flowchart TD
 7. `Calculating JVM memory…` 로그가 알려 주는 Paketo의 기능은?
 8. 컨테이너의 임의 이름이 함정이 되는 상황은?
 9. 옷을 겹쳐 입는 비유가 깨지는 지점은 어디인가?
+
+
+> 아홉 문항을 스스로 답한 **뒤에** [[_02a-building-the-right-type-of-container]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

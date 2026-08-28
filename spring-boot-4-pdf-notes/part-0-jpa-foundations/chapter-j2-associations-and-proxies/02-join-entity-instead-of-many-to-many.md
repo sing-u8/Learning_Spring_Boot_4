@@ -177,7 +177,7 @@ CosmoRoute는 스키마가 이미 승격을 강제하지만, 스키마가 순수
 ### 승격 전후
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph before["승격 전 — 다대다 1개"]
         M1["Material"] <-->|"@ManyToMany"| S1["Substance"]
@@ -244,6 +244,9 @@ flowchart LR
 5. "부가 속성이 생기면 승격"이 아니라 "처음부터 승격"인 이유를 마이그레이션 관점에서 설명할 수 있는가?
 6. 연결 엔티티와 임베디드 타입을 가르는 결정적 기준은 무엇인가?
 7. 승격이 스키마 변경을 요구하지 않는 이유는 무엇인가?
+
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_02-join-entity-instead-of-many-to-many]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

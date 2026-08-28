@@ -112,7 +112,7 @@ data: designed
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 sequenceDiagram
     participant B as 브라우저
     participant A as Spring Boot 앱
@@ -177,6 +177,9 @@ sequenceDiagram
 - `produces = TEXT_EVENT_STREAM_VALUE`를 빼면 실제로 무엇이 달라지는가?
 - 응답에 신용카드 번호가 섞여 나올 수 있는 endpoint에 스트리밍을 쓸 수 있는가? 왜인가?
 - `Flux<String>`을 반환하는 시점에 응답 본문은 얼마나 만들어져 있는가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_03-reactive-streaming-with-chatclient]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

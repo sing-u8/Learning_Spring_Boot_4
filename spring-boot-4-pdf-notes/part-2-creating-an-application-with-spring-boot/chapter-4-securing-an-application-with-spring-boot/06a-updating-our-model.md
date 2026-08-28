@@ -125,7 +125,7 @@ alice와 bob이 둘 다 `ROLE_USER`인 것이 핵심이다. **역할이 같아�
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     P["정책: 소유자만 삭제 가능"] --> N["판정에 소유자가 필요하다"]
     N --> S["스키마 변경: VideoEntity.username"]
@@ -180,6 +180,8 @@ flowchart TD
 5. `protected` 무인자 생성자가 여전히 필요한 이유는?
 6. Alice/Bob 관례가 A/B보다 나은 실질적 이유는?
 7. 이름표 비유가 깨지는 지점은 어디인가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_06a-updating-our-model]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

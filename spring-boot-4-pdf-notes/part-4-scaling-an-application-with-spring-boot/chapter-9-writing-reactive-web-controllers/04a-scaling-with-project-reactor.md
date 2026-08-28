@@ -13,8 +13,10 @@ status: prepared
 
 | # | Reactor가 뒤에서 하는 일 | 그래서 얻는 것 |
 |---|---|---|
-| 1 | 각 연산자를 **command object로 조립**하고 Scheduler에 실행을 위임 | I/O 대기 중 스레드가 **다른 작업을 집는다** — work stealing |
-| 2 | 200개짜리 거대 pool 대신 **코어당 스레드 하나** | context switching 감소, CPU 활용 증가 |
+| 1 | 각 연산자를 **command object로 조립**한다(어셈블리 ≠ 실행) | 작성 순서와 실행 시점이 분리된다 |
+| 2 | 200개짜리 거대 pool 대신 **소수의 스레드**(대략 코어 수) | context switching 감소, CPU 활용 증가 |
+
+> **책의 서술 두 가지를 이 노트는 그대로 쓰지 않는다.** 책은 Reactor가 "기본적으로 Scheduler에 위임한다"고, 그 동작을 "work stealing"이라고 적는다. 공식 문서와 어긋나는 부분이 있어 §2.2·2.3·2.5에서 책의 표현과 실제 동작을 구분해 적었다.
 
 > "리액티브 프로그래밍은 **자원 가용성에 반응하는 것**에 기반한다." — Mark Paluch, Spring Data 팀 리드
 
@@ -50,9 +52,15 @@ return newEmployee
 
 ### 2.2 그래서 Scheduler에 위임한다
 
-Reactor는 우리 동작을 표현하는 command object들을 모아 **내부 작업 큐**에 쌓는다. 그리고 실행을 내장 **[[Scheduler]]**(= 조립된 작업을 실제로 실행할 때 쓰는 실행 자원)에 위임한다.
+책은 Reactor가 command object들을 내부 작업 큐에 쌓고 **실행을 내장 Scheduler에 위임한다**고 적는다. **[[Scheduler]]**(= 조립된 작업을 실제로 실행할 때 쓰는 실행 자원)를 골라 쓸 수 있다는 것까지는 맞다.
 
-이 구조가 왜 필요한가 — **Reactor가 "어떻게 수행할지"를 결정할 수 있게 되기 때문이다.** 고를 수 있는 Scheduler가 여럿이다.
+> **원문의 부정확에 대한 주의.** 책은 Reactor가 *"거대 thread pool 대신 **코어당 스레드 하나를 쓰는 Scheduler를 기본으로 한다**"*고 쓴다(p. 502). **Reactor는 기본적으로 어떤 Scheduler도 쓰지 않는다.** Reactor 공식 문서의 규정은 정반대다 — *"Reactor는 **동시성에 관해 중립적(concurrency-agnostic)**이며 동시성 모델을 강제하지 않는다. **대부분의 연산자는 직전 연산자가 돌던 스레드에서 실행된다.** 기본적으로 소스 연산자는 `subscribe()`가 호출된 스레드에서 돈다."*
+>
+> 즉 **Scheduler는 자동으로 끼어들지 않고, `publishOn`·`subscribeOn`·`runOn`으로 명시적으로 요청할 때만** 실행 컨텍스트가 바뀐다. WebFlux 요청을 처리하는 것은 Scheduler가 아니라 **Reactor Netty의 이벤트 루프 워커 스레드**다.
+>
+> **이 구분이 §2.4를 이해하는 열쇠다.** 아무도 스레드를 바꿔 주지 않으므로, 블로킹 호출은 **이벤트 루프 스레드 위에서 그대로 실행된다.** "Scheduler가 알아서 옮겨 주겠지"라고 믿으면 왜 블로킹이 치명적인지 설명할 수 없다.
+
+고를 수 있는 Scheduler가 여럿이다.
 
 | Scheduler | 성격 |
 |---|---|
@@ -67,9 +75,13 @@ Reactor는 우리 동작을 표현하는 command object들을 모아 **내부 �
 
 Reactor flow의 **모든 단계가 게으르고 논블로킹으로** 동작하므로, I/O 바운드 지연이 생기면 **현재 스레드가 응답을 기다리며 붙들리지 않는다.** 대신 Scheduler가 내부 작업 큐로 돌아가 **다른 작업을 집는다.**
 
-이것이 **[[작업-훔치기]]**(= 한 작업이 멈춰 있을 때 스레드가 큐에서 다른 작업을 집어 오는 방식)이고, 그 결과가 이 절에서 가장 인상적인 문장이다.
+책은 이것을 **[[작업-훔치기]]**(= 책이 쓴 용어. 한 작업이 멈춰 있을 때 스레드가 큐에서 다른 작업을 집어 오는 방식)라 부르고, 그 결과를 이렇게 적는다.
 
 > **전통적인 지연 문제가 다른 일을 끝낼 기회로 바뀐다.**
+
+> **용어에 대한 주의.** 컴퓨터 과학에서 **work stealing은 유휴 스레드가 *다른 스레드의* 큐에서 작업을 가져오는 기법**을 가리킨다(`ForkJoinPool`이 대표적이다). 그런데 책이 묘사하는 것은 **한 스레드가 *자기* 큐에서 다음 작업을 집는 것** — 즉 평범한 이벤트 루프 동작이다. Reactor의 `Schedulers.parallel()`은 워커마다 독립된 단일 스레드 실행자를 쓰고, Netty 이벤트 루프는 채널을 특정 루프에 고정한다. **둘 다 훔치지 않는다.**
+>
+> 결론은 바뀌지 않는다("기다림이 낭비되지 않는다"는 맞다). 다만 면접에서 work stealing을 물으면 `ForkJoinPool` 이야기이지 이 이야기가 아니다.
 
 [[01a-blocking-vs-non-blocking]]에서 "기다리며 낭비하지 않는다"고 한 것의 구현이 이것이다.
 
@@ -83,7 +95,11 @@ Reactor flow의 **모든 단계가 게으르고 논블로킹으로** 동작하�
 
 ### 2.5 두 번째 — 코어당 스레드 하나
 
-Reactor가 하는 두 번째 일은 더 단순하다. **200개짜리 거대 thread pool 대신, 코어당 스레드 하나를 쓰는 Scheduler가 기본**이다.
+Reactor가 하는 두 번째 일은 더 단순하다. 책의 표현으로 **200개짜리 거대 thread pool 대신 코어당 스레드 하나**다.
+
+정확히 말하면 이 "코어당 하나"는 §2.2에서 짚은 대로 **Scheduler의 기본값이 아니라 Reactor Netty 이벤트 루프 워커의 크기**다. Spring 공식 문서의 서술이 이렇다 — *"평범한(vanilla) Spring WebFlux 서버는 보통 서버용 스레드 하나와 요청 처리용 스레드 여럿을 쓰며, **그 수는 대개 CPU 코어 수와 일치한다.**"* 그리고 WebFlux는 *"작고 고정된 크기의 스레드 풀(이벤트 루프 워커)"*로 요청을 처리한다고 적는다.
+
+숫자의 결론은 책과 같다. 주체가 Scheduler가 아니라 이벤트 루프라는 것만 다르다.
 
 이 접근이 주는 것 둘.
 
@@ -103,7 +119,7 @@ Reactor가 하는 두 번째 일은 더 단순하다. **200개짜리 거대 thre
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     CODE["우리가 쓴 코드<br/>newEmployee.map(employee -> DATABASE.put(...))"]
 
@@ -176,6 +192,9 @@ flowchart TB
 - work stealing이 "지연을 기회로 바꾼다"는 말을 구체적인 예로 설명해 보라.
 - 코어가 8개인 서버에서 Reactor가 스레드를 200개 만들지 않는 이유는?
 - 블로킹 코드를 `boundedElastic`으로 옮기면 무엇이 해결되고 무엇이 남는가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_04a-scaling-with-project-reactor]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

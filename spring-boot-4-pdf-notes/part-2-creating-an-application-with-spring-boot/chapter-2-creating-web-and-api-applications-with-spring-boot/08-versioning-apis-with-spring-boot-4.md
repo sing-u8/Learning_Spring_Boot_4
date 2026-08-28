@@ -229,7 +229,7 @@ curl http://localhost:8080/api/videos -H "Accept: application/json;version=2"
 ### 요청 하나가 버전 handler에 도달하기까지
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     R["요청 도착"] --> P{"spring.mvc.apiversion.use.*<br/>어느 전략이 켜져 있나"}
     P -- "path-segment=1" --> A["경로 1번 세그먼트에서 v2 추출"]
@@ -329,6 +329,8 @@ flowchart TD
 7. 경로 방식에 default 버전을 적용할 수 없는 이유를 매핑 관점에서 설명할 수 있는가?
 8. 전략을 애플리케이션당 하나로 제한하는 이유는?
 9. 버전을 나눴을 때 새로 생기는 비용은 무엇인가?
+
+> 아홉 문항을 스스로 답한 **뒤에** [[_08-versioning-apis-with-spring-boot-4]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

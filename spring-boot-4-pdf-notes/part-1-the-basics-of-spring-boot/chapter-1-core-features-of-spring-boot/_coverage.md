@@ -41,7 +41,7 @@
 | 원문 예제 | 노트 | 설명 보강 |
 |---|---|---|
 | `sdk install java 25.0.1-tem`, `java --version` | [[00-technical-requirements]] | SDKMAN 역할, Temurin, 셸·IDE·빌드 JVM 불일치 |
-| `@Bean BookRepository(DataSource)` | [[01-autoconfiguring-spring-beans]] | 빈 이름, 생성 순서, `new`가 구성 경계에 남는 이유 |
+| `@Bean BookRepository(DataSource)` | [[01-autoconfiguring-spring-beans]] | 빈 이름, 생성 순서, `new`가 `@Bean` 메서드에는 남는 이유 |
 | `@ConditionalOnClass(DataSource.class)` | [[01-autoconfiguring-spring-beans]] | 후보 로드, 추가 조건, missing-bean back-off와 순서 |
 | Maven `starter-webmvc` | [[02-adding-portfolio-components-using-spring-boot-starters]] | artifact 이름, 전이 의존성, 자동 구성까지의 단계 |
 | Maven `starter-data-jpa` | [[02-adding-portfolio-components-using-spring-boot-starters]] | starter와 BOM 책임 분리 |
@@ -81,3 +81,19 @@ PDF가 서술의 기준이고, Spring Boot 4.0.3 공식 문서는 버전 민감�
 - [x] 책의 장 요약 네 축: 자동 구성, starter, configuration properties, dependency management가 `_map.md`에 연결됨
 - [x] 버전 민감한 동작을 Spring Boot 4.0.3 공식 문서와 교차 확인함
 - [x] PDF 내 이미지 존재 여부를 실제 검사함
+
+## 공식 문서 대조 검증 (2026-08-29)
+
+> `part-0-spring-core-internals` c1(컨테이너 생명주기)·c4(자동 구성 내부)와 주제가 겹친다. 그 트랙은 공식 문서를 1차 소스로 쓰고 대조 검증을 마쳤으므로, **두 트랙이 같은 것을 다르게 말하는 곳**을 찾는 방식으로 확인했다.
+
+### 결과 — 정정 0건. 오히려 이쪽이 더 정밀한 곳이 있었다
+
+| 확인한 것 | 결과 |
+|---|---|
+| 백오프가 우선순위가 아니라는 것 | `01` §2.5가 *"두 개의 `DataSource` 빈이 등록된 뒤 순위로 하나가 이기는 것이 아니라, 자동 구성 쪽 빈 정의가 **애초에 만들어지지 않는다**"*로 정확히 적고, **`@Primary` 없이 `NoUniqueBeanDefinitionException`이 났을 것**이라는 반증까지 든다. c4 `02`와 동일한 논증 |
+| 빈 정의 vs 인스턴스 | `01`이 *"자동 구성이 실제로 만들어 내는 것은 객체가 아니라 **빈 정의**"*로 c1의 핵심 축을 이미 담고 있다 |
+| 자동 구성 후보의 등록 경로 | `01`이 `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`를 정확히 적는다 |
+| `@ConditionalOnProperty`의 기본 조건 | `03c` §2가 **책의 "아무 값이나 있으면 생성된다"를 정정**하고, 키 없음·`false`·`true`·임의 문자열·빈 문자열의 5행 진리표를 제시한다 |
+| 컴포넌트 스캔 vs 자동 구성 | `01` §5가 두 발견 경로를 구분한다 |
+
+**이 챕터가 c4보다 정밀했던 지점.** `01` §2.4가 조건 평가를 **두 국면**으로 나누고 *"`@ConditionalOnMissingBean`은 `REGISTER_BEAN` 단계에서만 평가된다"*고 이름으로 짚는다. c4 `02`는 "지금까지 처리된 것 기준"까지만 적고 있었다. **이 대조 결과로 c4 쪽을 보강했다** — 검증이 한 방향이 아니라는 사례다.

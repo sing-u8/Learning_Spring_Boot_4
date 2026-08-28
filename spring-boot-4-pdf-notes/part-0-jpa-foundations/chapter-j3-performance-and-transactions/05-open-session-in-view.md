@@ -215,7 +215,7 @@ public MaterialDetail detail(UUID id) {
 ### 무엇이 늘어나고 무엇이 그대로인가
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     A["OSIV 켜짐"] --> B["영속성 컨텍스트 수명<br/>요청 끝까지 늘어남"]
     A --> C["트랜잭션 경계<br/>그대로. 서비스 메서드까지"]
@@ -285,6 +285,9 @@ OSIV가 켜졌다고 컨트롤러의 변경이 저장되지는 않는다. 이걸
 6. CosmoRoute에서 꺼야 하는 이유 네 가지를 댈 수 있는가?
 7. 끄면 DTO 변환을 어디에서 해야 하는가? 왜 그런가?
 8. 켜 두기로 했더라도 명시적으로 적어야 하는 이유는 무엇인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_05-open-session-in-view]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

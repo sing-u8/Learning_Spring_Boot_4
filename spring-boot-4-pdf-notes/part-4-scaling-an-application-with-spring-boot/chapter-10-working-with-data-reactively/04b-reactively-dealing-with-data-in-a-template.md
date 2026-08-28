@@ -120,7 +120,7 @@ Chapter 9에서는 저장이 `DATABASE.put(...)`이라는 **명령형 부수효�
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph GET["조회 — 한 줄이 줄어든다"]
         G1["Chapter 9: Flux.fromIterable(DATABASE.values())"]
@@ -197,6 +197,9 @@ flowchart TB
 - `repository.save()`에 `map`을 쓰면 타입이 어떻게 되고, 그다음 `map`에서 무슨 일이 생기는가?
 - 데이터 계층을 통째로 바꿨는데 `index.html`이 그대로인 것은 무엇을 뜻하는가?
 - `e.getName()`과 `e.name()` 중 무엇이 맞고, 그 근거는?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_04b-reactively-dealing-with-data-in-a-template]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

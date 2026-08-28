@@ -57,6 +57,11 @@ Spring 애플리케이션이 시작될 때 만들어져 객체의 생성, 설정
 - 처음 나온 곳: [[01-autoconfiguring-spring-beans]]
 - 섞이는 말: [[자바빈]]
 
+## 빈-정의 (BeanDefinition)
+어떤 타입의 객체를 어떤 인자로 어떻게 만들지 적어 둔 컨테이너의 설계도다. 자동 구성이 만들어 내는 것은 객체가 아니라 이 정의이며, 실제 인스턴스화와 주입은 그 뒤에 애플리케이션 컨텍스트가 수행한다.
+- 처음 나온 곳: [[01-autoconfiguring-spring-beans]]
+- 섞이는 말: [[스프링-빈]], 인스턴스
+
 ## 자바빈 (JavaBean)
 일반적으로 private 필드, getter/setter, 인자 없는 생성자 같은 관례를 따르는 Java 객체다. Spring 컨테이너에 등록되어야 한다는 뜻은 아니다.
 - 처음 나온 곳: [[01-autoconfiguring-spring-beans]]
@@ -156,6 +161,11 @@ Servlet, Persistence, Validation 등 엔터프라이즈 Java 표준 사양들의
 문자열 중심의 구성 값을 Java 객체의 필드나 생성자 매개변수에 타입에 맞게 변환해 연결하는 과정이다.
 - 처음 나온 곳: [[03-customizing-the-setup-with-configuration-properties]]
 - 섞이는 말: [[의존성-주입]]
+
+## 느슨한-바인딩 (relaxed binding)
+같은 구성 프로퍼티를 소스마다 자연스러운 표기로 적어도 동일한 키로 인식하는 규칙이다. `my.app.header`를 properties 파일에서는 점 표기로, 환경 변수에서는 `MY_APP_HEADER`로 적을 수 있다. 운영체제가 환경 변수 이름에 쓸 수 있는 문자를 제한하기 때문에 필요하다.
+- 처음 나온 곳: [[03a-creating-custom-properties]]
+- 섞이는 말: [[프로퍼티-바인딩]], 대소문자 구분
 
 ## 프로퍼티-소스 (property source)
 프로퍼티 값을 공급하는 한 출처다. 기본값, 설정 파일, 환경 변수, 시스템 프로퍼티, 명령행 인자, 테스트 설정 등이 각각 하나의 출처가 될 수 있다.

@@ -97,7 +97,7 @@ training run은 애플리케이션을 실제로 한 번 띄워 봐야 한다. �
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     GOAL["원하는 것: startup 단축"]
 
@@ -170,6 +170,9 @@ flowchart TB
 - training run을 배포 시점이 아니라 이미지 빌드 시점에 하는 이유는?
 - `BP_`로 시작하는 환경 변수가 Maven 옵션이 아닌 이유는?
 - Java 23 기반 이미지에서 startup을 줄이려면 무엇을 써야 하는가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_06-using-buildpacks-with-java-aot-cache]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

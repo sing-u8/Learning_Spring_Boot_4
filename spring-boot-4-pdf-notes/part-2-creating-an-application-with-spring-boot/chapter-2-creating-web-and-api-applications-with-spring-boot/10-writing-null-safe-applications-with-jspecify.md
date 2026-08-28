@@ -214,7 +214,7 @@ List<@Nullable VideoV2> videosV2
 ### null이 문제로 드러나는 시점이 앞당겨진다
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     W["코드 작성"] --> C["컴파일"]
     C --> B["빌드·CI"]
@@ -332,6 +332,8 @@ public Video getFirstByName(@RequestParam String name) { ... }
 8. `List<@Nullable VideoV2>`에서 null이 허용되는 것과 금지되는 것을 세 층으로 나눠 말할 수 있는가?
 9. IDE 경고와 NullAway의 차이를 "경고"와 "게이트"로 설명할 수 있는가?
 10. JSpecify가 `Optional`을 대체하지 않는 이유를 적용 범위로 설명할 수 있는가?
+
+> 열 문항을 스스로 답한 **뒤에** [[_10-writing-null-safe-applications-with-jspecify]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

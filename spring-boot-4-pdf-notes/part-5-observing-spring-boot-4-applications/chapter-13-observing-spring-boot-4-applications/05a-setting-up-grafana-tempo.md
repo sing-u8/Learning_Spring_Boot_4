@@ -103,7 +103,7 @@ overrides:
 이 설정은 **트레이스 하나가 태어나 사라지기까지의 네 단계**를 그대로 반영한다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     D["distributor<br/>받는다 — OTLP 4317/4318"] --> I["ingester<br/>모은다 — 최대 5분 블록"]
     I --> W["WAL에 선행 기록<br/>/tmp/tempo/wal"]
@@ -179,7 +179,7 @@ Collector가 Tempo로 보낼 때 **[[OTLP]]** gRPC(4317)를 쓴다. 애플리케
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["애플리케이션"] -->|"OTLP HTTP :4318"| C["Collector"]
     C -->|"OTLP gRPC :4317"| T["Tempo"]
@@ -242,6 +242,9 @@ flowchart LR
 6. 3200·4317·4318 세 포트의 역할을 구분할 수 있는가?
 7. `resource` 프로세서를 세 파이프라인이 공유하는 것이 나중에 무엇을 가능하게 하는가?
 8. 우편 집하장 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_05a-setting-up-grafana-tempo]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

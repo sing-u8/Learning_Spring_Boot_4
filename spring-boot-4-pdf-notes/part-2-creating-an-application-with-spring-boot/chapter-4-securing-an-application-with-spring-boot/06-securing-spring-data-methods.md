@@ -66,7 +66,7 @@ status: prepared
 **[[메서드-레벨-보안]]**(= URL이 아니라 자바 메서드 호출을 단위로 인가를 거는 방식)의 아이디어는 단순하다. **판정에 필요한 정보가 갖춰지는 자리로 검사를 옮긴다.**
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     R["POST /delete/videos/7"] --> F["필터 체인<br/>여기서는 videoId=7만 안다"]
     F --> C["HomeController.deleteVideo(7)"]
@@ -101,7 +101,7 @@ flowchart TD
 애노테이션 하나가 메서드 실행을 막을 수 있는 이유는 **[[AOP-프록시]]**(= 원본 빈을 감싸 호출 전후에 부가 동작을 끼워 넣는 대리 객체)다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     S["VideoService"] -->|delete 호출| P["프록시<br/>= 주입된 실제 객체"]
     P --> K{"권한 검사 통과?"}
@@ -125,7 +125,7 @@ Spring이 `VideoRepository`를 주입할 때 실제로 주는 것은 **원본이
 | 이 장에서 | [[05-securing-web-routes-and-http-verbs]] | [[06d-locking-down-access-to-the-owner]] |
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     Q{"판정에 데이터가 필요한가?"}
     Q -- 아니오 --> U["URL 규칙<br/>SecurityFilterChain"]
@@ -173,6 +173,8 @@ flowchart TD
 5. 같은 클래스 안에서 자기 메서드를 부르면 왜 검사가 안 되는가?
 6. URL 보안과 메서드 보안 중 하나만 골라야 한다면 무엇을 잃게 되는가?
 7. 금고 비유가 깨지는 지점은 어디인가?
+
+> 일곱 문항을 스스로 답한 **뒤에** [[_06-securing-spring-data-methods]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

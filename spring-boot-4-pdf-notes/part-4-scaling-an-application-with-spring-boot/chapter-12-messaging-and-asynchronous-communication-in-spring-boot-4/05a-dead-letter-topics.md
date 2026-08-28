@@ -151,7 +151,7 @@ curl -X POST http://localhost:8080/employees \
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     MSG["employee-events 의 메시지<br/>email 이 null 인 Alice Johnson"]
     MSG --> L["NotificationService 리스너"]
@@ -219,6 +219,9 @@ flowchart TB
 - `DefaultErrorHandler(recoverer, fixedBackOff)`에서 두 인자의 순서가 뜻하는 것은?
 - DLT 리스너를 `ConsumerRecord<String, byte[]>`로 받는 이유를 두 상황으로 나눠 설명해 보라.
 - Figure 12.6의 payload에서 실패 원인을 어떻게 알아볼 수 있는가?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_05a-dead-letter-topics]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

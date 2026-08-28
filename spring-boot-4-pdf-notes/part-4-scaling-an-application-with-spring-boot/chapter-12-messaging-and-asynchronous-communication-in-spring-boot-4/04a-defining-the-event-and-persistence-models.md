@@ -108,7 +108,7 @@ public record EmployeeCreatedEvent(
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph INT["내부 — 저장하는 것"]
         E["@Entity class Employee<br/>id · name · role · email · createdAt<br/>가변 · JPA 가 생명주기 관리"]
@@ -174,6 +174,9 @@ flowchart LR
 - 엔티티를 그대로 이벤트로 발행하면 생기는 문제 세 가지를 들어 보라.
 - 이벤트가 record이고 엔티티가 클래스인 이유는?
 - `Instant`와 `LocalDateTime` 중 이벤트에 무엇을 써야 하고, 그 근거는?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_04a-defining-the-event-and-persistence-models]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

@@ -153,7 +153,7 @@ service:
 **[[라벨-승격]]**(= 리소스 속성 일부를 로그 저장소의 색인 대상 라벨로 올리는 것)이 왜 필요한지는 [[03-structured-logging-with-loki-and-grafana]]에서 본 Loki의 성질에서 나온다. Loki는 **라벨만 색인**한다. 라벨이 아닌 속성은 질의로 스트림을 고를 때 쓸 수 없다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     R["리소스 속성<br/>service.name · deployment.environment · service.version"] --> P{"loki.resource.labels에 있나?"}
     P -- 예 --> L["Loki 라벨로 승격<br/>색인됨 · 질의로 스트림 선택 가능"]
@@ -203,7 +203,7 @@ datasources:
 ## 3. 그림으로 보기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     A["애플리케이션"] -->|"OTLP/HTTP :4318"| C["otel-collector"]
     C -->|"receivers → processors → exporters"| L["loki :3100"]
@@ -273,6 +273,9 @@ flowchart LR
 6. `access: proxy`가 아니면 무엇이 깨지는가?
 7. `debug` 익스포터가 진단에 쓰이는 구체적 상황을 하나 들 수 있는가?
 8. 컨베이어 라인 비유가 깨지는 지점은 어디인가?
+
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_03a-setting-up-the-logging-infrastructure]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

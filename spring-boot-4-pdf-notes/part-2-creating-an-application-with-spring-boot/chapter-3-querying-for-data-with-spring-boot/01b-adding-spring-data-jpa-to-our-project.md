@@ -144,7 +144,7 @@ status: prepared
 ### 네 의존성이 여는 것
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph BUILD["pom.xml에 붙여넣는 것"]
         A["spring-boot-starter-data-jpa"]
@@ -246,6 +246,8 @@ Boot 3까지의 기억으로 드라이버만 넣고 콘솔을 기대하면 이 �
 6. 세 가지 변화(테스트 자동 포함 / 콘솔 분리 / 기본값 명시화)의 방향이 하나라고 말할 수 있는가?
 7. JPA·Hibernate·Spring Data JPA를 패키지 이름으로 구별할 수 있는가?
 8. 이 절차대로 하면 예제가 도는데, 책이 말하지 않은 전제는 무엇인가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_01b-adding-spring-data-jpa-to-our-project]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

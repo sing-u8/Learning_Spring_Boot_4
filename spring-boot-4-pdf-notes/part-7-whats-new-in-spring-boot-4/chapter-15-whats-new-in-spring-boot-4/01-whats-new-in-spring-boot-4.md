@@ -282,9 +282,19 @@ Boot의 `StreamBuilderFactoryBeanCustomizer`가 제거되고 Spring Kafka의 **`
 | 필요한 것 | 무엇을 쓰나 |
 |---|---|
 | 단순 배치, 이력 불필요 | 기본 `spring-boot-starter-batch` (인메모리) |
-| 영속적 **[[배치-메타데이터]]**(= 작업 인스턴스·실행 이력·재시작 정보 저장소), 재시작 가능성, 실행 이력, 스텝 단위 추적 | **`spring-boot-starter-batch-jdbc` + `DataSource`** |
+| 영속적 **[[배치-메타데이터]]**(= 작업 인스턴스·실행 이력·재시작 정보 저장소), 재시작 가능성, 실행 이력, 스텝 단위 추적 | **`spring-boot-starter-batch-jdbc` + `DataSource`** (Batch 층에서는 `@EnableJdbcJobRepository`) |
 
 Boot 3에서 올라온 애플리케이션은 **아무것도 안 바꾸면 조용히 인메모리로 내려앉는다.** §1에서 "배치를 재시작해 봐야 안다"고 한 것이 이 항목이다.
+
+> **공식 문서로 확인한 메커니즘 (2026-08-29).** 이 항목은 실수 대가가 커서 상류 문서까지 추적했다. **Spring Batch 6.0 마이그레이션 가이드**가 변경의 실체를 명시한다 — *"`DefaultBatchConfiguration`이 이제 **'resourceless' 배치 인프라**를 구성한다(즉 **`ResourcelessJobRepository`**와 `ResourcelessTransactionManager`)."* 이유도 함께 적는다 — *"배치 메타데이터가 필요 없는 사람들에게 **인메모리 데이터베이스에 대한 추가 의존성을 요구하지 않기 위해서**다."*
+>
+> 즉 이것은 Boot의 결정이 아니라 **Spring Batch 6 자체의 기본값 변경**이고, Boot 4는 그 위에 올라탄 것이다. Boot 4 레퍼런스도 자동 구성 가능한 배치 저장소를 *"In-memory, JDBC, MongoDB"*로 나열하며 **인메모리를 정식 선택지로 문서화**한다(Boot 3에는 없던 항목이다).
+>
+> **"resourceless"라는 이름이 성격을 그대로 말한다** — 자원(데이터베이스)을 쓰지 않는다는 뜻이고, 그래서 남길 곳이 없으니 재시작하면 사라진다. 트랜잭션 매니저까지 함께 resourceless로 바뀐다는 점도 중요하다. 배치 메타데이터에 트랜잭션 보장이 걸려 있지 않다는 뜻이다.
+>
+> **JDBC를 되살리는 방법이 두 층에 있다.** 위 표의 `spring-boot-starter-batch-jdbc` + `DataSource`는 Boot 층의 방법이고, Spring Batch 층에서는 마이그레이션 가이드가 **`@EnableJdbcJobRepository`**를 명시하라고 안내한다(설정 클래스를 상속하는 경우에는 `DefaultBatchConfiguration` 대신 **`JdbcDefaultBatchConfiguration`**을 쓴다).
+>
+> **확인 방법.** 지금 도는 애플리케이션이 어느 쪽인지는 기동 로그의 `JobRepository` 구현 클래스나 `/actuator/conditions`의 배치 자동 구성 조건 평가로 확인한다. `Resourceless`가 보이면 **재시작 시 이력이 사라지는 상태**다.
 
 **④ `JmsClient` 지원**
 
@@ -409,7 +419,7 @@ Spring의 AOT 엔진은 빌드 시점에 애플리케이션을 분석해 GraalVM
 ### 토대 하나가 아홉 영역으로 퍼진다
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     B["Spring Framework 7 · Jakarta EE 11 · Java 17 기준선"] --> S["Servlet 6.1"]
     B --> P["Jakarta Persistence 3.2"]
@@ -588,6 +598,9 @@ Boot 4에서 둘 다 존재한다. 기준은 **"Spring Data MongoDB가 필요한
 10. GraalVM 네이티브 이미지와 Java AOT Cache의 결정적 차이는? 세 번째 "AOT"는 무엇인가?
 11. 다섯 방향을 각각 이 장의 예와 함께 말할 수 있는가? 그중 예외가 하나 있다면?
 12. 업그레이드의 첫 수로 `spring-boot-properties-migrator`를 두는 이유를 §1의 진단과 연결해 설명할 수 있는가?
+
+
+> 열두 문항을 스스로 답한 **뒤에** [[_01-whats-new-in-spring-boot-4]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

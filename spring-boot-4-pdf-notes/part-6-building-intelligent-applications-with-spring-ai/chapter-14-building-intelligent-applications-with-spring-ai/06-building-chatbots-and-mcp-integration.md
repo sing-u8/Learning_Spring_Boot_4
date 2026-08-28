@@ -91,7 +91,7 @@ USB에 빗대는 설명이 흔하다. 예전엔 기기마다 전용 케이블이
 Figure 14.4(책 p.450)의 재현이다.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart LR
     subgraph EXTS["외부 MCP 서버 — 도구·리소스·프롬프트 제공"]
         FS["파일 시스템 서버"]
@@ -165,6 +165,9 @@ flowchart LR
 - MCP가 정의하는 Tools·Resources·Prompts를 나눈 기준은 무엇인가?
 - 한 애플리케이션이 client이자 server가 될 수 있다는 사실이 실제로 무엇을 가능하게 하는가?
 - 전송 계층을 프로토콜에서 분리한 이득은?
+
+
+> 네 문항을 스스로 답한 **뒤에** [[_06-building-chatbots-and-mcp-integration]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

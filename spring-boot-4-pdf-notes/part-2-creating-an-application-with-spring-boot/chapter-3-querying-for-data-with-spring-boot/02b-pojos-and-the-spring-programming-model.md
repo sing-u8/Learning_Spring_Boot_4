@@ -127,7 +127,7 @@ status: prepared
 ### 상속으로 붙이기와 감싸서 붙이기
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TB
     subgraph OLD["상속 방식 — 프레임워크 침습적"]
         F["FrameworkBaseService<br/>(컨텍스트 · 커넥션 요구)"]
@@ -240,6 +240,8 @@ flowchart TB
 6. 같은 객체 안에서 자기 메서드를 부르면 `@Transactional`이 안 걸리는 이유는?
 7. 애노테이션만 붙은 클래스가 POJO인지에 대해, 책이 제시한 **판단 기준**은 무엇인가?
 8. 애노테이션 자체는 아무것도 하지 않는다는 말이 테스트 용이성과 어떻게 연결되는가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_02b-pojos-and-the-spring-programming-model]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 

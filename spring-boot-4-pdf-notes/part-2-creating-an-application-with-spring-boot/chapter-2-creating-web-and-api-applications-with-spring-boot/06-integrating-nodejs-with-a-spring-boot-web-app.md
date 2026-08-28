@@ -159,7 +159,7 @@ validate → generate-sources → process-sources
 ### 두 빌드가 한 빌드가 되는 구조
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'background': '#ffffff', 'primaryColor': '#e8f1ff', 'primaryTextColor': '#172033', 'primaryBorderColor': '#5b7db1', 'lineColor': '#52647a', 'secondaryColor': '#f7fbff', 'tertiaryColor': '#fff7df'}}}%%
+%%{init: {'theme': 'dark'}}%%
 flowchart TD
     M["mvn package 한 번"] --> GR["generate-resources 단계"]
     GR --> P["frontend-maven-plugin"]
@@ -245,6 +245,8 @@ flowchart TD
 6. `static/`과 `templates/`에 파일을 두는 기준을 한 문장으로 말할 수 있는가?
 7. `frontend-maven-plugin`에는 버전을 쓰고 Boot 스타터에는 안 쓰는 이유는?
 8. 이 방식이 적합하지 **않은** 상황을 하나 들 수 있는가?
+
+> 여덟 문항을 스스로 답한 **뒤에** [[_06-integrating-nodejs-with-a-spring-boot-web-app]]에서 모범답안과 대조한다. 먼저 열면 이 문항들은 다시 인출 문제로 쓸 수 없다.
 
 <!-- ==== 아래는 내 영역 · 스킬 수정 금지 ==== -->
 
