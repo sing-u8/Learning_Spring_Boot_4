@@ -324,3 +324,16 @@
 - **Validation**: concept note **163/163** deep-tutor PASS, Mermaid block 259 = 밝은 theme init 259, **PNG 육안 확인 259/259**, `git diff --check` PASS.
 - **Gaps added / resolved**: 없음. `part-0-jpa-foundations/`는 이번에도 손대지 않았다.
 - **Next**: 사용자가 노트를 읽은 뒤의 인출 연습.
+
+## 2026-08-28 — part-0-jpa-foundations 전수 검증과 상태 문서 등록
+
+- **Modes**: 검증 + 상태 문서 정리. 인출 연습은 시작하지 않았다.
+- **Source**: PDF가 아니라 Hibernate ORM / Spring Data JPA / Spring Framework·Boot 공식 문서(Context7). 이 트랙의 1차 소스가 그것이기 때문이다.
+- 커밋·푸시 뒤 사용자 요청으로 **다른 세션이 쓴 part-0 14개 노트를 책 트랙과 같은 기준으로 검증**했다.
+- **구조**: deep-tutor 14/14 PASS, frontmatter 누락 0, glossary 양방향 불일치 0(17·17·15), wiki link 386개 중 미해결 0, Mermaid 17개 전부 렌더 + **17/17 PNG 육안 확인**. 사용자 영역 marker 14개 전부 존재하고 전부 비어 있다.
+- **내용**: 14개 **전문을 읽고** 반증 가능한 주장을 공식 문서와 대조했다. `@DynamicUpdate`+`@Version` 경고, JPQL의 캐시 인스턴스 반환, 네이티브 SQL 플러시, 프록시 `getId()`, `MultipleBagFetchException`, 자기 호출·rollback-only·`LockModeType.WRITE` — 전부 정확했다.
+- **오류 3건을 찾아 고쳤다.** 셋 다 같은 노트 안에서 자기 모순이었다 — j1 `02`의 `write-behind` 어원(§2.1과 정반대), j2 `05`의 반대편 컬렉션 동작(12줄 뒤 서술과 모순), j3 `05`의 OSIV 커넥션 점유 논증(Hibernate RESOURCE_LOCAL 문서와 불일치). 마지막 건은 노트의 중심 논증이라 §1·§3 도표·§5까지 다시 썼다.
+- **상태 문서 등록**: 이 트랙이 `config.md`·`source-manifest.md`·`README.md` 어디에도 없었다. CLAUDE.md가 part-0 작업 중 `_global/` 수정을, 책 트랙 작업 중 part-0을 각각 금지해 **어느 쪽도 등록할 권한이 없었던 규칙의 틈**이다. 세 문서에 트랙 상태·출처·"PDF 쪽 범위가 없는 이유"를 적었다. 이로써 저장소 concept note는 163 + 14 = **177개**다.
+- **Validation**: concept note **177/177** deep-tutor PASS, wiki link **7,292개 중 미해결 0**, `git diff --check` PASS.
+- **Gaps added / resolved**: 없음. 인출 연습 전이므로 [[gaps]]는 여전히 비어 있는 것이 맞다.
+- **Next**: 정리 단계에서 남은 작업이 없다. 다음은 사용자가 노트를 읽은 뒤의 **인출 연습**이다.
